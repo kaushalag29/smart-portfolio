@@ -34,7 +34,7 @@ const FeaturedProjects: React.FC = () => {
   const fetchProjects = useCallback(async () => {
     setLoading(true);
     try {
-      const username = 'medevs';
+      const username = 'kaushalag29';
       const { data: repos } = await githubService.getRepositories(username, {
         per_page: 100,
         type: 'owner'
