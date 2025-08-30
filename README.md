@@ -65,8 +65,8 @@ This project is a modern portfolio website built with Next.js 15, featuring AI-p
    OPENAI_API_KEY=your_openai_api_key
 
    # Supabase
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_URL=your_supabase_url
+   SUPABASE_ANON_KEY=your_supabase_anon_key
 
    # GitHub
    NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
