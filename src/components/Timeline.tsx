@@ -1,4 +1,5 @@
 import React from 'react';
+import resumeData from '@/data/resumeData.json';
 
 interface TimelineItem {
   type: 'education' | 'experience';
@@ -10,62 +11,25 @@ interface TimelineItem {
   skills?: string[];
 }
 
-const educationItems: TimelineItem[] = [
-  {
-    type: 'education',
-    title: 'Vocational Training in Application Development',
-    organization: 'Schulzentrum SII Utbremen Bremen',
-    date: 'Aug 2021 - May 2024',
-    description: 'Dual education: Theory and practice in Full Stack Development. Focus on modern web technologies and agile software development practices.',
-    skills: ['JavaScript', 'React', 'Node.js', 'SQL', 'Agile Methodologies']
-  },
-  {
-    type: 'education',
-    title: 'Bachelor in Networks and Telecommunications',
-    organization: 'Université du Littoral Côte d\'Opale',
-    date: 'Oct 2018 - Nov 2019',
-    description: 'French state diploma focusing on network administration, IT security, and web development. Preparation for CISCO certifications (CCNA1 to CCNA4).',
-    skills: ['Network Administration', 'IT Security', 'PHP', 'MySQL', 'Project Management', 'CISCO CCNA']
-  },
-  {
-    type: 'education',
-    title: 'Training in Computer Development Techniques',
-    organization: 'OFPPT Ouarzazate',
-    date: 'Sep 2016 - Jul 2018',
-    description: 'Comprehensive training in IT skills, including programming, web development, database management, and networks.',
-    skills: ['C#', 'HTML', 'CSS', 'JavaScript', 'SQL', 'WordPress', 'Bootstrap', 'UML']
-  }
-];
+// Transform resume data into timeline format
+const educationItems: TimelineItem[] = resumeData.education.map(edu => ({
+  type: 'education' as const,
+  title: edu.degree,
+  organization: edu.institution,
+  date: `${edu.startDate} - ${edu.endDate}`,
+  description: edu.description,
+  skills: [] // Education doesn't have specific skills in the JSON, but we could extract from description
+}));
 
-const experienceItems: TimelineItem[] = [
-  {
-    type: 'experience',
-    title: 'Full Stack Developer',
-    organization: 'ePhilos AG',
-    date: 'Aug 2021 - Present · 2 years 8 months',
-    location: 'Bremen, Germany · Hybrid',
-    description: 'Responsible for the further development of Comfortmarkt (CM), a software based on PHP, Ext JS, Webix, and MySQL. Optimization of database queries and performance. Implementation of new features focusing on user-friendliness. Application of best practices in software development and code optimization. Conducting unit tests and collaborating on CI/CD processes.',
-    skills: ['PHP', 'Ext JS', 'Webix', 'MySQL', 'JavaScript', 'HTML', 'CSS', 'Unit Testing']
-  },
-  {
-    type: 'experience',
-    title: 'Web Developer',
-    organization: 'Freelancer',
-    date: 'Mar 2020 - Jun 2021 · 1 year 4 months',
-    location: 'Remote - Morocco',
-    description: 'Development of responsive websites (HTML, CSS, Bootstrap, jQuery, WordPress). Customizations and SEO optimization. Close collaboration with clients to implement tailored solutions.',
-    skills: ['HTML', 'CSS', 'Bootstrap', 'jQuery', 'WordPress', 'SEO', 'Client Communication']
-  },
-  {
-    type: 'experience',
-    title: 'NodeJS Developer (Internship)',
-    organization: 'HM Communication',
-    date: 'Jul 2019 - Sep 2019 · 3 months',
-    location: 'Marrakech, Morocco',
-    description: 'Development of web applications with Node.js and Express.js. Working with MongoDB and RESTful APIs.',
-    skills: ['Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'Git']
-  }
-];
+const experienceItems: TimelineItem[] = resumeData.experience.map(exp => ({
+  type: 'experience' as const,
+  title: exp.position,
+  organization: exp.company,
+  date: `${exp.startDate} - ${exp.endDate}`,
+  location: exp.location,
+  description: exp.description,
+  skills: [] // Could extract key technologies from description if needed
+}));
 const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => (
   <div className="mb-8 relative">
     <div className="absolute top-0 left-0 w-2 h-full bg-gray-200 dark:bg-gray-700" />

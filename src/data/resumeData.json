@@ -1,150 +1,222 @@
 {
   "personalInfo": {
-    "name": "Ahmed Oublihi",
-    "title": "Full Stack Developer",
-    "email": "oublihi.a@gmail.com",
-    "location": "Bremen, Germany",
-    "github": "https://github.com/medevs",
-    "linkedin": "https://www.linkedin.com/in/ahmed-oublihi/",
-    "website": "https://medevs.xyz",
-    "summary": "Full Stack Developer specializing in JavaScript, PHP, and modern web technologies. Experienced in developing efficient web applications and optimizing enterprise software. Combining technical expertise with a passion for AI to create innovative solutions.",
-    "image": "https://avatars.githubusercontent.com/u/40724828?v=4"
+    "name": "Kaushal Kumar Agarwal",
+    "title": "AI/ML Engineer | MCS @ Rice University",
+    "email": "ka62@alumni.rice.edu",
+    "location": "Houston, TX, USA",
+    "github": "https://github.com/kaushalag29",
+    "linkedin": "https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/",
+    "website": "",
+    "summary": "Software Engineer with experience across backend, data/ML systems, and cloud platforms. Built scalable APIs, retrieval systems, and serverless data platforms. Strong in Python, Java, C#, AWS, Spark, Docker/Kubernetes, and modern web frameworks.",
+    "image": ""
   },
   "experience": [
     {
-      "company": "ePhilos AG",
-      "position": "Full Stack Developer",
-      "startDate": "Aug 2021",
+      "company": "Cloudwick Technologies",
+      "position": "Machine Learning Engineer",
+      "startDate": "Feb 2025",
       "endDate": "Present",
-      "description": "Further development of the enterprise software Comfortmarkt (PHP, MySQL, Ext and Webix js). Optimization of database queries and performance. Implementation of new features focusing on user-friendliness. Application of best practices in software development and code optimization. Conducting unit tests and collaborating on CI/CD processes.",
-      "companyUrl": "https://ephilos.de"
+      "description": "Leading RAG and agentic AI solutions end-to-end.\n\nTimeline:\n- Mid Feb – Early Apr: Researched knowledge-graph RAG using AWS Neptune and Neo4j AuraDB. Built pipelines to enrich JSON metadata for multi-format documents and construct graphs; prototyped natural-language → Cypher translation via LLM prompting/tool-calling to enable complex multi-hop queries.\n- Apr – May: Built LLM-powered data cleaning to normalize hierarchical multi-tag columns in batches with guardrails and QC checks, reducing redundancy and improving downstream retrieval quality.\n- May – Jul: Implemented a PDF chatbot that returns grounded answers with citations and page-level highlights. Built test/briefing document generation over multi-document sets using Amazon OpenSearch vector DB + Amazon Bedrock LLMs with re-ranking. In parallel, evaluated document/face detection (OpenCV, PaddleOCR, EasyOCR) to identify driver’s licenses and tuned extraction prompts.\n- Late Jul – Aug: Productionized the chatbot and document generators with AWS Lambda and Step Functions; restricted actions strictly to one selected manual, added monitoring/alerts, and optimized latency/cost.\n\nAgentic patterns: Tool-augmented LLMs orchestrating retrieval, re-ranking, citation extraction, page locator, OCR, and graph-query tools under policy constraints; evaluation harnesses and observability for reliability.",
+      "companyUrl": "https://cloudwick.com/",
+      "location": "Newark, CA (Remote/Hybrid)"
     },
     {
-      "company": "Freelancer",
-      "position": "Web Developer",
-      "startDate": "Mar 2020",
-      "endDate": "Jun 2021",
-      "description": "Development of responsive websites (HTML, CSS, Bootstrap, jQuery, WordPress). Customizations and SEO optimization. Close collaboration with clients to implement tailored solutions.",
-      "location": "Remote - Morocco"
+      "company": "Rice University",
+      "position": "Teaching Assistant",
+      "startDate": "Aug 2023",
+      "endDate": "Dec 2024",
+      "description": "Managed grading and office hours for OOP, Computer Security, Software Engineering Methodology, and Software Construction; improved assignment scores by ~10% via targeted support.",
+      "companyUrl": "https://www.rice.edu/",
+      "location": "Houston, TX"
     },
     {
-      "company": "HM Communication",
-      "position": "NodeJS Developer (Internship)",
-      "startDate": "Jul 2019",
-      "endDate": "Sep 2019",
-      "description": "Development of web applications with Node.js and Express.js. Working with MongoDB and RESTful APIs.",
-      "location": "Marrakech, Morocco"
+      "company": "Paycom",
+      "position": "Software Developer Intern",
+      "startDate": "May 2024",
+      "endDate": "Aug 2024",
+      "description": "Engineered C#/.NET backend APIs aggregating data from ~2,000 GitLab repos. Delivered role-based dashboards enabling leadership insights on MR review efficiency and developer performance.",
+      "companyUrl": "https://www.paycom.com/",
+      "location": "Dallas, TX"
+    },
+    {
+      "company": "Cloudwick Technologies India Pvt Ltd",
+      "position": "Software Engineer II",
+      "startDate": "Dec 2020",
+      "endDate": "Jul 2023",
+      "description": "Promoted to Software Engineer II within a year. Owned design and implementation of serverless APIs in Python on AWS Lambda to deliver new features and bug fixes. Managed Bitbucket CI/CD pipelines and Amorphic release cycles (dev → qa → staging → master), including packaging release artifacts to S3 and deploying via CMP. Provided on-call support for developers/customers, proactively shipped features, and patched production issues.\n\nA) Dataset Metrics Collection (New Feature)\n- Requirement: For each dataset (with many files, mutable over time), collect daily time series metrics (TotalFileSize, NumberOfFiles).\n- Challenges: Full file scans are slow for Lambda; migrated to AWS Glue job, scheduled via CloudWatch Events (midnight), with backfill synchronization from dataset creation to present.\n- Output: Time-series visualization to spot anomalies; automated email notifications to dataset owners.\n\nB) Dataset Lifecycle Mechanism (Customer Demand)\n- Requirement: Configure file expiration after X days and tier migration to specific S3 storage classes after Y days.\n- Challenges: High-risk operation; used AWS Step Functions to orchestrate create/modify lifecycle rules at S3 prefix level with rollback on failures; robust error handling and notifications.\n- Output: Increased customer trust and retention; contributed to revenue growth. Future: Glacier restore workflows.\n\nC) AWS EKS Upgrade (1.21 → 1.24)\n- Context: Cluster running Apache Superset and AWS Load Balancer Controller.\n- Challenges: Reverse-engineered provisioning/install steps; extensive troubleshooting and compatibility validation.\n- Result: Technically validated upgrade path; postponed due to limited customer engagement.\n\nD) Error Code Standardization\n- Goal: Unify exception message structure across services.\n- Challenges: Designing a common error code template and consolidating multi-source error messages.\n- Result: Improved code quality and operability.\n\nE) Release Cycle Process\n- Flow: dev → qa(testing) → staging(testing) → master(testing).\n- Artifacts: Versioned release bundles in S3; used by CMP to deploy to customer environments.\n\nF) Customer Environment Ops\n- Patching Lambda processes; salt key rotation for PAT security.\n\nG) Initiatives\n- Piloted AWS CodeGuru (Code Reviewer, Lambda Profiler, Code Security).\n- Reduced PyLint stage time by ~50% in Bitbucket pipelines.\n- Researched observability (logs, traces, metrics) via AWS Grafana and CloudWatch Logs Insights.",
+      "companyUrl": "https://cloudwick.com/",
+      "location": "Bengaluru, IN (Remote/Hybrid)"
+    },
+    {
+      "company": "Qubole",
+      "position": "Engineering Intern",
+      "startDate": "Jan 2020",
+      "endDate": "Dec 2020",
+      "description": "Designed and developed a Scala-based Spark metrics framework to capture rich event data and accelerate performance analysis; achieved ~10% speedup on TPC-DS benchmarks. Optimized regression runs using PyTest with multiprocessing and Jenkins by parallelizing across ephemeral child accounts spawned from a parent account. Addressed per-account configuration reinitialization and teardown for isolation and reproducibility, reducing regression time roughly by a factor of N (number of cores).",
+      "companyUrl": "https://www.qubole.com/",
+      "location": "Bengaluru, IN (Remote/Hybrid)"
+    },
+    {
+      "company": "Microland",
+      "position": "Technology Intern",
+      "startDate": "May 2019",
+      "endDate": "Jul 2019",
+      "description": "J.A.R.V.I.S.S.: Contributed to a microservice-based multi-cloud security orchestration platform offering unified, cloud-agnostic terminology, tag-based policy enforcement resilient to cloud migrations, and cloud graph visualization to inspect live connections. Integrated AWS and GCP (extensible to Azure/Kubernetes/private clouds). Implemented components using Terraform, HashiCorp Vault, Flask, and MongoDB, leading to ~15% reduction in operational costs.",
+      "companyUrl": "https://www.microland.com/",
+      "location": "Bengaluru, IN"
+    },
+    {
+      "company": "Ranchi Mall",
+      "position": "Software Intern",
+      "startDate": "Mar 2018",
+      "endDate": "Mar 2019",
+      "description": "Developed decentralized applications using Flo-Blockchain: FloSecretSharingApp - Decentralized app to store secrets on blockchain using encryption with Shamir’s algorithm. FloAppStore - Python-based GUI app store (Tkinter), with all app metadata stored on blockchain. FloWhatsapp - Peer-to-peer web chat app using JavaScript, IndexedDB, Mongoose Client (C++), and blockchain.",
+      "companyUrl": "https://www.ranchimall.net/",
+      "location": "Bali, Indonesia (Remote)"
     }
   ],
   "education": [
     {
-      "institution": "Schulzentrum SII Utbremen Bremen",
-      "degree": "Vocational Training in Application Development",
-      "startDate": "Aug 2021",
-      "endDate": "May 2024",
-      "description": "Dual education: Theory and practice in Full Stack Development. Modern web technologies and agile methods.",
-      "institutionUrl": "https://www.szut.de/"
+      "institution": "Rice University",
+      "degree": "Master of Computer Science (MCS)",
+      "startDate": "Aug 2023",
+      "endDate": "Dec 2024",
+      "description": "GPA: 3.95/4.00. Coursework: Software Engineering Methodology, Deep Learning, Vision & Language, Machine Learning, Networks, Systems Architecture, Algorithms, Ethics & Workplace Communication.",
+      "institutionUrl": "https://www.rice.edu/"
     },
     {
-      "institution": "Université du Littoral Côte d'Opale",
-      "degree": "Bachelor in Networks and Telecommunications",
-      "startDate": "Oct 2018",
-      "endDate": "Nov 2019",
-      "description": "Network administration, IT security, web development. CISCO certifications (CCNA1-CCNA4).",
-      "institutionUrl": "https://www.univ-littoral.fr"
-    },
-    {
-      "institution": "OFPPT Ouarzazate",
-      "degree": "Training in Computer Development Techniques",
-      "startDate": "Sep 2016",
-      "endDate": "Jul 2018",
-      "description": "Comprehensive training in IT skills, including programming, web development, database management, and networks.",
-      "institutionUrl": "https://www.ofppt.ma/"
+      "institution": "Birla Institute of Technology, Mesra",
+      "degree": "B.E. in Computer Science & Engineering",
+      "startDate": "Jul 2016",
+      "endDate": "Jul 2020",
+      "description": "Coursework: Computer Architecture, Algorithms, OOP, Software Engineering, Networks, OS, DBMS, Cryptography & Network Security.",
+      "institutionUrl": "https://www.bitmesra.ac.in/"
     }
   ],
   "skills": [
-    "React",
-    "Next.js",
-    "Astro",
-    "Javascript",
-    "TypeScript",
+    "Python",
+    "Java",
+    "C/C++",
+    "C#",
+    "JavaScript",
     "HTML5",
     "CSS3",
-    "Tailwind CSS",
-    "PHP",
+    "Bootstrap",
     "Node.js",
-    "Express.js",
-    "Laravel",
-    "Python",
-    "MySQL",
-    "MongoDB",
-    "Git",
+    "React",
+    ".NET Core",
+    "Flask",
+    "AWS",
+    "Apache Spark",
     "Docker",
-    "Jest",
-    "CI/CD",
-    "VS Code",
-    "OpenAI",
-    "Langchain"
+    "Kubernetes",
+    "TensorFlow",
+    "PyTorch",
+    "Pandas",
+    "NumPy",
+    "MongoDB",
+    "DynamoDB",
+    "MySQL",
+    "Git",
+    "Linux",
+    "TensorFlow",
+    "PyTorch",
+    "LLMs (GPT, Gemini, Cursor)"
   ],
   "languages": [
     {
-      "language": "German",
-      "proficiency": "B2-C1"
-    },
-    {
       "language": "English",
-      "proficiency": "B2"
+      "proficiency": "Fluent"
     },
     {
-      "language": "French",
-      "proficiency": "B1"
-    },
-    {
-      "language": "Berber",
-      "proficiency": "Native"
-    },
-    {
-      "language": "Arabic",
+      "language": "Hindi",
       "proficiency": "Native"
     }
   ],
   "projects": [
     {
-      "name": "Smart Portfolio",
-      "description": "Portfolio website with AI chatbot. Next.js, React.js, AI integration. Dynamic chatbot for answering questions. Modern web design for optimal UX.",
-      "technologies": ["Next.js", "React", "AI", "OpenAI", "Langchain", "Tailwind CSS"],
-      "link": "https://medevs.xyz"
+      "name": "Multimodal & Multilingual Retrieval System",
+      "description": "Built an image retrieval system supporting image/text/audio queries; indexed >1M image vectors and achieved ~0.35s latency for top-1k results; enabled >100 languages for queries.",
+      "technologies": ["Python", "FAISS", "SigLIP", "Embeddings", "Retrieval"],
+      "link": "https://github.com/tsenthil5/Fast-Retrieval-System-WebApp/blob/main/COMP_642_Final_Report.pdf"
     },
     {
-      "name": "Blog Genius",
-      "description": "AI-powered tool for creating blog articles. React, Next.js, OpenAI integration. Generation of outlines and content. Intuitive user interface.",
-      "technologies": ["React", "Next.js", "AI", "OpenAI", "Node.js"],
-      "link": "https://blog-genius.vercel.app/"
+      "name": "Shrink - URL Shortener",
+      "description": "Led a 7-person team to develop a URL shortener with user analytics and premium features on Google App Engine.",
+      "technologies": ["Java", "Spring Boot", "Google Cloud", "Bigtable"],
+      "link": "https://drive.google.com/file/d/1PJHIX_Nwv1_5SPQo6TenlPshBFFU5WH_/view?usp=sharing"
     },
     {
-      "name": "Your Daily Way",
-      "description": "High-performance blog with Astro and React. Focus on performance optimization and SEO. Markdown integration for easy content creation.",
-      "technologies": ["Astro", "React", "TypeScript", "SEO", "Markdown"],
-      "link": "http://yourdailyway.com/"
+      "name": "Chest X-ray Medical Report Generation",
+      "description": "Implemented transfer learning and encoder-decoder architectures for automated report generation; achieved BLEU ~0.322, improving baselines by ~30%.",
+      "technologies": ["Python", "Deep Learning", "RNN/LSTM/GRU", "Computer Vision"],
+      "link": "https://github.com/kaushalag29/COMP576-Final-Project/blob/main/IEEE%20Format%20Research%20Paper.pdf"
+    },
+    {
+      "name": "TV Series Dubber",
+      "description": "Python-based pipeline to dub TV series episodes using subtitles, TTS (Google or Amazon Polly), FFmpeg, and the open-source Vocal-Remover project. Multithreaded workflow: 1) Convert subtitles to speech and generate MP3; 2) Separate voice/background audio; 3) Recompose video with background track and generated speech.",
+      "technologies": ["Python", "FFmpeg", "Amazon Polly", "TTS", "Audio Processing"],
+      "link": "https://www.youtube.com/channel/UCkeZ85bZLIcYJGTxeQhsTxA"
+    },
+    {
+      "name": "Web Hosting Using Blockchain",
+      "description": "Decentralized static site hosting with IPFS and MetaMask integration. Implemented Node.js (Express) services to automate IPFS uploads and refactor JS references during deploy. Users acquire a domain and publish content persistently via IPFS-backed storage.",
+      "technologies": ["Node.js", "Express", "IPFS", "MetaMask", "Blockchain"],
+      "link": "https://youtu.be/BoGtQ4uK0-I"
     }
   ],
   "interests": [
-    "Open Source Contributions",
+    "Software Engineering",
     "AI and Machine Learning",
-    "Software Architecture",
-    "Problem Solving and Logical Thinking"
+    "Cloud Computing",
+    "Security"
   ],
   "certifications": [
     {
-      "name": "Microsoft Certified Professional (MCP)",
-      "date": "May 2018",
-      "description": "Focus: HTML, CSS, JavaScript"
+      "name": "AWS Certified Machine Learning – Associate",
+      "date": "Jun 2025",
+      "description": ""
+    },
+    {
+      "name": "AWS Certified AI Practitioner",
+      "date": "Mar 2025",
+      "description": ""
+    },
+    {
+      "name": "AWS Certified SysOps Administrator – Associate",
+      "date": "Apr 2022",
+      "description": ""
+    },
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "date": "Sep 2021",
+      "description": ""
+    },
+    {
+      "name": "AWS Certified Developer – Associate",
+      "date": "Jun 2021",
+      "description": ""
+    },
+    {
+      "name": "EPFL – Big Data Analysis with Scala and Spark",
+      "date": "Jul 2020",
+      "description": ""
+    },
+    {
+      "name": "DeepLearning.AI – Neural Networks and Deep Learning",
+      "date": "May 2020",
+      "description": ""
+    },
+    {
+      "name": "University of Colorado – Hacking & Patching",
+      "date": "Mar 2020",
+      "description": ""
     }
   ],
   "softSkills": [
     "Problem Solving",
-    "Logical Thinking",
-    "Teamwork",
-    "Communication"
+    "Analytical Thinking",
+    "Communication",
+    "Team Collaboration"
   ]
 }

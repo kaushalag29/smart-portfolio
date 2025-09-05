@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import heroImage from "@/assets/Ahmed.jpeg";
+import heroImage from "@/assets/Kaushal.jpg";
 import { Twitter, GithubIcon, Linkedin } from 'lucide-react';
 
 const AboutMe: React.FC = () => {
@@ -11,7 +11,7 @@ const AboutMe: React.FC = () => {
           <div className="flex-shrink-0">
             <Image
               src={heroImage}
-              alt="Ahmed's profile picture"
+              alt="Kaushal's profile picture"
               className="rounded-full w-24 h-24 object-cover ring-2 ring-blue-500/20"
               priority
             />
@@ -20,21 +20,18 @@ const AboutMe: React.FC = () => {
             <div className="flex flex-col h-full">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                  Ahmed Oublihi
+                  Kaushal Kumar Agarwal
                 </h1>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">@medevs</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">@kaushalag29</p>
               </div>
               
               <div className="flex-1 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 mb-8 mt-4">
                 <div className="space-y-3">
                   <p className="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Hey there, I&apos;m Ahmed, a Software Developer based in Bremen, Germany. 
-                    I dive deep into JavaScript and love crafting sleek, efficient web apps. 
-                    With an eye for detail and a hunger for learning, I&apos;m all about delivering 
-                    high-quality solutions that meet both user needs and business objectives.
+                    Hey there! I&apos;m Kaushal, an AI/ML Engineer and Software Engineer passionate about building intelligent systems that solve real-world problems. With 3+ years of experience across diverse domains—from serverless data platforms to agentic RAG systems—I love exploring the intersection of software engineering, machine learning, and cloud computing.
                   </p>
                   <p className="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
-                    AI? Oh, that&apos;s my jam. I geek out on building software that taps into AI magic.
+                    I hold a B.E. in Computer Science from BIT Mesra and recently completed my Master&apos;s at Rice University. My journey spans from blockchain applications and distributed systems to modern AI/ML workflows. I&apos;m AWS-certified and deeply interested in software architecture, security, and the evolving landscape of generative AI. When I&apos;m not coding, I enjoy exploring new technologies, contributing to open source, and thinking about how AI can augment human capabilities responsibly.
                   </p>
                 </div>
               </div>
@@ -42,16 +39,7 @@ const AboutMe: React.FC = () => {
               <div className="mt-auto">
                 <div className="flex items-center space-x-4">
                   <a 
-                    href="https://twitter.com/ahmedoublihi" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                    aria-label="Twitter Profile"
-                  >
-                    <Twitter className="w-5 h-5" />
-                  </a>
-                  <a 
-                    href="https://github.com/medevs" 
+                    href="https://github.com/kaushalag29" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
@@ -60,7 +48,7 @@ const AboutMe: React.FC = () => {
                     <GithubIcon className="w-5 h-5" />
                   </a>
                   <a 
-                    href="https://linkedin.com/in/ahmed-oublihi" 
+                    href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"

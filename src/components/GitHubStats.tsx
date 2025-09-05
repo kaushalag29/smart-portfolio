@@ -43,10 +43,10 @@ const GitHubStats: React.FC = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        const userResponse = await githubService.getUserData('medevs');
+        const userResponse = await githubService.getUserData('kaushalag29');
         setUserData(userResponse.data as UserData);
 
-        const reposResponse = await githubService.getRepositories('medevs', { per_page: 100 });
+        const reposResponse = await githubService.getRepositories('kaushalag29', { per_page: 100 });
         setRepos(reposResponse.data.map((repo: GitHubRepo): RepoData => ({
           name: repo.name,
           stargazers_count: repo.stargazers_count ?? 0,

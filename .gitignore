@@ -40,3 +40,6 @@ next-env.d.ts
 
 # env
 /src/env
+
+# data
+src/data/Kaushal_Kumar_Agarwal.pdf

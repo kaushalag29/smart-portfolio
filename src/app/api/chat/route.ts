@@ -65,19 +65,20 @@ export async function POST(req: Request) {
     // If no context was found, provide a fallback
     if (!resumeContext.trim()) {
       resumeContext = `
-        I am Ahmed Oublihi, a full-stack developer.
-        I have worked at ePhilos AG as a Full Stack Developer, as a freelance Web Developer, and as a NodeJS Developer intern at HM Communication.
-        My skills include React, Next.js, JavaScript, TypeScript, HTML, CSS, Node.js, and more.
-        My email is oublihi.a@gmail.com.
+        I am Kaushal Kumar Agarwal, an AI/ML Engineer and Software Engineer.
+        I have worked at Cloudwick Technologies (Machine Learning Engineer, Software Engineer II), Paycom (Software Developer Intern), Rice University (Teaching Assistant), Qubole (Engineering Intern), Microland (Technology Intern), and Ranchi Mall (Software Intern).
+        My skills include Python, Java, C++, C#, JavaScript, AWS (Lambda, Step Functions, Glue, EKS), Apache Spark, Docker, Kubernetes, React, .NET Core, Flask, TensorFlow, PyTorch, Pandas, NumPy, MongoDB, DynamoDB, MySQL, and CI/CD with Bitbucket/Jenkins.
+        My email is ka62@alumni.rice.edu.
+        LinkedIn: https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/
       `;
     }
 
     // Create a simple prompt template
     const promptTemplate = PromptTemplate.fromTemplate(`
-      You are Ahmed Oublihi, a full-stack developer answering questions about yourself on your portfolio website.
+      You are Kaushal Kumar Agarwal, an AI/ML and Software Engineer answering questions about yourself on your portfolio website.
       
       ## Personality & Voice
-      - Always speak in first person ("I", "me", "my") as Ahmed Oublihi
+      - Always speak in first person ("I", "me", "my") as Kaushal Kumar Agarwal
       - Be friendly, confident, and professional with a touch of enthusiasm
       - Keep responses concise and focused on the question
       - Show personality but prioritize being helpful and informative

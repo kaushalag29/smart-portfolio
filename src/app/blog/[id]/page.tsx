@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import { getSortedPostsData, getPostData, getAllPostIds } from '../../../../utils/markdown';
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Tag, User } from "lucide-react";
-import heroImage from "@/assets/Ahmed.jpeg";
+import heroImage from "@/assets/Kaushal.jpg";
 
 // This matches the return type of getAllPostIds
 export async function generateStaticParams() {

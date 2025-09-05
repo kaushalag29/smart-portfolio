@@ -6,10 +6,10 @@ interface Hobby {
 }
 
 const hobbies: Hobby[] = [
-  { name: 'Guitar', icon: '🎸' },
-  { name: 'Hiking', icon: '🥾' },
-  { name: 'Climbing', icon: '🧗' },
-  { name: 'Travel', icon: '✈️' },
+  { name: 'Binge Watching', icon: '🍿' },
+  { name: 'Traveling', icon: '✈️' },
+  { name: 'Singing', icon: '🎤' },
+  { name: 'Reading', icon: '📚' },
 ];
 
 interface HobbyCardProps {

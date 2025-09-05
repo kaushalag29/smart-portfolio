@@ -29,11 +29,36 @@ export default function TableOfContents({ className }: TableOfContentsProps) {
     // Filter out headings that are part of the TOC itself
     const headingElements = elements.filter(el => !el.closest('.table-of-contents'));
     
-    const items: TOCItem[] = headingElements.map(element => {
+    const usedIds = new Set<string>();
+    const items: TOCItem[] = headingElements.map((element, index) => {
       // Ensure each heading has an id
       if (!element.id) {
-        const id = element.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || '';
+        let baseId = element.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || '';
+        let id = baseId;
+        let counter = 1;
+        
+        // Make sure the ID is unique
+        while (usedIds.has(id)) {
+          id = `${baseId}-${counter}`;
+          counter++;
+        }
+        
+        usedIds.add(id);
         element.id = id;
+      } else {
+        // If element already has an ID, make sure it's unique too
+        let id = element.id;
+        let counter = 1;
+        
+        while (usedIds.has(id)) {
+          id = `${element.id}-${counter}`;
+          counter++;
+        }
+        
+        if (id !== element.id) {
+          element.id = id;
+        }
+        usedIds.add(id);
       }
       
       return {
