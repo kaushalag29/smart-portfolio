@@ -2,7 +2,6 @@ import React from 'react';
 import AboutMe from '@/components/AboutMe';
 import Technologies from '@/components/Technologies';
 import FeaturedProjects from '@/components/FeaturedProjects';
-import LatestPosts from '@/components/LatestPosts';
 import GitHubStats from '@/components/GitHubStats';
 import LeetCodeStats from '@/components/LeetCodeStats';
 import Timeline from '@/components/Timeline';
@@ -39,10 +38,6 @@ const HomePage: React.FC = () => {
           <LeetCodeStats />
         </div>
 
-        {/* Latest Posts */}
-        <div className="lg:col-span-2">
-          <LatestPosts />
-        </div>
 
         {/* Timeline - Spans full width */}
         <div className="lg:col-span-3">
