@@ -4,6 +4,7 @@ import Technologies from '@/components/Technologies';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import LatestPosts from '@/components/LatestPosts';
 import GitHubStats from '@/components/GitHubStats';
+import LeetCodeStats from '@/components/LeetCodeStats';
 import Timeline from '@/components/Timeline';
 import Languages from '@/components/Languages';
 import Hobbies from '@/components/Hobbies';
@@ -33,14 +34,19 @@ const HomePage: React.FC = () => {
           <Technologies />
         </div>
 
-        {/* Timeline - Spans full width */}
-        <div className="lg:col-span-3">
-          <Timeline />
+        {/* LeetCode Stats */}
+        <div>
+          <LeetCodeStats />
         </div>
 
         {/* Latest Posts */}
         <div className="lg:col-span-2">
           <LatestPosts />
+        </div>
+
+        {/* Timeline - Spans full width */}
+        <div className="lg:col-span-3">
+          <Timeline />
         </div>
 
         {/* Languages */}
@@ -49,7 +55,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Hobbies */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-2">
           <Hobbies />
         </div>
       </div>
