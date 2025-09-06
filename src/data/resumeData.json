@@ -175,42 +175,42 @@
     {
       "name": "AWS Certified Machine Learning – Associate",
       "date": "Jun 2025",
-      "description": ""
+      "description": "Earners of this badge have knowledge and skills in developing, deploying, maintaining, and monitoring ML solutions to meet AI/ML objectives. They know how to ingest, transform, validate, and prepare data for ML modeling. They have skills in implementing and operationalizing ML workloads in production. They can select modeling approaches and analyze model performance. They have the expertise to monitor ML solutions and to secure ML systems and resources."
     },
     {
       "name": "AWS Certified AI Practitioner",
       "date": "Mar 2025",
-      "description": ""
+      "description": "Earners of this badge understand AI, ML, and generative AI concepts, methods, and strategies in general and on AWS. They can determine the correct types of AI/ML technologies to apply to specific use cases and know how to use AI, ML, and generative AI technologies responsibly. They are familiar with the AWS Global Infrastructure, core AWS services and use cases, AWS service pricing models, and the AWS shared responsibility model for security and compliance in the AWS Cloud."
     },
     {
       "name": "AWS Certified SysOps Administrator – Associate",
       "date": "Apr 2022",
-      "description": ""
+      "description": "Earners of this certification have a comprehensive understanding on how to deploy, manage, and operate IT systems on the AWS Cloud. They demonstrated the ability to migrate on-premises workloads to AWS and monitor, scale, and secure systems on the AWS platform. Badge owners are able to provide guidance on implementing best practices for cloud operations."
     },
     {
       "name": "AWS Certified Solutions Architect – Associate",
       "date": "Sep 2021",
-      "description": ""
+      "description": "Earners of this certification have a comprehensive understanding of AWS services and technologies. They demonstrated the ability to build secure and robust solutions using architectural design principles based on customer requirements. Badge owners are able to strategically design well-architected distributed systems that are scalable, resilient, efficient, and fault-tolerant."
     },
     {
       "name": "AWS Certified Developer – Associate",
       "date": "Jun 2021",
-      "description": ""
+      "description": "Earners of this certification have a comprehensive understanding of application life-cycle management. They demonstrated proficiency in writing applications with AWS service APIs, AWS CLI, and SDKs; using containers; and deploying with a CI/CD pipeline. Badge owners are able to develop, deploy, and debug cloud-based applications that follow AWS best practices."
     },
     {
       "name": "EPFL – Big Data Analysis with Scala and Spark",
       "date": "Jul 2020",
-      "description": ""
+      "description": "Manipulating big data distributed over a cluster using functional concepts is rampant in industry, and is arguably one of the first widespread industrial uses of functional ideas. This is evidenced by the popularity of MapReduce and Hadoop, and most recently Apache Spark, a fast, in-memory distributed collections framework written in Scala. In this course, we'll see how the data parallel paradigm can be extended to the distributed case, using Spark throughout. We'll cover Spark's programming model in detail, being careful to understand how and when it differs from familiar programming models, like shared-memory parallel collections or sequential Scala collections. Through hands-on examples in Spark and Scala, we'll learn when important issues related to distribution like latency and network communication should be considered and how they can be addressed effectively for improved performance."
     },
     {
       "name": "DeepLearning.AI – Neural Networks and Deep Learning",
       "date": "May 2020",
-      "description": ""
+      "description": "In the first course of the Deep Learning Specialization, you will study the foundational concept of neural networks and deep learning. By the end, you will be familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications. The Deep Learning Specialization is our foundational program that will help you understand the capabilities, challenges, and consequences of deep learning and prepare you to participate in the development of leading-edge AI technology. It provides a pathway for you to gain the knowledge and skills to apply machine learning to your work, level up your technical career, and take the definitive step in the world of AI."
     },
     {
       "name": "University of Colorado – Hacking & Patching",
       "date": "Mar 2020",
-      "description": ""
+      "description": "In this MOOC, you will learn how to hack web apps with command injection vulnerabilities in a web site of your AWS Linux instance.   You will learn how to search valuable information on a typical Linux systems with LAMP services, and deposit and hide Trojans for future exploitation.  You will learn how to patch these web apps with input validation using regular expression. You will learn a security design pattern to avoid introducing injection vulnerabilities by input validation and replacing generic system calls with specific function calls.  You will learn how to hack web apps with SQL injection vulnerabilities and retrieve user profile information and passwords.  You will learn how to patch them with input validation and SQL parameter binding.  You will learn the hacking methodology, Nessus tool for scanning vulnerabilities, Kali Linux for penetration testing, and Metasploit Framework for gaining access to vulnerable Windows Systems, deploying keylogger, and perform Remote VNC server injection.  You will learn security in memory systems and virtual memory layout, and understand buffer overflow attacks and their defenses.  You will learn how to clone a Kali instance with AWS P2 GPU support and perform hashcat password cracking using dictionary attacks and known pattern mask attacks."
     }
   ],
   "softSkills": [
