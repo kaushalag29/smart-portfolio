@@ -1,12 +1,18 @@
 import React from 'react';
 import { skills } from '../data/skills';
 import * as Si from 'react-icons/si';
+import * as Di from 'react-icons/di';
+import * as Pi from 'react-icons/pi';
+import * as Fa from 'react-icons/fa';
+import * as Fa6 from 'react-icons/fa6';
 
 const Technologies: React.FC = () => {
   // Create a mapping of icon names to actual components
   const iconComponents: { [key: string]: React.ElementType } = {};
-  Object.keys(Si).forEach(key => {
-    iconComponents[key] = (Si as any)[key];
+  [Si, Di, Pi, Fa, Fa6].forEach(pack => {
+    Object.keys(pack).forEach(key => {
+      iconComponents[key] = (pack as any)[key];
+    });
   });
 
   return (

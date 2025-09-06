@@ -6,9 +6,9 @@ interface Skill {
 
 export const skills: Skill[] = [
   { name: 'Python', icon: 'SiPython', color: '#3776AB' },
-  { name: 'Java', icon: 'SiJava', color: '#5382A1' },
+  { name: 'Java', icon: 'DiJava', color: '#5382A1' },
   { name: 'C/C++', icon: 'SiCplusplus', color: '#00599C' },
-  { name: 'C#', icon: 'SiCsharp', color: '#239120' },
+  { name: 'C#', icon: 'PiFileCSharp', color: '#239120' },
   { name: 'JavaScript', icon: 'SiJavascript', color: '#F7DF1E' },
   { name: 'HTML5', icon: 'SiHtml5', color: '#E34F26' },
   { name: 'CSS3', icon: 'SiCss3', color: '#1572B6' },
@@ -17,13 +17,7 @@ export const skills: Skill[] = [
   { name: 'React', icon: 'SiReact', color: '#61DAFB' },
   { name: '.NET', icon: 'SiDotnet', color: '#512BD4' },
   { name: 'Flask', icon: 'SiFlask', color: '#000000' },
-  { name: 'AWS', icon: 'SiAmazon', color: '#FF9900' },
-  { name: 'AWS Lambda', icon: 'SiAwslambda', color: '#FF9900' },
-  { name: 'AWS Step Functions', icon: 'SiAwsstepfunctions', color: '#FF9900' },
-  { name: 'AWS Glue', icon: 'SiAwsglue', color: '#FF9900' },
-  { name: 'Amazon EKS', icon: 'SiAmazoneks', color: '#FF9900' },
-  { name: 'CloudWatch', icon: 'SiAmazoncloudwatch', color: '#FF9900' },
-  { name: 'AWS CloudFormation', icon: 'SiAmazoncloudformation', color: '#FF9900' },
+  { name: 'AWS', icon: 'FaAws', color: '#FF9900' },
   { name: 'Apache Spark', icon: 'SiApachespark', color: '#E25A1C' },
   { name: 'Docker', icon: 'SiDocker', color: '#2496ED' },
   { name: 'Kubernetes', icon: 'SiKubernetes', color: '#326CE5' },
@@ -42,5 +36,5 @@ export const skills: Skill[] = [
   { name: 'FFmpeg', icon: 'SiFfmpeg', color: '#007808' },
   { name: 'OpenAI', icon: 'SiOpenai', color: '#412991' },
   { name: 'Gemini', icon: 'SiGooglegemini', color: '#4285F4' },
-  { name: 'Cursor', icon: 'SiCursor', color: '#000000' }
+  { name: 'Cursor', icon: 'FaCube', color: '#000000' }
 ];
