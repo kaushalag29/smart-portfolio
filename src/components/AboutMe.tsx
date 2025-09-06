@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import heroImage from "@/assets/Kaushal.jpg";
 import { Twitter, GithubIcon, Linkedin } from 'lucide-react';
+import { FaMedium } from 'react-icons/fa';
 
 const AboutMe: React.FC = () => {
   return (
@@ -55,6 +56,15 @@ const AboutMe: React.FC = () => {
                     aria-label="LinkedIn Profile"
                   >
                     <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a 
+                    href="https://kaushalagarwal-73962.medium.com/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
+                    aria-label="Medium Profile"
+                  >
+                    <FaMedium className="w-5 h-5" />
                   </a>
                 </div>
               </div>
