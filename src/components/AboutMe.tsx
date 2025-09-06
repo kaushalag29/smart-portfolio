@@ -4,6 +4,7 @@ import heroImage from "@/assets/Kaushal.jpg";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
 import { Twitter, GithubIcon, Linkedin, FileText } from 'lucide-react';
 import { FaMedium } from 'react-icons/fa';
+import { SiCodeforces, SiCodechef, SiSpoj } from 'react-icons/si';
 
 const AboutMe: React.FC = () => {
   return (
@@ -40,6 +41,68 @@ const AboutMe: React.FC = () => {
               <FileText className="w-4 h-4" />
               <span>View Resume</span>
             </a>
+            <div className="mt-3 grid grid-cols-3 gap-3 place-items-center">
+              {/* Row 1: LinkedIn, GitHub, Medium */}
+              <a 
+                href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://github.com/kaushalag29" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                aria-label="GitHub Profile"
+              >
+                <GithubIcon className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://kaushalagarwal-73962.medium.com/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
+                aria-label="Medium Profile"
+              >
+                <FaMedium className="w-5 h-5" />
+              </a>
+
+              {/* Row 2: Codeforces, CodeChef, SPOJ */}
+              <a 
+                href="https://codeforces.com/profile/kaushalag29" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-indigo-500 dark:text-gray-400 dark:hover:text-indigo-400 transition-colors"
+                aria-label="Codeforces Profile"
+                title="Codeforces"
+              >
+                <SiCodeforces className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://www.codechef.com/users/kaushalag29" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-amber-700 dark:text-gray-400 dark:hover:text-amber-500 transition-colors"
+                aria-label="CodeChef Profile"
+                title="CodeChef"
+              >
+                <SiCodechef className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://www.spoj.com/users/kaushalag29/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+                aria-label="SPOJ Profile"
+                title="SPOJ"
+              >
+                <SiSpoj className="w-5 h-5" />
+              </a>
+            </div>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-col h-full">
@@ -61,37 +124,7 @@ const AboutMe: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-auto">
-                <div className="flex items-center space-x-4">
-                  <a 
-                    href="https://github.com/kaushalag29" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                    aria-label="GitHub Profile"
-                  >
-                    <GithubIcon className="w-5 h-5" />
-                  </a>
-                  <a 
-                    href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                  <a 
-                    href="https://kaushalagarwal-73962.medium.com/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
-                    aria-label="Medium Profile"
-                  >
-                    <FaMedium className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
+              <div className="mt-auto" />
             </div>
           </div>
         </div>
