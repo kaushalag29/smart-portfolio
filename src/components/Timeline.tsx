@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from 'react';
+import Image from 'next/image';
 import resumeData from '@/data/resumeData.json';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -33,32 +34,70 @@ const experienceItems: TimelineItem[] = resumeData.experience.map(exp => ({
   description: exp.description,
   skills: [] // Could extract key technologies from description if needed
 }));
-const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => (
-  <div className="mb-8 relative">
-    <div className="absolute top-0 left-0 w-2 h-full bg-gray-200 dark:bg-gray-700" />
-    <div className="ml-6 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <div className="absolute left-0 top-4 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800" />
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">{item.organization}</p>
-      <p className="text-sm text-gray-500 dark:text-gray-500">{item.date}</p>
-      {item.location && (
-        <p className="text-sm text-gray-500 dark:text-gray-500">{item.location}</p>
-      )}
-      {item.description && (
-        <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{item.description}</p>
-      )}
-      {item.skills && (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {item.skills.map((skill, index) => (
-            <span key={index} className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
-              {skill}
-            </span>
-          ))}
-        </div>
-      )}
+const getLogoFor = (organization: string): string | null => {
+  const org = organization.toLowerCase();
+  // Keyword-based aliases → expected filenames in /public
+  if (org.includes('cloudwick')) return '/Cloudwick.png';
+  if (org.includes('paycom')) return '/Paycom.png';
+  if (org.includes('qubole')) return '/Qubole.png';
+  if (org.includes('microland')) return '/Microland.png';
+  if (org.includes('ranchi')) return '/RanchiMall.png';
+  if (org.includes('rice')) return '/Rice.png';
+  if (org.includes('birla') || org.includes('bit mesra') || org.includes('mesra')) return '/BIT.png';
+
+  // Fallback: try sanitized first token, e.g., "/Acme.png"
+  const firstToken = organization.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '');
+  if (firstToken) return `/${firstToken}.png`;
+  return null;
+};
+
+const getLogoSizeFor = (organization: string): { width: number; height: number } => {
+  const org = organization.toLowerCase();
+  // Reduced size for specific orgs
+  if (org.includes('ranchi') || org.includes('rice') || org.includes('birla') || org.includes('bit mesra') || org.includes('mesra')) {
+    return { width: 40, height: 40 };
+  }
+  // Default size
+  return { width: 80, height: 80 };
+};
+
+const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => {
+  const logoSrc = getLogoFor(item.organization);
+  const logoSize = getLogoSizeFor(item.organization);
+  return (
+    <div className="mb-8 relative">
+      <div className="ml-0 p-4 pr-24 bg-white dark:bg-gray-800 rounded-lg shadow-md relative">
+        {logoSrc && (
+          <Image
+            src={logoSrc}
+            alt={`${item.organization} logo`}
+            width={logoSize.width}
+            height={logoSize.height}
+            className="absolute right-3 top-3 rounded-md shadow-sm"
+          />
+        )}
+        <h3 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400">{item.organization}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-500">{item.date}</p>
+        {item.location && (
+          <p className="text-sm text-gray-500 dark:text-gray-500">{item.location}</p>
+        )}
+        {item.description && (
+          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{item.description}</p>
+        )}
+        {item.skills && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {item.skills.map((skill, index) => (
+              <span key={index} className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                {skill}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Timeline: React.FC = () => {
   const [showAllExp, setShowAllExp] = useState(false);
