@@ -44,6 +44,7 @@ const getLogoFor = (organization: string): string | null => {
   if (org.includes('ranchi')) return '/RanchiMall.png';
   if (org.includes('rice')) return '/Rice.png';
   if (org.includes('birla') || org.includes('bit mesra') || org.includes('mesra')) return '/BIT.png';
+  if (org.includes('d.b.m.s') || org.includes('dbms') || org.includes('english school')) return '/DBMS.png';
 
   // Fallback: try sanitized first token, e.g., "/Acme.png"
   const firstToken = organization.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '');
@@ -54,7 +55,7 @@ const getLogoFor = (organization: string): string | null => {
 const getLogoSizeFor = (organization: string): { width: number; height: number } => {
   const org = organization.toLowerCase();
   // Reduced size for specific orgs
-  if (org.includes('ranchi') || org.includes('rice') || org.includes('birla') || org.includes('bit mesra') || org.includes('mesra')) {
+  if (org.includes('ranchi') || org.includes('rice') || org.includes('birla') || org.includes('bit mesra') || org.includes('mesra') || org.includes('d.b.m.s')) {
     return { width: 40, height: 40 };
   }
   // Default size
