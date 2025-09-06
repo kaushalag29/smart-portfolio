@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import heroImage from "@/assets/Kaushal.jpg";
-import { Twitter, GithubIcon, Linkedin } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
+import { Twitter, GithubIcon, Linkedin, FileText } from 'lucide-react';
 import { FaMedium } from 'react-icons/fa';
 
 const AboutMe: React.FC = () => {
@@ -9,13 +10,36 @@ const AboutMe: React.FC = () => {
     <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-4 h-full transition-colors">
       <div className="flex flex-col h-full">
         <div className="flex flex-col md:flex-row gap-6 mt-8">
-          <div className="flex-shrink-0">
-            <Image
-              src={heroImage}
-              alt="Kaushal's profile picture"
-              className="rounded-full w-24 h-24 object-cover ring-2 ring-blue-500/20"
-              priority
-            />
+          <div className="flex-shrink-0 flex flex-col items-center">
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="rounded-full ring-2 ring-blue-500/20 focus:outline-none focus:ring-4 focus:ring-blue-400">
+                  <Image
+                    src={heroImage}
+                    alt="Kaushal's profile picture"
+                    className="rounded-full w-24 h-24 object-cover"
+                    priority
+                  />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="p-0 bg-transparent border-0 shadow-none" closeClassName="!bg-red-600 !text-white hover:!bg-red-700">
+                <DialogTitle className="sr-only">Profile photo</DialogTitle>
+                <Image
+                  src={heroImage}
+                  alt="Kaushal's profile picture enlarged"
+                  className="rounded-lg w-full h-auto"
+                />
+              </DialogContent>
+            </Dialog>
+            <a
+              href="https://drive.google.com/file/d/1tMKKWhOf1ortURHQukP9m2QDGgcyrxeC/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+            >
+              <FileText className="w-4 h-4" />
+              <span>View Resume</span>
+            </a>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-col h-full">
