@@ -2,9 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import heroImage from "@/assets/Kaushal.jpg";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
+import LeetCodeStats from '@/components/LeetCodeStats';
 import { Twitter, GithubIcon, Linkedin, FileText } from 'lucide-react';
 import { FaMedium } from 'react-icons/fa';
-import { SiCodeforces, SiCodechef, SiSpoj } from 'react-icons/si';
+import { SiCodeforces, SiCodechef, SiSpoj, SiCredly, SiLeetcode } from 'react-icons/si';
 
 const AboutMe: React.FC = () => {
   return (
@@ -41,8 +42,8 @@ const AboutMe: React.FC = () => {
               <FileText className="w-4 h-4" />
               <span>View Resume</span>
             </a>
-            <div className="mt-3 grid grid-cols-3 gap-3 place-items-center">
-              {/* Row 1: LinkedIn, GitHub, Medium */}
+            <div className="mt-3 grid grid-cols-4 gap-3 place-items-center">
+              {/* Row 1: LinkedIn, Credly, GitHub, Medium */}
               <a 
                 href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
                 target="_blank"
@@ -51,6 +52,16 @@ const AboutMe: React.FC = () => {
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://www.credly.com/users/kaushal-agarwal.d7d5896d/badges#credly" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-orange-500 dark:text-gray-400 dark:hover:text-orange-400 transition-colors"
+                aria-label="Credly Profile"
+                title="Credly"
+              >
+                <SiCredly className="w-5 h-5" />
               </a>
               <a 
                 href="https://github.com/kaushalag29" 
@@ -71,7 +82,17 @@ const AboutMe: React.FC = () => {
                 <FaMedium className="w-5 h-5" />
               </a>
 
-              {/* Row 2: Codeforces, CodeChef, SPOJ */}
+              {/* Row 2: LeetCode, Codeforces, CodeChef, SPOJ */}
+              <a 
+                href="https://leetcode.com/u/kaushalag29/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-orange-500 dark:text-gray-400 dark:hover:text-orange-400 transition-colors"
+                aria-label="LeetCode Profile"
+                title="LeetCode"
+              >
+                <SiLeetcode className="w-5 h-5" />
+              </a>
               <a 
                 href="https://codeforces.com/profile/kaushalag29" 
                 target="_blank"
@@ -102,6 +123,9 @@ const AboutMe: React.FC = () => {
               >
                 <SiSpoj className="w-5 h-5" />
               </a>
+            </div>
+            <div className="mt-3 w-full max-w-[280px]">
+              <LeetCodeStats compact />
             </div>
           </div>
           <div className="flex-1 min-w-0">

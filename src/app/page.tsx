@@ -3,7 +3,6 @@ import AboutMe from '@/components/AboutMe';
 import Technologies from '@/components/Technologies';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import GitHubStats from '@/components/GitHubStats';
-import LeetCodeStats from '@/components/LeetCodeStats';
 import Timeline from '@/components/Timeline';
 import Languages from '@/components/Languages';
 import Hobbies from '@/components/Hobbies';
@@ -33,10 +32,7 @@ const HomePage: React.FC = () => {
           <Technologies />
         </div>
 
-        {/* LeetCode Stats */}
-        <div>
-          <LeetCodeStats />
-        </div>
+        
 
 
         {/* Timeline - Spans full width */}
