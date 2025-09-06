@@ -4,13 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { Home, Briefcase, BookOpen, Github, FileText, Box } from "lucide-react";
+import { Home, Briefcase, BookOpen, Github, FileText } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
   { name: "Projects", href: "/projects", icon: Briefcase },
   { name: "Blog", href: "/blog", icon: BookOpen },
-  { name: "Stack Architect", href: "/tech-stack-architect", icon: Box },
 ];
 
 export default function Navbar() {
