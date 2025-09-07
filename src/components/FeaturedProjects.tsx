@@ -86,7 +86,7 @@ const FeaturedProjects: React.FC = () => {
   return (
     <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 h-full transition-colors">
       <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-4">
-        Featured Projects
+        Github Featured Projects
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 h-[calc(100%-3rem)]">
         {projects.map((project) => (

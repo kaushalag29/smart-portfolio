@@ -2,6 +2,7 @@ import React from 'react';
 import AboutMe from '@/components/AboutMe';
 import Technologies from '@/components/Technologies';
 import FeaturedProjects from '@/components/FeaturedProjects';
+import PersonalProjects from '@/components/PersonalProjects';
 import GitHubStats from '@/components/GitHubStats';
 import Timeline from '@/components/Timeline';
 import Languages from '@/components/Languages';
@@ -32,8 +33,10 @@ const HomePage: React.FC = () => {
           <Technologies />
         </div>
 
-        
-
+        {/* Personal Projects - Full width under the combined section */}
+        <div className="lg:col-span-3">
+          <PersonalProjects />
+        </div>
 
         {/* Timeline - Spans full width */}
         <div className="lg:col-span-3">
