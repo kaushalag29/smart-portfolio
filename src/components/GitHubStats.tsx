@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { githubService } from '@/lib/github';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Book, Star, Users, UserPlus } from 'lucide-react';
@@ -147,6 +148,28 @@ const GitHubStats: React.FC = () => {
               />
             </PieChart>
           </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* JEE Rankings Card */}
+      <div className="mt-2 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-3 transition-colors">
+        <div className="flex items-center">
+          <Image
+            src="/JEE.png"
+            alt="JEE logo"
+            width={80}
+            height={80}
+            className="rounded mr-3"
+          />
+          <div className="flex-1">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-medium text-gray-900 dark:text-gray-200">JEE All India Rankings (2016)</h3>
+            </div>
+            <div className="mt-1 flex items-center gap-2">
+              <span className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Main 11491</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Advanced 5933</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
