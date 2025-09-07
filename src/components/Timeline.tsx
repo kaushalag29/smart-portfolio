@@ -13,6 +13,7 @@ interface TimelineItem {
   location?: string;
   description?: string;
   skills?: string[];
+  url?: string;
 }
 
 // Transform resume data into timeline format
@@ -22,7 +23,8 @@ const educationItems: TimelineItem[] = resumeData.education.map(edu => ({
   organization: edu.institution,
   date: `${edu.startDate} - ${edu.endDate}`,
   description: edu.description,
-  skills: [] // Education doesn't have specific skills in the JSON, but we could extract from description
+  skills: [],
+  url: (edu as any).institutionUrl
 }));
 
 const experienceItems: TimelineItem[] = resumeData.experience.map(exp => ({
@@ -32,7 +34,8 @@ const experienceItems: TimelineItem[] = resumeData.experience.map(exp => ({
   date: `${exp.startDate} - ${exp.endDate}`,
   location: exp.location,
   description: exp.description,
-  skills: [] // Could extract key technologies from description if needed
+  skills: [],
+  url: (exp as any).companyUrl
 }));
 const getLogoFor = (organization: string): string | null => {
   const org = organization.toLowerCase();
@@ -69,13 +72,31 @@ const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => {
     <div className="mb-8 relative">
       <div className="ml-0 p-4 pr-24 bg-white dark:bg-gray-800 rounded-lg shadow-md relative">
         {logoSrc && (
-          <Image
-            src={logoSrc}
-            alt={`${item.organization} logo`}
-            width={logoSize.width}
-            height={logoSize.height}
-            className="absolute right-3 top-3 rounded-md shadow-sm"
-          />
+          item.url ? (
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute right-3 top-3"
+              aria-label={`${item.organization} website`}
+            >
+              <Image
+                src={logoSrc}
+                alt={`${item.organization} logo`}
+                width={logoSize.width}
+                height={logoSize.height}
+                className="rounded-md shadow-sm"
+              />
+            </a>
+          ) : (
+            <Image
+              src={logoSrc}
+              alt={`${item.organization} logo`}
+              width={logoSize.width}
+              height={logoSize.height}
+              className="absolute right-3 top-3 rounded-md shadow-sm"
+            />
+          )
         )}
         <h3 className="text-lg font-medium text-gray-900 dark:text-white">{item.title}</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">{item.organization}</p>
