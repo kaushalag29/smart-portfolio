@@ -166,8 +166,8 @@ const GitHubStats: React.FC = () => {
               <h3 className="text-sm font-medium text-gray-900 dark:text-gray-200">JEE All India Rankings (2016)</h3>
             </div>
             <div className="mt-1 flex items-center gap-2">
-              <span className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Main 11491</span>
-              <span className="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Advanced 5933</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Main - 11491</span>
+              <span className="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Advanced - 5933</span>
             </div>
           </div>
         </div>

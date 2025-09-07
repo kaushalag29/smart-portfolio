@@ -23,6 +23,11 @@ const HomePage: React.FC = () => {
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+        {/* Personal Projects - Full width above */}
+        <div className="lg:col-span-3">
+          <PersonalProjects />
+        </div>
+
         {/* Featured Projects - Spans 2 columns */}
         <div className="lg:col-span-2">
           <FeaturedProjects />
@@ -31,11 +36,6 @@ const HomePage: React.FC = () => {
         {/* Technologies Stack */}
         <div>
           <Technologies />
-        </div>
-
-        {/* Personal Projects - Full width under the combined section */}
-        <div className="lg:col-span-3">
-          <PersonalProjects />
         </div>
 
         {/* Timeline - Spans full width */}
