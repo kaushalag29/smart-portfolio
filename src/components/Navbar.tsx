@@ -4,12 +4,23 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { Home, Briefcase, Github, FileText } from "lucide-react";
+import { Home, Briefcase, Github, FileText, Clock } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Projects", href: "/projects", icon: Briefcase },
+  { name: "Projects", href: "#personal-projects", icon: Briefcase },
+  { name: "Timeline", href: "#timeline", icon: Clock },
 ];
+
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith('#')) {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +40,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleSmoothScroll(e, link.href)}
                   className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
                 >
                   <link.icon className="mr-2 h-5 w-5" />
@@ -79,7 +91,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 className="flex items-center rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-muted/50"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  handleSmoothScroll(e, link.href);
+                  setIsOpen(false);
+                }}
               >
                 <link.icon className="mr-2 h-5 w-5" />
                 {link.name}

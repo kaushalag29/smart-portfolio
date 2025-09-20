@@ -53,7 +53,7 @@ const personalProjects: Project[] = [
 
 const PersonalProjects: React.FC = () => {
   return (
-    <section className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 transition-colors">
+    <section id="personal-projects" className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 transition-colors">
       <h2 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-3">
         Personal Projects
       </h2>

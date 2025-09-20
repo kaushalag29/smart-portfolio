@@ -141,7 +141,7 @@ const Timeline: React.FC = () => {
   const eduHiddenCount = Math.max(0, educationItems.length - visibleEducation.length);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg shadow">
+    <div id="timeline" className="max-w-7xl mx-auto p-4 bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg shadow">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">Timeline</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
