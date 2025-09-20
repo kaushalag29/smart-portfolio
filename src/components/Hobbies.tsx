@@ -18,11 +18,11 @@ interface HobbyCardProps {
 }
 
 const HobbyCard: React.FC<HobbyCardProps> = ({ hobby }) => (
-  <div className="flex flex-col items-center justify-center p-3 transition-all hover:bg-gray-100 dark:hover:bg-[#252B3B] rounded-lg">
-    <div className="text-3xl mb-2 transform group-hover:scale-110 transition-all duration-300">
+  <div className="flex flex-col items-center justify-center p-2 transition-all hover:bg-gray-100 dark:hover:bg-[#252B3B] rounded-lg group">
+    <div className="text-2xl mb-1.5 transform group-hover:scale-110 transition-all duration-300">
       {hobby.icon}
     </div>
-    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
+    <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white text-center leading-tight">
       {hobby.name}
     </span>
   </div>
@@ -30,11 +30,11 @@ const HobbyCard: React.FC<HobbyCardProps> = ({ hobby }) => (
 
 const Hobbies: React.FC = () => {
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-4 shadow-md">
-      <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-4 px-2">
+    <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 transition-colors">
+      <h2 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-3">
         Hobbies
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-1.5">
         {hobbies.map((hobby, index) => (
           <HobbyCard key={hobby.name} hobby={hobby} index={index} />
         ))}

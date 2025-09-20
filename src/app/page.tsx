@@ -22,35 +22,23 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-        {/* Personal Projects - Full width above */}
-        <div className="lg:col-span-3">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
+        {/* Left Column - Personal Projects + Github Featured Projects */}
+        <div className="lg:col-span-3 space-y-2">
           <PersonalProjects />
-        </div>
-
-        {/* Featured Projects - Spans 2 columns */}
-        <div className="lg:col-span-2">
           <FeaturedProjects />
         </div>
 
-        {/* Technologies Stack */}
-        <div>
+        {/* Right Column - Technologies Stack + Hobbies + Languages */}
+        <div className="lg:col-span-2 space-y-2">
           <Technologies />
-        </div>
-
-        {/* Timeline - Spans full width */}
-        <div className="lg:col-span-3">
-          <Timeline />
-        </div>
-
-        {/* Languages */}
-        <div>
+          <Hobbies />
           <Languages />
         </div>
 
-        {/* Hobbies */}
-        <div className="lg:col-span-2">
-          <Hobbies />
+        {/* Timeline - Spans full width */}
+        <div className="lg:col-span-5">
+          <Timeline />
         </div>
       </div>
     </main>

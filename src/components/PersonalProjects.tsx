@@ -54,26 +54,26 @@ const personalProjects: Project[] = [
 const PersonalProjects: React.FC = () => {
   return (
     <section className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 transition-colors">
-      <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-4">
+      <h2 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-3">
         Personal Projects
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-2">
         {personalProjects.map((project) => (
           <article
             key={project.id}
-            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-3 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-colors"
+            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-2.5 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-colors"
           >
             <div>
-              <div className="relative h-32 w-full mb-3 rounded-md overflow-hidden bg-gray-100 dark:bg-[#1E2330]">
+              <div className="relative h-28 w-full mb-2 rounded-md overflow-hidden bg-gray-100 dark:bg-[#1E2330]">
                 <Image src={project.img} alt={project.title} fill style={{ objectFit: 'cover' }} />
               </div>
-              <h3 className="text-lg font-semibold mb-1">{project.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 line-clamp-3">{project.info}</p>
+              <h3 className="text-base font-semibold mb-1 line-clamp-1">{project.title}</h3>
+              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1.5 line-clamp-2">{project.info}</p>
               {project.info2 && (
-                <p className="text-xs text-gray-500 dark:text-gray-500 mb-2">{project.info2}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 line-clamp-1">{project.info2}</p>
               )}
             </div>
-            <div className="flex items-center space-x-3 mt-2">
+            <div className="flex items-center space-x-2 mt-1">
               {project.url && (
                 <a
                   href={project.url}
@@ -82,7 +82,7 @@ const PersonalProjects: React.FC = () => {
                   className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                   title="View"
                 >
-                  <ExternalLink className="w-4 h-4" />
+                  <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               )}
               {project.repo && project.repo.trim().length > 0 && (
@@ -93,7 +93,7 @@ const PersonalProjects: React.FC = () => {
                   className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                   title="Repository"
                 >
-                  <GithubIcon className="w-4 h-4" />
+                  <GithubIcon className="w-3.5 h-3.5" />
                 </a>
               )}
             </div>
