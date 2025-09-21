@@ -11,7 +11,7 @@ const AboutMe: React.FC = () => {
   return (
     <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-4 h-full transition-colors">
       <div className="flex flex-col h-full">
-        <div className="flex flex-col md:flex-row gap-6 mt-8">
+        <div className="flex flex-col md:flex-row gap-3 mt-2">
           <div className="flex-shrink-0 flex flex-col items-center">
             <Dialog>
               <DialogTrigger asChild>
@@ -19,7 +19,7 @@ const AboutMe: React.FC = () => {
                   <Image
                     src={heroImage}
                     alt="Kaushal's profile picture"
-                    className="rounded-full w-24 h-24 object-cover"
+                    className="rounded-full w-28 h-28 object-cover"
                     priority
                   />
                 </button>
@@ -39,10 +39,10 @@ const AboutMe: React.FC = () => {
               rel="noopener noreferrer"
               className="mt-3 inline-flex items-center gap-2 rounded-full bg-blue-600 px-3 py-1.5 text-white text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
             >
-              <FileText className="w-4 h-4" />
+              <FileText className="w-5 h-5" />
               <span>View Resume</span>
             </a>
-            <div className="mt-3 grid grid-cols-4 gap-3 place-items-center">
+            <div className="mt-3 grid grid-cols-4 gap-4 place-items-center">
               {/* Row 1: LinkedIn, Credly, GitHub, Medium */}
               <a 
                 href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
@@ -51,7 +51,7 @@ const AboutMe: React.FC = () => {
                 className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
                 aria-label="LinkedIn Profile"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-7 h-7" />
               </a>
               <a 
                 href="https://www.credly.com/users/kaushal-agarwal.d7d5896d/badges#credly" 
@@ -61,7 +61,7 @@ const AboutMe: React.FC = () => {
                 aria-label="Credly Profile"
                 title="Credly"
               >
-                <SiCredly className="w-5 h-5" />
+                <SiCredly className="w-7 h-7" />
               </a>
               <a 
                 href="https://github.com/kaushalag29" 
@@ -70,7 +70,7 @@ const AboutMe: React.FC = () => {
                 className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
                 aria-label="GitHub Profile"
               >
-                <GithubIcon className="w-5 h-5" />
+                <GithubIcon className="w-7 h-7" />
               </a>
               <a 
                 href="https://kaushalagarwal-73962.medium.com/" 
@@ -79,7 +79,7 @@ const AboutMe: React.FC = () => {
                 className="text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
                 aria-label="Medium Profile"
               >
-                <FaMedium className="w-5 h-5" />
+                <FaMedium className="w-7 h-7" />
               </a>
 
               {/* Row 2: LeetCode, Codeforces, CodeChef, SPOJ */}
@@ -91,7 +91,7 @@ const AboutMe: React.FC = () => {
                 aria-label="LeetCode Profile"
                 title="LeetCode"
               >
-                <SiLeetcode className="w-5 h-5" />
+                <SiLeetcode className="w-7 h-7" />
               </a>
               <a 
                 href="https://codeforces.com/profile/kaushalag29" 
@@ -101,7 +101,7 @@ const AboutMe: React.FC = () => {
                 aria-label="Codeforces Profile"
                 title="Codeforces"
               >
-                <SiCodeforces className="w-5 h-5" />
+                <SiCodeforces className="w-7 h-7" />
               </a>
               <a 
                 href="https://www.codechef.com/users/kaushalag29" 
@@ -111,7 +111,7 @@ const AboutMe: React.FC = () => {
                 aria-label="CodeChef Profile"
                 title="CodeChef"
               >
-                <SiCodechef className="w-5 h-5" />
+                <SiCodechef className="w-7 h-7" />
               </a>
               <a 
                 href="https://www.spoj.com/users/kaushalag29/" 
@@ -121,29 +121,35 @@ const AboutMe: React.FC = () => {
                 aria-label="SPOJ Profile"
                 title="SPOJ"
               >
-                <SiSpoj className="w-5 h-5" />
+                <SiSpoj className="w-7 h-7" />
               </a>
             </div>
-            <div className="mt-3 w-full max-w-[280px]">
+            <div className="mt-3 w-full max-w-[320px]">
               <LeetCodeStats compact />
             </div>
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-col h-full">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   Kaushal Kumar Agarwal
                 </h1>
+                <h2 className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-600 mb-2">
+                  AWS Certified | Software Engineer × AI/ML Innovator
+                </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">@kaushalag29</p>
               </div>
               
-              <div className="flex-1 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 mb-8 mt-4">
-                <div className="space-y-3">
-                  <p className="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
-                    Hey there! I&apos;m Kaushal, an AI/ML Engineer and Software Engineer passionate about building intelligent systems that solve real-world problems. With 3+ years of experience across diverse domains—from serverless data platforms to agentic RAG systems—I love exploring the intersection of software engineering, machine learning, and cloud computing.
+              <div className="flex-1 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 mb-2 mt-2">
+                <div className="space-y-2.5">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    I'm Kaushal Agarwal, an AWS Certified Software & AI/ML Engineer with 3+ years of experience designing and building intelligent, scalable systems that power real-world applications. My work spans cloud-native platforms, distributed systems, and modern AI/ML workflows, where I love bridging the gap between software engineering rigor and cutting-edge machine learning innovation.
                   </p>
-                  <p className="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
-                    I hold a B.E. in Computer Science from BIT Mesra and recently completed my Master&apos;s at Rice University. My journey spans from blockchain applications and distributed systems to modern AI/ML workflows. I&apos;m AWS-certified and deeply interested in software architecture, security, and the evolving landscape of generative AI. When I&apos;m not coding, I enjoy exploring new technologies, contributing to open source, and thinking about how AI can augment human capabilities responsibly.
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    I hold a Master's in Computer Science (Data Science & Machine Learning specialization) from Rice University and a B.E. in Computer Science from BIT Mesra. Over the years, I've built solutions ranging from serverless data platforms and blockchain applications to agentic RAG systems and generative AI pipelines.
+                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    I'm passionate about software architecture, system security, and the evolving landscape of generative AI, always asking how technology can be harnessed to augment human capabilities responsibly. Outside of work, you'll find me exploring emerging tech, contributing to open source, and experimenting with ideas that push the boundaries of AI-driven systems. What excites me most is creating technology that is not just intelligent, but also scalable, secure, and impactful.
                   </p>
                 </div>
               </div>

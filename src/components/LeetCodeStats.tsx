@@ -79,40 +79,40 @@ const LeetCodeStats: React.FC<LeetCodeStatsProps> = ({ compact = false }) => {
   const hardPercentage = Math.round((stats.hardSolved / stats.totalHard) * 100);
 
   return (
-    <div className={`bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg ${compact ? 'p-3' : 'p-4'} h-full transition-colors`}>
-      <div className={`flex items-center justify-between ${compact ? 'mb-2' : 'mb-4'}`}>
-        <h2 className={`${compact ? 'text-sm font-semibold' : 'text-xl font-bold'} text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600`}>
+    <div className={`bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg ${compact ? 'p-5' : 'p-4'} h-full transition-colors`}>
+      <div className={`flex items-center justify-between ${compact ? 'mb-4' : 'mb-4'}`}>
+        <h2 className={`${compact ? 'text-base font-semibold' : 'text-xl font-bold'} text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600`}>
           LeetCode Stats
         </h2>
         <div className="flex items-center space-x-1">
-          <Trophy className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-orange-500`} />
-          <span className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
+          <Trophy className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} text-orange-500`} />
+          <span className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
             #{stats.ranking.toLocaleString()}
           </span>
         </div>
       </div>
 
-      <div className={`${compact ? 'space-y-2.5' : 'space-y-4'}`}>
+      <div className={`${compact ? 'space-y-4' : 'space-y-4'}`}>
         {/* Overall Progress */}
-        <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'}">
-          <div className={`flex items-center justify-between ${compact ? 'mb-1.5' : 'mb-2'}`}>
+        <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-4' : 'p-3'}">
+          <div className={`flex items-center justify-between ${compact ? 'mb-3' : 'mb-2'}`}>
             <div className="flex items-center space-x-2">
-              <Target className={`${compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} text-orange-500`} />
-              <span className={`${compact ? 'text-xs' : 'text-sm'} font-medium text-gray-900 dark:text-gray-200`}>
+              <Target className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} text-orange-500`} />
+              <span className={`${compact ? 'text-sm' : 'text-sm'} font-medium text-gray-900 dark:text-gray-200`}>
                 Problems Solved
               </span>
             </div>
-            <span className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-orange-600 dark:text-orange-400`}>
+            <span className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-orange-600 dark:text-orange-400`}>
               {stats.totalSolved}/{stats.totalQuestions}
             </span>
           </div>
-          <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-1.5' : 'h-2'} ${compact ? 'mb-0.5' : 'mb-1'}` }>
+          <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-2.5' : 'h-2'} ${compact ? 'mb-1' : 'mb-1'}` }>
             <div 
-              className={`bg-gradient-to-r from-orange-500 to-orange-600 ${compact ? 'h-1.5' : 'h-2'} rounded-full transition-all duration-300`}
+              className={`bg-gradient-to-r from-orange-500 to-orange-600 ${compact ? 'h-2.5' : 'h-2'} rounded-full transition-all duration-300`}
               style={{ width: `${solvedPercentage}%` }}
             />
           </div>
-          <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
+          <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
             {solvedPercentage}% Complete
           </p>
         </div>
@@ -120,61 +120,61 @@ const LeetCodeStats: React.FC<LeetCodeStatsProps> = ({ compact = false }) => {
         {/* Problem Difficulty Breakdown */}
         <div className="grid grid-cols-3 gap-2">
           {/* Easy Problems */}
-          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'}`}>
-            <div className={`flex items-center justify-between ${compact ? 'mb-1.5' : 'mb-2'}`}>
-              <span className={`${compact ? 'text-[10px]' : 'text-xs'} font-medium text-green-600 dark:text-green-400`}>Easy</span>
-              <CheckCircle className={`${compact ? 'w-2.5 h-2.5' : 'w-3 h-3'} text-green-500`} />
+          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-3' : 'p-3'}`}>
+            <div className={`flex items-center justify-between ${compact ? 'mb-2.5' : 'mb-2'}`}>
+              <span className={`${compact ? 'text-xs' : 'text-xs'} font-medium text-green-600 dark:text-green-400`}>Easy</span>
+              <CheckCircle className={`${compact ? 'w-3 h-3' : 'w-3 h-3'} text-green-500`} />
             </div>
-            <div className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-1.5' : 'mb-1'}`}>
               {stats.easySolved}
             </div>
-            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-1' : 'h-1.5'} ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-2' : 'h-1.5'} ${compact ? 'mb-1' : 'mb-1'}`}>
               <div 
-                className={`bg-green-500 ${compact ? 'h-1' : 'h-1.5'} rounded-full transition-all duration-300`}
+                className={`bg-green-500 ${compact ? 'h-2' : 'h-1.5'} rounded-full transition-all duration-300`}
                 style={{ width: `${easyPercentage}%` }}
               />
             </div>
-            <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
+            <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
               {easyPercentage}%
             </p>
           </div>
 
           {/* Medium Problems */}
-          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'}`}>
-            <div className={`flex items-center justify-between ${compact ? 'mb-1.5' : 'mb-2'}`}>
-              <span className={`${compact ? 'text-[10px]' : 'text-xs'} font-medium text-yellow-600 dark:text-yellow-400`}>Medium</span>
-              <CheckCircle className={`${compact ? 'w-2.5 h-2.5' : 'w-3 h-3'} text-yellow-500`} />
+          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-3' : 'p-3'}`}>
+            <div className={`flex items-center justify-between ${compact ? 'mb-2.5' : 'mb-2'}`}>
+              <span className={`${compact ? 'text-xs' : 'text-xs'} font-medium text-yellow-600 dark:text-yellow-400`}>Medium</span>
+              <CheckCircle className={`${compact ? 'w-3 h-3' : 'w-3 h-3'} text-yellow-500`} />
             </div>
-            <div className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-1.5' : 'mb-1'}`}>
               {stats.mediumSolved}
             </div>
-            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-1' : 'h-1.5'} ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-2' : 'h-1.5'} ${compact ? 'mb-1' : 'mb-1'}`}>
               <div 
-                className={`bg-yellow-500 ${compact ? 'h-1' : 'h-1.5'} rounded-full transition-all duration-300`}
+                className={`bg-yellow-500 ${compact ? 'h-2' : 'h-1.5'} rounded-full transition-all duration-300`}
                 style={{ width: `${mediumPercentage}%` }}
               />
             </div>
-            <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
+            <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
               {mediumPercentage}%
             </p>
           </div>
 
           {/* Hard Problems */}
-          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'}`}>
-            <div className={`flex items-center justify-between ${compact ? 'mb-1.5' : 'mb-2'}`}>
-              <span className={`${compact ? 'text-[10px]' : 'text-xs'} font-medium text-red-600 dark:text-red-400`}>Hard</span>
-              <CheckCircle className={`${compact ? 'w-2.5 h-2.5' : 'w-3 h-3'} text-red-500`} />
+          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-3' : 'p-3'}`}>
+            <div className={`flex items-center justify-between ${compact ? 'mb-2.5' : 'mb-2'}`}>
+              <span className={`${compact ? 'text-xs' : 'text-xs'} font-medium text-red-600 dark:text-red-400`}>Hard</span>
+              <CheckCircle className={`${compact ? 'w-3 h-3' : 'w-3 h-3'} text-red-500`} />
             </div>
-            <div className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200 ${compact ? 'mb-1.5' : 'mb-1'}`}>
               {stats.hardSolved}
             </div>
-            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-1' : 'h-1.5'} ${compact ? 'mb-0.5' : 'mb-1'}`}>
+            <div className={`w-full bg-gray-200 dark:bg-gray-700 rounded-full ${compact ? 'h-2' : 'h-1.5'} ${compact ? 'mb-1' : 'mb-1'}`}>
               <div 
-                className={`bg-red-500 ${compact ? 'h-1' : 'h-1.5'} rounded-full transition-all duration-300`}
+                className={`bg-red-500 ${compact ? 'h-2' : 'h-1.5'} rounded-full transition-all duration-300`}
                 style={{ width: `${hardPercentage}%` }}
               />
             </div>
-            <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
+            <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>
               {hardPercentage}%
             </p>
           </div>
@@ -182,20 +182,20 @@ const LeetCodeStats: React.FC<LeetCodeStatsProps> = ({ compact = false }) => {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-2 gap-2">
-          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'} text-center`}>
-            <TrendingUp className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-blue-500 mx-auto ${compact ? 'mb-0.5' : 'mb-1'}`} />
-            <div className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200`}>
+          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-4' : 'p-3'} text-center`}>
+            <TrendingUp className={`${compact ? 'w-5 h-5' : 'w-4 h-4'} text-blue-500 mx-auto ${compact ? 'mb-2' : 'mb-1'}`} />
+            <div className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200`}>
               {stats.acceptanceRate}%
             </div>
-            <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>Acceptance</p>
+            <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>Acceptance</p>
           </div>
           
-          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-2' : 'p-3'} text-center`}>
-            <Award className={`${compact ? 'w-3 h-3' : 'w-4 h-4'} text-purple-500 mx-auto ${compact ? 'mb-0.5' : 'mb-1'}`} />
-            <div className={`${compact ? 'text-xs' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200`}>
+          <div className={`bg-gray-50 dark:bg-[#1E2330] rounded-lg ${compact ? 'p-4' : 'p-3'} text-center`}>
+            <Award className={`${compact ? 'w-5 h-5' : 'w-4 h-4'} text-purple-500 mx-auto ${compact ? 'mb-2' : 'mb-1'}`} />
+            <div className={`${compact ? 'text-sm' : 'text-sm'} font-bold text-gray-900 dark:text-gray-200`}>
               {stats.contributionPoints.toLocaleString()}
             </div>
-            <p className={`${compact ? 'text-[10px]' : 'text-xs'} text-gray-500 dark:text-gray-400`}>Points</p>
+            <p className={`${compact ? 'text-xs' : 'text-xs'} text-gray-500 dark:text-gray-400`}>Points</p>
           </div>
         </div>
       </div>

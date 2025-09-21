@@ -90,35 +90,35 @@ const GitHubStats: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-3 h-full transition-colors">
-      <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-3">
+    <div className="bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg p-4 h-full transition-colors">
+      <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-4">
         GitHub Stats
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 mb-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
         {stats.map((stat, index) => (
           <div 
             key={index} 
-            className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-[#252B3B]"
+            className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-3 transition-colors hover:bg-gray-100 dark:hover:bg-[#252B3B]"
           >
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-center gap-1.5">
               <div className="text-gray-400 dark:text-gray-500">
                 {stat.icon}
               </div>
-              <div className="text-sm font-medium text-gray-900 dark:text-gray-200">
+              <div className="text-lg font-bold text-gray-900 dark:text-gray-200">
                 {stat.value}
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-400">
+              <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
                 {stat.label}
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-3 transition-colors">
-        <h3 className="text-sm font-medium text-gray-900 dark:text-gray-200 mb-2">
+      <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 transition-colors">
+        <h3 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 dark:from-green-400 dark:via-blue-400 dark:to-purple-400 mb-3">
           Most Used Languages
         </h3>
-        <div className="h-[210px]">
+        <div className="h-[260px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -126,7 +126,7 @@ const GitHubStats: React.FC = () => {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={70}
+                outerRadius={60}
                 fill="#8884d8"
                 dataKey="value"
                 label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
@@ -140,10 +140,13 @@ const GitHubStats: React.FC = () => {
               </Pie>
               <Tooltip 
                 contentStyle={{
-                  backgroundColor: 'rgba(23, 23, 23, 0.9)',
-                  border: 'none',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(0, 0, 0, 0.1)',
                   borderRadius: '8px',
-                  color: '#fff'
+                  color: '#1f2937',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                  fontSize: '14px',
+                  fontWeight: '500'
                 }}
               />
             </PieChart>
@@ -152,22 +155,22 @@ const GitHubStats: React.FC = () => {
       </div>
 
       {/* JEE Rankings Card */}
-      <div className="mt-2 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-3 transition-colors">
+      <div className="mt-4 bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 transition-colors">
         <div className="flex items-center">
           <Image
             src="/JEE.png"
             alt="JEE logo"
-            width={80}
-            height={80}
-            className="rounded mr-3"
+            width={60}
+            height={60}
+            className="rounded mr-3 flex-shrink-0"
           />
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-gray-200">JEE All India Rankings (2016)</h3>
+              <h3 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-red-600 to-orange-800 dark:from-orange-400 dark:via-red-400 dark:to-orange-600">JEE All India Rankings (2016)</h3>
             </div>
-            <div className="mt-1 flex items-center gap-2">
-              <span className="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400">Main - 11491</span>
-              <span className="text-xs px-2 py-1 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400">Advanced - 5933</span>
+            <div className="mt-2 flex items-center gap-2 flex-wrap">
+              <span className="text-md px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-medium">Main - 11491</span>
+              <span className="text-md px-4 py-1.5 rounded-full bg-purple-500/10 text-purple-600 dark:text-purple-400 font-medium">Advanced - 5933</span>
             </div>
           </div>
         </div>

@@ -10,9 +10,9 @@ import Hobbies from '@/components/Hobbies';
 
 const HomePage: React.FC = () => {
   return (
-    <main className="min-h-screen p-2 max-w-7xl mx-auto space-y-2">
+    <main className="min-h-screen p-3 max-w-7xl mx-auto space-y-3">
       {/* Hero Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <div className="lg:col-span-2">
           <AboutMe />
         </div>
@@ -22,15 +22,15 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-2">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
         {/* Left Column - Personal Projects + Github Featured Projects */}
-        <div className="lg:col-span-3 space-y-2">
+        <div className="lg:col-span-3 space-y-3">
           <PersonalProjects />
           <FeaturedProjects />
         </div>
 
         {/* Right Column - Technologies Stack + Hobbies + Languages */}
-        <div className="lg:col-span-2 space-y-2">
+        <div className="lg:col-span-2 space-y-3">
           <Technologies />
           <Hobbies />
           <Languages />
