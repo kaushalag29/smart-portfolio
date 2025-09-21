@@ -125,84 +125,90 @@ const Timeline: React.FC = () => {
   const [showAllExp, setShowAllExp] = useState(false);
   const [showAllEdu, setShowAllEdu] = useState(false);
 
-  const initialExpToShow = 3;
-  const initialEduToShow = 2;
+  // Use height-based approach instead of fixed item counts
+  const maxInitialHeight = 600; // Maximum height before showing expand button
 
-  const visibleExperience = useMemo(
-    () => (showAllExp ? experienceItems : experienceItems.slice(0, initialExpToShow)),
-    [showAllExp]
-  );
-  const visibleEducation = useMemo(
-    () => (showAllEdu ? educationItems : educationItems.slice(0, initialEduToShow)),
-    [showAllEdu]
-  );
+  const visibleExperience = useMemo(() => experienceItems, []);
+  const visibleEducation = useMemo(() => educationItems, []);
 
-  const expHiddenCount = Math.max(0, experienceItems.length - visibleExperience.length);
-  const eduHiddenCount = Math.max(0, educationItems.length - visibleEducation.length);
+  const expHiddenCount = 0; // Will be determined by CSS overflow
+  const eduHiddenCount = 0; // Will be determined by CSS overflow
 
   return (
     <div id="timeline" className="max-w-7xl mx-auto p-4 bg-[#F8FAFC] dark:bg-[#151B28] rounded-lg shadow">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-white">Timeline</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+        <div className="flex flex-col">
           <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">Experience</h2>
-          <div id="experience-list">
+          <div 
+            id="experience-list"
+            className={`transition-all duration-300 overflow-hidden ${
+              showAllExp ? 'max-h-none' : `max-h-[${maxInitialHeight}px]`
+            }`}
+            style={{
+              maxHeight: showAllExp ? 'none' : `${maxInitialHeight}px`
+            }}
+          >
             {visibleExperience.map((item, index) => (
               <TimelineItem key={`${item.title}-${index}`} item={item} />
             ))}
           </div>
-          {experienceItems.length > initialExpToShow && (
-            <div className="mt-2 flex">
-              <button
-                onClick={() => setShowAllExp((v) => !v)}
-                className="mx-auto inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:bg-[#1E2330] dark:hover:bg-[#252B3B] text-gray-700 dark:text-gray-300 transition-colors"
-                aria-expanded={showAllExp}
-                aria-controls="experience-list"
-              >
-                {showAllExp ? (
-                  <>
-                    <ChevronUp className="w-4 h-4" />
-                    Show less
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-4 h-4" />
-                    Show {expHiddenCount} more
-                  </>
-                )}
-              </button>
-            </div>
-          )}
+          <div className="mt-2 flex">
+            <button
+              onClick={() => setShowAllExp((v) => !v)}
+              className="mx-auto inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:bg-[#1E2330] dark:hover:bg-[#252B3B] text-gray-700 dark:text-gray-300 transition-colors"
+              aria-expanded={showAllExp}
+              aria-controls="experience-list"
+            >
+              {showAllExp ? (
+                <>
+                  <ChevronUp className="w-4 h-4" />
+                  Show less
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4" />
+                  Show more
+                </>
+              )}
+            </button>
+          </div>
         </div>
-        <div>
+        <div className="flex flex-col">
           <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">Education</h2>
-          <div id="education-list">
+          <div 
+            id="education-list"
+            className={`transition-all duration-300 overflow-hidden ${
+              showAllEdu ? 'max-h-none' : `max-h-[${maxInitialHeight}px]`
+            }`}
+            style={{
+              maxHeight: showAllEdu ? 'none' : `${maxInitialHeight}px`
+            }}
+          >
             {visibleEducation.map((item, index) => (
               <TimelineItem key={`${item.title}-${index}`} item={item} />
             ))}
           </div>
-          {educationItems.length > initialEduToShow && (
-            <div className="mt-2 flex">
-              <button
-                onClick={() => setShowAllEdu((v) => !v)}
-                className="mx-auto inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:bg-[#1E2330] dark:hover:bg-[#252B3B] text-gray-700 dark:text-gray-300 transition-colors"
-                aria-expanded={showAllEdu}
-                aria-controls="education-list"
-              >
-                {showAllEdu ? (
-                  <>
-                    <ChevronUp className="w-4 h-4" />
-                    Show less
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-4 h-4" />
-                    Show {eduHiddenCount} more
-                  </>
-                )}
-              </button>
-            </div>
-          )}
+          <div className="mt-2 flex">
+            <button
+              onClick={() => setShowAllEdu((v) => !v)}
+              className="mx-auto inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:bg-[#1E2330] dark:hover:bg-[#252B3B] text-gray-700 dark:text-gray-300 transition-colors"
+              aria-expanded={showAllEdu}
+              aria-controls="education-list"
+            >
+              {showAllEdu ? (
+                <>
+                  <ChevronUp className="w-4 h-4" />
+                  Show less
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4" />
+                  Show more
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>
