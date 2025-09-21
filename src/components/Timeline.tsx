@@ -106,11 +106,29 @@ const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => {
         )}
         {item.description && (
           <div className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-            {item.description.split('\n').map((line, index) => (
-              <p key={index} className={index > 0 ? 'mt-1' : ''}>
-                {line.trim()}
-              </p>
-            ))}
+            {item.description.split('\n').map((line, index) => {
+              const trimmedLine = line.trim();
+              if (!trimmedLine) return null;
+              
+              return (
+                <div key={index} className={`flex items-start ${index > 0 ? 'mt-2' : ''}`}>
+                  {item.type === 'education' && index === 0 ? (
+                    // First line for education - main info (GPA, percentages, etc.) without bullet
+                    <p className="font-medium text-gray-800 dark:text-gray-200">
+                      {trimmedLine}
+                    </p>
+                  ) : (
+                    // All other lines - with bullet points (including all experience lines)
+                    <>
+                      <span className="text-blue-500 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0">•</span>
+                      <p className={`leading-relaxed ${item.type === 'education' && index === 0 ? 'font-medium text-gray-800 dark:text-gray-200' : ''}`}>
+                        {trimmedLine}
+                      </p>
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
         {item.skills && (

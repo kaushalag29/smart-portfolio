@@ -16,7 +16,7 @@
       "position": "Machine Learning Engineer",
       "startDate": "Feb 2025",
       "endDate": "Present",
-      "description": "Leading RAG and agentic AI solutions end-to-end.\n\nTimeline:\n- Mid Feb – Early Apr: Researched knowledge-graph RAG using AWS Neptune and Neo4j AuraDB. Built pipelines to enrich JSON metadata for multi-format documents and construct graphs; prototyped natural-language → Cypher translation via LLM prompting/tool-calling to enable complex multi-hop queries.\n- Apr – May: Built LLM-powered data cleaning to normalize hierarchical multi-tag columns in batches with guardrails and QC checks, reducing redundancy and improving downstream retrieval quality.\n- May – Jul: Implemented a PDF chatbot that returns grounded answers with citations and page-level highlights. Built test/briefing document generation over multi-document sets using Amazon OpenSearch vector DB + Amazon Bedrock LLMs with re-ranking. In parallel, evaluated document/face detection (OpenCV, PaddleOCR, EasyOCR) to identify driver’s licenses and tuned extraction prompts.\n- Late Jul – Aug: Productionized the chatbot and document generators with AWS Lambda and Step Functions; restricted actions strictly to one selected manual, added monitoring/alerts, and optimized latency/cost.\n\nAgentic patterns: Tool-augmented LLMs orchestrating retrieval, re-ranking, citation extraction, page locator, OCR, and graph-query tools under policy constraints; evaluation harnesses and observability for reliability.",
+      "description": "Led the backend team to productionize a PDF chatbot with citation grounding, page-level highlighting, and advanced features like test generation and briefing doc creation leveraging Amazon OpenSearch and Bedrock LLMs with re-ranking\nDevised LLM-powered data cleaning and knowledge-graph RAG pipelines with AWS Neptune & Neo4j, cutting metadata redundancy by 40% and boosting multi-hop query accuracy via NL-to-Cypher translation\nExperimented with domain adaptation and instruction-tuned fine-tuning using 8-bit quantization on SageMaker, enabling efficient LLM training for drafting legal bills",
       "companyUrl": "https://cloudwick.com/",
       "location": "Newark, CA (Remote/Hybrid)"
     },
@@ -25,7 +25,7 @@
       "position": "Teaching Assistant",
       "startDate": "Aug 2023",
       "endDate": "Dec 2024",
-      "description": "Managed grading and office hours for OOP, Computer Security, Software Engineering Methodology, and Software Construction; improved assignment scores by ~10% via targeted support.",
+      "description": "Managed assignment grading and held doubt-solving sessions, driving a 10% increase in assignment scores for Object-Oriented Programming, Computer Security, Software Engineer Methodology, and Software Construction",
       "companyUrl": "https://www.rice.edu/",
       "location": "Houston, TX"
     },
@@ -34,7 +34,7 @@
       "position": "Software Developer Intern",
       "startDate": "May 2024",
       "endDate": "Aug 2024",
-      "description": "Engineered C#/.NET backend APIs aggregating data from ~2,000 GitLab repos. Delivered role-based dashboards enabling leadership insights on MR review efficiency and developer performance.",
+      "description": "Engineered backend APIs with C# and .Net to aggregate and analyze data from 2,000 GitLab repositories, providing actionable insights on MR reviews for 1,000 developers through metrics like MR review metrics (score)\nDeveloped five hierarchical, role-based dashboards, enabling management across levels to track and evaluate developer performance, optimize MR review processes, and boost project productivity",
       "companyUrl": "https://www.paycom.com/",
       "location": "Dallas, TX"
     },
@@ -43,7 +43,7 @@
       "position": "Software Engineer II",
       "startDate": "Dec 2020",
       "endDate": "Jul 2023",
-      "description": "Promoted to Software Engineer II within a year. Owned design and implementation of serverless APIs in Python on AWS Lambda to deliver new features and bug fixes. Managed Bitbucket CI/CD pipelines and Amorphic release cycles (dev → qa → staging → master), including packaging release artifacts to S3 and deploying via CMP. Provided on-call support for developers/customers, proactively shipped features, and patched production issues.\n\nA) Dataset Metrics Collection (New Feature)\n- Requirement: For each dataset (with many files, mutable over time), collect daily time series metrics (TotalFileSize, NumberOfFiles).\n- Challenges: Full file scans are slow for Lambda; migrated to AWS Glue job, scheduled via CloudWatch Events (midnight), with backfill synchronization from dataset creation to present.\n- Output: Time-series visualization to spot anomalies; automated email notifications to dataset owners.\n\nB) Dataset Lifecycle Mechanism (Customer Demand)\n- Requirement: Configure file expiration after X days and tier migration to specific S3 storage classes after Y days.\n- Challenges: High-risk operation; used AWS Step Functions to orchestrate create/modify lifecycle rules at S3 prefix level with rollback on failures; robust error handling and notifications.\n- Output: Increased customer trust and retention; contributed to revenue growth. Future: Glacier restore workflows.\n\nC) AWS EKS Upgrade (1.21 → 1.24)\n- Context: Cluster running Apache Superset and AWS Load Balancer Controller.\n- Challenges: Reverse-engineered provisioning/install steps; extensive troubleshooting and compatibility validation.\n- Result: Technically validated upgrade path; postponed due to limited customer engagement.\n\nD) Error Code Standardization\n- Goal: Unify exception message structure across services.\n- Challenges: Designing a common error code template and consolidating multi-source error messages.\n- Result: Improved code quality and operability.\n\nE) Release Cycle Process\n- Flow: dev → qa(testing) → staging(testing) → master(testing).\n- Artifacts: Versioned release bundles in S3; used by CMP to deploy to customer environments.\n\nF) Customer Environment Ops\n- Patching Lambda processes; salt key rotation for PAT security.\n\nG) Initiatives\n- Piloted AWS CodeGuru (Code Reviewer, Lambda Profiler, Code Security).\n- Reduced PyLint stage time by ~50% in Bitbucket pipelines.\n- Researched observability (logs, traces, metrics) via AWS Grafana and CloudWatch Logs Insights.",
+      "description": "Promoted in April 2022 for achieving a 20% performance boost, coupled with an enhancement in team collaboration\nImplemented Dataset Lifecycle management for efficient file handling and provided detailed monitoring insights for frequently used service metrics, meeting critical customer demands, hence resulting in a 10% revenue increase\nElevated DevOps role, optimizing CI/CD pipelines for a 20% faster release cycle and ensured flawless product delivery",
       "companyUrl": "https://cloudwick.com/",
       "location": "Bengaluru, IN (Remote/Hybrid)"
     },
@@ -52,7 +52,7 @@
       "position": "Engineering Intern",
       "startDate": "Jan 2020",
       "endDate": "Dec 2020",
-      "description": "Designed and developed a Scala-based Spark metrics framework to capture rich event data and accelerate performance analysis; achieved ~10% speedup on TPC-DS benchmarks. Optimized regression runs using PyTest with multiprocessing and Jenkins by parallelizing across ephemeral child accounts spawned from a parent account. Addressed per-account configuration reinitialization and teardown for isolation and reproducibility, reducing regression time roughly by a factor of N (number of cores).",
+      "description": "Designed and developed Scala-based Spark metrics framework, capturing event data, and achieved a 10% speed boost through Excel analysis measured with TPC-DS benchmark\nWorked alongside the Spark-QA unit, implementing multiprocessing techniques with the PyTest framework to optimize regression test runs. Decreased test completion time by 50%, enhancing testing efficiency and accelerating SDLC",
       "companyUrl": "https://www.qubole.com/",
       "location": "Bengaluru, IN (Remote/Hybrid)"
     },
@@ -61,7 +61,7 @@
       "position": "Technology Intern",
       "startDate": "May 2019",
       "endDate": "Jul 2019",
-      "description": "J.A.R.V.I.S.S.: Contributed to a microservice-based multi-cloud security orchestration platform offering unified, cloud-agnostic terminology, tag-based policy enforcement resilient to cloud migrations, and cloud graph visualization to inspect live connections. Integrated AWS and GCP (extensible to Azure/Kubernetes/private clouds). Implemented components using Terraform, HashiCorp Vault, Flask, and MongoDB, leading to ~15% reduction in operational costs.",
+      "description": "Pioneered a micro-service-based multi-cloud security orchestration system, facilitating seamless integration with top-tier cloud providers like AWS and GCP, leading to a 15% reduction in operational costs\nProgrammed a tag-based security policy enforcement module within the web app improving UX by 50%",
       "companyUrl": "https://www.microland.com/",
       "location": "Bengaluru, IN"
     },
@@ -70,7 +70,7 @@
       "position": "Software Intern",
       "startDate": "Mar 2018",
       "endDate": "Mar 2019",
-      "description": "Developed decentralized applications using Flo-Blockchain: FloSecretSharingApp - Decentralized app to store secrets on blockchain using encryption with Shamir’s algorithm. FloAppStore - Python-based GUI app store (Tkinter), with all app metadata stored on blockchain. FloWhatsapp - Peer-to-peer web chat app using JavaScript, IndexedDB, Mongoose Client (C++), and blockchain.",
+      "description": "Developed encrypted peer-to-peer decentralized chat app by seamlessly integrating Flo Blockchain, ensuring secure and reliable communication. This achievement resulted in an increase in user accessibility and trust\nAimed to harness the power of TOR addresses and FLO Blockchain IDs, providing users with fixed, routable addresses and secure identification, resulting in a reduction in data breaches and improved data integrity\nProgrammed Secret Sharing App using Shamir's algorithm, reducing data breaches by 30% and enhancing user trust",
       "companyUrl": "https://www.ranchimall.net/",
       "location": "Bali, Indonesia (Remote)"
     }
