@@ -81,7 +81,7 @@
       "degree": "Master of Computer Science (MCS)",
       "startDate": "Aug 2023",
       "endDate": "Dec 2024",
-      "description": "GPA: 3.95/4.00. Coursework: Software Engineering Methodology, Deep Learning, Vision & Language, Machine Learning, Networks, Systems Architecture, Algorithms, Ethics & Workplace Communication.",
+      "description": "GPA: 3.95/4.00 | Houston, TX.\n Relevant Coursework: Software Engineering Methodology, Intro to Deep Learning, Deep Learning for Vision and Language, Machine Learning, Computer Networks, Computer Systems Architecture, Algorithms, Ethics and Workplace Communication.\n Focus on advanced software engineering practices, AI/ML systems, and scalable computing architectures.",
       "institutionUrl": "https://www.rice.edu/"
     },
     {
@@ -89,16 +89,16 @@
       "degree": "B.E. in Computer Science & Engineering",
       "startDate": "Jul 2016",
       "endDate": "Jul 2020",
-      "description": "GPA: 8.54/10.00. Coursework: Computer Architecture, Algorithms, OOP, Software Engineering, Networks, OS, DBMS, Cryptography & Network Security.",
+      "description": "GPA: 8.54/10.00 | Jharkhand, IN.\n Relevant Coursework: Computer System Architecture, Design and Analysis of Computer Algorithms, System & Object Oriented Programming, Software Engineering, Computer Networks, Operating Systems, Database Management Systems, Cryptography, and Network Security.\n Strong foundation in core computer science principles and software development methodologies.",
       "institutionUrl": "https://www.bitmesra.ac.in/"
     },
     {
       "institution": "D.B.M.S. English School",
-      "degree": "High School (ICSE X, ISC XII)",
+      "degree": "High School Education",
       "startDate": "Apr 2014",
       "endDate": "Apr 2016",
-      "description": "Board Exams: I.C.S.E. (Std X) and I.S.C. (Std XII). Percentage: 94.75%. Coursework: Computer Science, Mathematics, Physics, Chemistry, and English.",
-      "institutionUrl": "https://dbms.edu.in/"
+      "description": "X Board Exam (I.C.S.E.): 95.8% | XII Board Exam (I.S.C.): 94.8%.\n Core Subjects: Computer Science, Mathematics, Physics, Chemistry, English.\n Demonstrated exceptional academic performance with consistent high achievement across STEM subjects, establishing strong analytical and problem-solving foundation.",
+      "institutionUrl": ""
     }
   ],
   "skills": [

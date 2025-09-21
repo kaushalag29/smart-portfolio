@@ -105,7 +105,13 @@ const TimelineItem: React.FC<{ item: TimelineItem }> = ({ item }) => {
           <p className="text-sm text-gray-500 dark:text-gray-500">{item.location}</p>
         )}
         {item.description && (
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{item.description}</p>
+          <div className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+            {item.description.split('\n').map((line, index) => (
+              <p key={index} className={index > 0 ? 'mt-1' : ''}>
+                {line.trim()}
+              </p>
+            ))}
+          </div>
         )}
         {item.skills && (
           <div className="mt-2 flex flex-wrap gap-2">
