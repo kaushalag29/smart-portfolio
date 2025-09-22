@@ -21,15 +21,6 @@
       "location": "Newark, CA (Remote/Hybrid)"
     },
     {
-      "company": "Rice University",
-      "position": "Teaching Assistant",
-      "startDate": "Aug 2023",
-      "endDate": "Dec 2024",
-      "description": "Managed assignment grading and held doubt-solving sessions, driving a 10% increase in assignment scores for Object-Oriented Programming, Computer Security, Software Engineer Methodology, and Software Construction",
-      "companyUrl": "https://www.rice.edu/",
-      "location": "Houston, TX"
-    },
-    {
       "company": "Paycom",
       "position": "Software Developer Intern",
       "startDate": "May 2024",
@@ -81,8 +72,9 @@
       "degree": "Master of Computer Science (MCS)",
       "startDate": "Aug 2023",
       "endDate": "Dec 2024",
-      "description": "GPA: 3.95/4.00 | Houston, TX.\n Relevant Coursework: Software Engineering Methodology, Intro to Deep Learning, Deep Learning for Vision and Language, Machine Learning, Computer Networks, Computer Systems Architecture, Algorithms, Ethics and Workplace Communication.\n Focus on advanced software engineering practices, AI/ML systems, and scalable computing architectures.",
-      "institutionUrl": "https://www.rice.edu/"
+        "description": "GPA: 3.95/4.00 | Houston, TX.\nTeaching Assistant Role: Managed assignment grading and held doubt-solving sessions, driving a 10% increase in assignment scores for Object-Oriented Programming, Computer Security, Software Engineer Methodology, and Software Construction.\nRelevant Coursework: Software Engineering Methodology, Intro to Deep Learning, Deep Learning for Vision and Language, Machine Learning, Computer Networks, Computer Systems Architecture, Algorithms, Ethics and Workplace Communication.\nSpecialization in Data Science & Machine Learning with focus on deep learning architectures, computer vision, natural language processing, and scalable ML systems deployment.",
+      "institutionUrl": "https://www.rice.edu/",
+      "location": "Houston, TX"
     },
     {
       "institution": "Birla Institute of Technology, Mesra",
@@ -90,7 +82,8 @@
       "startDate": "Jul 2016",
       "endDate": "Jul 2020",
       "description": "GPA: 8.54/10.00 | Jharkhand, IN.\n Relevant Coursework: Computer System Architecture, Design and Analysis of Computer Algorithms, System & Object Oriented Programming, Software Engineering, Computer Networks, Operating Systems, Database Management Systems, Cryptography, and Network Security.\n Strong foundation in core computer science principles and software development methodologies.",
-      "institutionUrl": "https://www.bitmesra.ac.in/"
+      "institutionUrl": "https://www.bitmesra.ac.in/",
+      "location": "Ranchi, IN"
     },
     {
       "institution": "D.B.M.S. English School",
@@ -98,7 +91,8 @@
       "startDate": "Apr 2014",
       "endDate": "Apr 2016",
       "description": "X Board Exam (I.C.S.E.): 95.8% | XII Board Exam (I.S.C.): 94.8%.\n Core Subjects: Computer Science, Mathematics, Physics, Chemistry, English.\n Demonstrated exceptional academic performance with consistent high achievement across STEM subjects, establishing strong analytical and problem-solving foundation.",
-      "institutionUrl": ""
+      "institutionUrl": "https://dbms.edu.in/",
+      "location": "Jamshedpur, IN"
     }
   ],
   "skills": [

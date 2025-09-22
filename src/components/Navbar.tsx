@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { Home, Briefcase, Github, FileText, Clock } from "lucide-react";
+import { Home, Briefcase, Github, FileText, MapPin } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/", icon: Home },
   { name: "Projects", href: "#personal-projects", icon: Briefcase },
-  { name: "Timeline", href: "#timeline", icon: Clock },
+  { name: "Journey", href: "#timeline", icon: MapPin },
 ];
 
 const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
