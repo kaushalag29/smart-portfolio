@@ -85,51 +85,238 @@
             "challenges": "The specialization required meticulous course selection to fulfill 30 credit hours within a compressed 3-semester timeline while maintaining alignment with my career objectives. Advanced coursework, including Computer Networks and Deep Learning, presented significant technical complexity and demanded substantial time investment. Simultaneously managing academic excellence with TA responsibilities, job search activities, and personal adaptation to a new environment required exceptional organizational skills and strategic prioritization.",
             "actions": "I implemented comprehensive time management strategies and project coordination frameworks to handle the demanding academic workload. Since most advanced courses involved collaborative team projects, I developed expertise in scheduling coordination among diverse team members with varying availability constraints. In my capacity as project leader, I established clear task delegation protocols, implemented progress tracking systems, and ensured equitable contribution distribution among team members to optimize both learning outcomes and project success.", 
             "results": "My strategic approach and disciplined execution resulted in exceptional academic performance, achieving A/A+ grades in the majority of my coursework and successfully completing all 30 credit hours within the planned 3-semester framework. This culminated in a cumulative GPA of 3.95/4.00, demonstrating both my technical mastery and effective adaptation to the rigorous academic environment at Rice University.",
-            "behavioralTags": ["strategic_planning", "leadership", "project_management", "team_coordination", "academic_excellence", "adaptability"]
+                "behavioralTags": ["strategic_planning", "leadership", "project_management", "team_coordination", "academic_excellence", "adaptability"]
+            }
           }
         }
-      }
-    },
+      },
     "detailedExperiences": [
       {
         "company": "Cloudwick Technologies",
         "position": "Machine Learning Engineer",
         "period": "Feb 2025 - Present",
+        "location": "Newark, CA (Remote/Hybrid)",
         "joinStory": {
-          "howIJoined": "Recruitment process, why you chose them, what attracted you",
-          "initialExpectations": "What you hoped to achieve",
-          "firstDayExperience": "Onboarding, first impressions, early challenges"
+          "howIJoined": "Recruitment process details - how you reconnected with Cloudwick after your previous experience",
+          "initialExpectations": "Expected to lead ML initiatives and advance to senior technical roles",
+          "firstDayExperience": "Onboarding into ML team, meeting stakeholders, understanding new technical landscape"
         },
         "keyProjects": [
           {
             "projectName": "PDF Chatbot with Citation Grounding",
-            "situation": "Business need, team context, technical landscape",
-            "task": "Specific responsibilities and objectives",
+            "situation": "Business need for intelligent document processing with accurate citation capabilities",
+            "task": "Lead backend team to productionize advanced chatbot with citation grounding and page-level highlighting",
             "challenges": [
               {
                 "challenge": "Leading backend team with diverse experience levels",
                 "action": "How you managed and motivated the team",
-                "result": "Team performance and product outcome",
+                "result": "Successfully delivered production-ready chatbot with advanced features",
                 "behavioralTags": ["leadership", "team_management"]
               },
               {
                 "challenge": "Integrating Amazon OpenSearch with Bedrock LLMs",
-                "action": "Technical approach, research, implementation strategy", 
-                "result": "Performance improvements, feature delivery",
+                "action": "Technical architecture design and implementation strategy", 
+                "result": "Achieved seamless integration with re-ranking capabilities",
                 "behavioralTags": ["technical_problem_solving", "innovation"]
               }
             ],
-            "result": "40% metadata redundancy reduction, improved accuracy",
-            "lessonsLearned": "Key takeaways from this experience"
+            "result": "Delivered comprehensive PDF chatbot with test generation and briefing doc creation features",
+            "lessonsLearned": "Advanced experience in LLM productionization and team leadership"
+          },
+          {
+            "projectName": "LLM-powered Data Cleaning and Knowledge-graph RAG Pipelines",
+            "situation": "Need for intelligent data processing and multi-hop query capabilities",
+            "task": "Design and implement knowledge-graph RAG pipelines with AWS Neptune & Neo4j",
+            "result": "40% metadata redundancy reduction and improved multi-hop query accuracy via NL-to-Cypher translation",
+            "behavioralTags": ["innovation", "technical_architecture", "data_engineering"]
           }
         ],
         "relationships": {
-          "teamDynamics": "How you worked with colleagues",
-          "conflictResolution": "Any disagreements and how you handled them",
-          "mentorship": "People you mentored or learned from"
+          "teamDynamics": "Leading cross-functional teams including ML engineers, backend developers, and product managers",
+          "conflictResolution": "Managing technical disagreements and project priority conflicts",
+          "mentorship": "Mentoring junior developers while learning advanced ML techniques from senior architects"
         },
-        "growthAtCompany": "Skills developed, promotions, increasing responsibilities",
-        "departureReason": "Why you left (if applicable) and what you learned"
+        "growthAtCompany": "Transition from Software Engineering to ML Engineering leadership, advancing domain expertise in AI/ML",
+        "departureReason": "Current role - continuing to grow and lead ML initiatives"
+      },
+      {
+        "company": "Paycom",
+        "position": "Software Developer Intern",
+        "period": "May 2024 - Aug 2024",
+        "location": "Dallas, TX",
+        "joinStory": {
+          "howIJoined": "Summer internship recruitment during Rice University MCS program",
+          "initialExpectations": "Gain enterprise software development experience and contribute to developer productivity tools",
+          "firstDayExperience": "Onboarding into large-scale enterprise environment, understanding GitLab analytics requirements"
+        },
+        "keyProjects": [
+          {
+            "projectName": "GitLab Developer Analytics Platform",
+            "situation": "Need for comprehensive developer performance insights across 2,000 GitLab repositories",
+            "task": "Engineer backend APIs with C# and .NET to aggregate and analyze MR review data for 1,000 developers",
+            "result": "Delivered actionable insights through MR review metrics and scoring systems",
+            "behavioralTags": ["backend_development", "data_analytics", "enterprise_software"]
+          },
+          {
+            "projectName": "Hierarchical Management Dashboards",
+            "situation": "Management need for role-based developer performance tracking",
+            "task": "Develop five hierarchical, role-based dashboards for different management levels",
+            "result": "Enabled management to track developer performance, optimize MR processes, and boost productivity",
+            "behavioralTags": ["dashboard_development", "user_experience", "stakeholder_management"]
+          }
+        ],
+        "relationships": {
+          "teamDynamics": "Collaborated with senior developers and product managers in enterprise environment",
+          "conflictResolution": "Handled requirement changes and technical constraint discussions",
+          "mentorship": "Received guidance from senior engineers on enterprise development practices"
+        },
+        "growthAtCompany": "Gained experience in enterprise-scale software development and C#/.NET ecosystem",
+        "departureReason": "Internship completion - returned to Rice University for final semester"
+      },
+      {
+        "company": "Cloudwick Technologies India Pvt Ltd",
+        "position": "Software Engineer II",
+        "period": "Dec 2020 - Jul 2023",
+        "location": "Bengaluru, IN (Remote/Hybrid)",
+        "joinStory": {
+          "howIJoined": "Transitioned from Qubole internship to full-time role at Cloudwick",
+          "initialExpectations": "Build scalable data and analytics platforms using AWS services",
+          "firstDayExperience": "Introduction to AWS-heavy tech stack and serverless architecture patterns"
+        },
+        "keyProjects": [
+          {
+            "projectName": "Dataset Lifecycle Management System",
+            "situation": "Customer demand for efficient file handling and monitoring insights",
+            "task": "Implement comprehensive dataset lifecycle management with detailed monitoring",
+            "result": "Met critical customer demands, resulting in 10% revenue increase",
+            "behavioralTags": ["customer_focus", "system_design", "business_impact"]
+          },
+          {
+            "projectName": "CI/CD Pipeline Optimization",
+            "situation": "Need for faster release cycles and flawless product delivery",
+            "task": "Elevate DevOps role and optimize CI/CD pipelines",
+            "result": "20% faster release cycle and ensured flawless product delivery",
+            "behavioralTags": ["devops", "process_improvement", "technical_leadership"]
+          },
+          {
+            "projectName": "Self-Service SaaS Platform",
+            "situation": "Need for seamless Data and Analytics workload management",
+            "task": "Leverage AWS serverless services to create self-service SaaS-enabled platform",
+            "result": "Successfully integrated Lambda, DynamoDB, Step Functions, Glue, and other AWS services",
+            "behavioralTags": ["aws_architecture", "serverless_computing", "platform_development"]
+          }
+        ],
+        "relationships": {
+          "teamDynamics": "Collaborated with distributed teams across multiple time zones",
+          "conflictResolution": "Managed technical debates around architecture decisions and resource allocation",
+          "mentorship": "Mentored junior developers while learning advanced AWS patterns from senior architects"
+        },
+        "growthAtCompany": "Promoted to Software Engineer II in April 2022 for 20% performance boost and enhanced team collaboration",
+        "departureReason": "Left to pursue Master's degree at Rice University for international exposure and advanced education"
+      },
+      {
+        "company": "Qubole",
+        "position": "Engineering Intern",
+        "period": "Jan 2020 - Dec 2020",
+        "location": "Bengaluru, IN (Remote/Hybrid)",
+        "joinStory": {
+          "howIJoined": "Secured internship over other offers (Nvidia) due to preference for startup environment",
+          "initialExpectations": "Contribute to big data processing and Spark optimization initiatives",
+          "firstDayExperience": "Introduction to Scala, Spark ecosystem, and big data processing workflows"
+        },
+        "keyProjects": [
+          {
+            "projectName": "Scala-based Spark Metrics Framework",
+            "situation": "Need for comprehensive event data capture and performance optimization",
+            "task": "Design and develop metrics framework for Spark performance monitoring",
+            "result": "Achieved 10% speed boost through Excel analysis measured with TPC-DS benchmark",
+            "behavioralTags": ["performance_optimization", "scala_development", "big_data"]
+          },
+          {
+            "projectName": "Spark-QA Regression Test Optimization",
+            "situation": "Need to accelerate regression test execution for faster SDLC",
+            "task": "Implement multiprocessing techniques with PyTest framework",
+            "result": "Decreased test completion time by 50%, enhancing testing efficiency",
+            "behavioralTags": ["test_automation", "process_improvement", "python_development"]
+          }
+        ],
+        "relationships": {
+          "teamDynamics": "Worked closely with Spark-QA team and performance engineering groups",
+          "conflictResolution": "Navigated technical discussions around testing strategies and performance benchmarks",
+          "mentorship": "Learned big data processing patterns from senior engineers specializing in distributed systems"
+        },
+        "growthAtCompany": "Gained expertise in Scala, big data processing, and distributed systems testing",
+        "departureReason": "Company acquired by Idera during COVID-19, joined Cloudwick as alternative opportunity"
+      },
+      {
+        "company": "Microland",
+        "position": "Technology Intern",
+        "period": "May 2019 - Jul 2019",
+        "location": "Bengaluru, IN",
+        "joinStory": {
+          "howIJoined": "Summer internship during college, selected for cloud security projects",
+          "initialExpectations": "Gain exposure to enterprise cloud security and multi-cloud architectures",
+          "firstDayExperience": "Introduction to corporate environment, cloud security concepts, and client requirements"
+        },
+        "keyProjects": [
+          {
+            "projectName": "Multi-cloud Security Orchestration System",
+            "situation": "Client need for unified security across AWS and GCP environments",
+            "task": "Pioneer micro-service-based security orchestration facilitating cloud provider integration",
+            "result": "15% reduction in operational costs through streamlined security processes",
+            "behavioralTags": ["cloud_security", "microservices", "cost_optimization"]
+          },
+          {
+            "projectName": "Tag-based Security Policy Enforcement",
+            "situation": "Need for improved user experience in security policy management",
+            "task": "Program tag-based security policy enforcement module within web application",
+            "result": "50% improvement in user experience through intuitive policy management",
+            "behavioralTags": ["user_experience", "security_engineering", "web_development"]
+          }
+        ],
+        "relationships": {
+          "teamDynamics": "First exposure to corporate team dynamics and client-facing project work",
+          "conflictResolution": "Learned to handle client feedback and requirement changes",
+          "mentorship": "Received guidance from senior consultants on enterprise software practices"
+        },
+        "growthAtCompany": "First professional software development experience, exposure to enterprise and client-facing work",
+        "departureReason": "Internship completion - returned to college with valuable corporate experience"
+      },
+      {
+        "company": "Ranchi Mall",
+        "position": "Software Intern",
+        "period": "Mar 2018 - Mar 2019",
+        "location": "Bali, Indonesia (Remote)",
+        "joinStory": {
+          "howIJoined": "During the concluding phase of my fourth semester, I secured a remote internship opportunity at Ranchi Mall through the Internshala platform. My selection was based on a comprehensive evaluation of my technical portfolio and demonstrated programming competencies.",
+          "initialExpectations": "To gain hands-on experience with emerging technologies, particularly blockchain architecture and advanced cryptographic implementations, while contributing to innovative decentralized applications.",
+          "firstDayExperience": "I received comprehensive onboarding on the FLO Blockchain ecosystem and its operational mechanics. My initial assignment involved successfully deploying the FLO wallet on Kali Linux, which served as both a technical assessment and prerequisite for paid project participation. This task presented unique challenges compared to standard Ubuntu installations, requiring a week of systematic troubleshooting and Linux system optimization. I documented my solution methodology in a Medium article, which received positive recognition from the technical team and demonstrated my ability to contribute to knowledge sharing."
+        },
+        "keyProjects": [
+          {
+            "projectName": "Encrypted P2P Decentralized Chat Application",
+            "situation": "The growing demand for privacy-focused communication solutions required development of a secure, decentralized messaging platform that eliminated traditional centralized server dependencies while ensuring user anonymity and data integrity.",
+            "task": "Architect and develop a peer-to-peer encrypted chat application leveraging embedded Mongoose web server, TOR networking services, and FLO Blockchain integration. The system needed to replace traditional phone number identification with blockchain-based FLO IDs and TOR addresses for enhanced privacy.",
+            "action": "I implemented a lightweight, high-performance architecture utilizing an embedded Mongoose web server integrated with TOR services through the Brave browser ecosystem. To enhance user adoption, I adapted a familiar WhatsApp UI template while developing the core functionality in JavaScript and HTML/CSS. The application employed IndexedDB for client-side chat history persistence, eliminating server-side data storage requirements. I engineered the peer-to-peer communication protocol to operate entirely through decentralized nodes, ensuring no central point of failure or data vulnerability.",
+            "result": "Successfully delivered a functional prototype demonstrating secure, anonymous communication capabilities. The solution significantly enhanced user privacy and trust through elimination of centralized data storage and implementation of blockchain-based identity management.",
+            "behavioralTags": ["blockchain_development", "security_architecture", "peer_to_peer_systems", "privacy_engineering", "frontend_development"]
+          },
+          {
+            "projectName": "Blockchain-Integrated Secret Sharing Application",
+            "situation": "Organizations required a robust solution for secure data sharing that could prevent unauthorized access while ensuring data integrity and global accessibility. Traditional secret storage methods were vulnerable to tampering and single points of failure.",
+            "task": "Develop a comprehensive secret sharing application implementing Shamir's secret sharing algorithm combined with blockchain storage. The system needed to split secrets into n cryptographic keys where any m out of n keys could reconstruct the original secret, while storing encrypted data on FLO blockchain for tamper-proof, globally accessible storage.",
+            "action": "I architected a Python-based application using Tkinter for the graphical user interface, implementing Shamir's secret sharing algorithm for cryptographic key distribution. The system encrypted sensitive data before storing it on the FLO blockchain, ensuring immutable storage and global accessibility. I designed the key distribution mechanism to generate n shares of the secret, where any m threshold shares could successfully decrypt the message. This approach enabled secure collaboration while preventing single points of failure. The blockchain integration ensured that stored secrets remained tamper-proof and accessible from any location, while supporting large message encryption through the distributed key system.",
+            "result": "Delivered a production-ready secret sharing solution that aims to achieve reduction in data breach incidents and significantly enhanced user trust through cryptographically secure, distributed secret management. The blockchain integration provided unprecedented data integrity and global accessibility for secure information sharing.",
+            "behavioralTags": ["cryptographic_algorithms", "blockchain_integration", "data_security", "algorithm_implementation", "distributed_systems", "python_development"]
+          }
+        ],
+        "relationships": {
+          "teamDynamics": "Developed proficiency in remote collaboration with an international, distributed team of blockchain developers and cryptography specialists, learning to coordinate effectively across different time zones and cultural contexts.",
+          "conflictResolution": "Successfully navigated communication challenges inherent in remote, cross-cultural environments by developing cultural sensitivity and implementing structured communication protocols to ensure project clarity and team alignment.",
+          "mentorship": "Engaged in self-directed learning supplemented by guidance from experienced blockchain technology experts, establishing mentorship relationships that accelerated my understanding of advanced cryptographic concepts and decentralized systems architecture."
+        },
+        "growthAtCompany": "Gained foundational expertise in blockchain technology, advanced cryptographic implementations, and remote collaboration practices. This experience established my technical foundation in decentralized systems and introduced me to cutting-edge privacy-preserving technologies that would influence my subsequent career trajectory.",
+        "departureReason": "Successfully completed the comprehensive yearlong internship program and transitioned focus toward academic excellence, competitive programming advancement, and preparation for campus placement opportunities to secure full-time engineering positions."
       }
     ],
     "behavioralStories": [
