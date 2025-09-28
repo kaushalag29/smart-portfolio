@@ -217,36 +217,38 @@
       {
         "company": "Qubole",
         "position": "Engineering Intern",
-        "period": "Jan 2020 - Dec 2020",
+        "period": "Jan 2020 - Dec 2020 (Extended from 6 months to 1 year due to COVID-19)",
         "location": "Bengaluru, IN (Remote/Hybrid)",
         "joinStory": {
-          "howIJoined": "Secured internship over other offers (Nvidia) due to preference for startup environment",
-          "initialExpectations": "Contribute to big data processing and Spark optimization initiatives",
-          "firstDayExperience": "Introduction to Scala, Spark ecosystem, and big data processing workflows"
+          "howIJoined": "During my final semester at BIT Mesra, I chose to pursue a 6-month internship over the alternative college project option to gain hands-on experience solving real-world problems in a startup-based agile culture. I selected Qubole over other offers, including Nvidia, specifically for the exposure to innovative big data technologies and startup environment dynamics.",
+          "initialExpectations": "Contribute to distributed computing solutions and Spark optimization initiatives while gaining practical experience in big data processing, performance optimization, and working within an agile development environment.",
+          "firstDayExperience": "I joined the Spark team focusing on distributed computing engine development. Initially assigned to the Spark-QA team for comprehensive onboarding, I was introduced to the codebase architecture, application workflows, and the existing PyTest framework infrastructure used for Jenkins-based regression testing."
         },
         "keyProjects": [
           {
-            "projectName": "Scala-based Spark Metrics Framework",
-            "situation": "Need for comprehensive event data capture and performance optimization",
-            "task": "Design and develop metrics framework for Spark performance monitoring",
-            "result": "Achieved 10% speed boost through Excel analysis measured with TPC-DS benchmark",
-            "behavioralTags": ["performance_optimization", "scala_development", "big_data"]
+            "projectName": "Multiprocessing-based PyTest Regression Test Optimization",
+            "situation": "The existing regression test suite in Jenkins using PyTest framework had significant performance bottlenecks, with sequential test execution creating lengthy feedback cycles that hindered the development team's productivity and release velocity.",
+            "task": "Optimize regression test execution time by implementing multiprocessing capabilities within the PyTest framework. The challenge was that each test required its own Qubole account with specific configurations, necessitating an innovative account management approach.",
+            "action": "I designed and implemented a parent-child account architecture where one parent Qubole account would dynamically create multiple child accounts, each with independent configurations. This enabled parallel test execution across multiple isolated environments. The implementation was entirely in Python, utilizing multiprocessing libraries to distribute tests across available child accounts. The major technical challenge was debugging parallel test runs, requiring sophisticated logging and error tracking mechanisms to isolate failures across concurrent execution threads.",
+            "result": "Successfully achieved a dramatic reduction in regression test runtime by a factor of n, where n represented the number of child accounts that could be accommodated through multiprocessing. This optimization significantly enhanced testing efficiency and accelerated the software development lifecycle, providing faster feedback to the development team.",
+            "behavioralTags": ["test_automation", "process_improvement", "python_development", "parallel_processing", "architecture_design", "debugging"]
           },
           {
-            "projectName": "Spark-QA Regression Test Optimization",
-            "situation": "Need to accelerate regression test execution for faster SDLC",
-            "task": "Implement multiprocessing techniques with PyTest framework",
-            "result": "Decreased test completion time by 50%, enhancing testing efficiency",
-            "behavioralTags": ["test_automation", "process_improvement", "python_development"]
+            "projectName": "Scala-based Spark Metrics Collection Framework",
+            "situation": "The Spark application ecosystem lacked comprehensive metrics collection capabilities, making it difficult to debug performance issues, identify bottlenecks, and optimize Spark application tasks. This gap in observability hindered effective troubleshooting and performance optimization efforts.",
+            "task": "Design and develop a comprehensive metrics collection framework for Spark applications using Scala programming language. The framework needed to capture detailed performance metrics that would enable future debugging of Spark application issues and provide insights for optimization.",
+            "action": "Despite being new to Scala, I leveraged its similarity to Java to quickly adapt and develop the metrics framework using JSON format for data storage. I designed a comprehensive event data capture system that could monitor various aspects of Spark application performance, including task execution times, resource utilization (queue capacity, listeners processing speed, etc.), and data processing metrics. The framework integrated seamlessly with existing Spark applications and provided detailed quantitative metrics like Avg Queue Capacity, Avg Listeners Processing Speed, Top3Events, DroppedEventsCount, etc. for performance analysis. Analyzed the performance of all listeners and queues using Excel sheets and identified the bottlenecks to optimize the slow listeners.",
+            "result": "Successfully delivered a production-ready metrics collection framework that achieved a 10% performance improvement in Spark applications using the lazy keyword in Scala, as validated through comprehensive analysis using TPC-DS benchmark testing. The framework provided critical observability capabilities that significantly enhanced the team's ability to debug issues and optimize Spark application performance.",
+            "behavioralTags": ["scala_development", "performance_optimization", "big_data", "framework_development", "learning_agility", "observability"]
           }
         ],
         "relationships": {
-          "teamDynamics": "Worked closely with Spark-QA team and performance engineering groups",
-          "conflictResolution": "Navigated technical discussions around testing strategies and performance benchmarks",
-          "mentorship": "Learned big data processing patterns from senior engineers specializing in distributed systems"
+          "teamDynamics": "Collaborated closely with Spark-QA team for initial onboarding and codebase familiarization, then transitioned to work with performance engineering groups on metrics framework development. Developed skills in cross-team coordination and knowledge transfer between different technical domains.",
+          "conflictResolution": "Navigated technical discussions around testing optimization strategies, debugging methodologies for parallel processes, and performance benchmarking approaches. Successfully balanced innovation with existing system stability requirements.",
+          "mentorship": "Received comprehensive guidance from senior engineers specializing in distributed systems, big data processing patterns, and Scala development best practices. The mentorship was crucial for adapting to new programming languages and understanding complex distributed computing concepts."
         },
-        "growthAtCompany": "Gained expertise in Scala, big data processing, and distributed systems testing",
-        "departureReason": "Company acquired by Idera during COVID-19, joined Cloudwick as alternative opportunity"
+        "growthAtCompany": "Gained substantial expertise in Scala programming language, advanced big data processing techniques using Apache Spark, distributed systems testing methodologies, and parallel processing optimization. Developed strong debugging skills for complex concurrent systems and learned to work effectively in a fast-paced startup environment.",
+        "departureReason": "The internship was initially planned for 6 months but was extended to a full year due to COVID-19 pandemic impacts that delayed my Samsung full-time offer to the following year. Unfortunately, Qubole was subsequently acquired by Idera, leading to organizational changes that prompted my transition to Cloudwick Technologies for continued career development."
       },
       {
         "company": "Microland",
@@ -254,33 +256,27 @@
         "period": "May 2019 - Jul 2019",
         "location": "Bengaluru, IN",
         "joinStory": {
-          "howIJoined": "Summer internship during college, selected for cloud security projects",
-          "initialExpectations": "Gain exposure to enterprise cloud security and multi-cloud architectures",
-          "firstDayExperience": "Introduction to corporate environment, cloud security concepts, and client requirements"
+          "howIJoined": "Summer internship during college, selected during college placements.",
+          "initialExpectations": "Gain exposure to enterprise level software development and project management.",
+          "firstDayExperience": "Introduction to corporate environment, cloud security concepts, and comprehensive briefing on planned summer projects. Our team of 3 interns from different colleges was assigned to build JARVISS (Just A Really Very Intelligent Security System), a multi-cloud security orchestration platform designed to address the growing enterprise need for unified cloud security management."
         },
         "keyProjects": [
           {
-            "projectName": "Multi-cloud Security Orchestration System",
-            "situation": "Client need for unified security across AWS and GCP environments",
-            "task": "Pioneer micro-service-based security orchestration facilitating cloud provider integration",
-            "result": "15% reduction in operational costs through streamlined security processes",
-            "behavioralTags": ["cloud_security", "microservices", "cost_optimization"]
-          },
-          {
-            "projectName": "Tag-based Security Policy Enforcement",
-            "situation": "Need for improved user experience in security policy management",
-            "task": "Program tag-based security policy enforcement module within web application",
-            "result": "50% improvement in user experience through intuitive policy management",
-            "behavioralTags": ["user_experience", "security_engineering", "web_development"]
+            "projectName": "JARVISS - Multi-cloud Security Orchestration Platform",
+            "situation": "In 2019, cloud computing adoption was accelerating rapidly as companies migrated from on-premises infrastructure to cloud environments. Organizations needed unified security management across multiple cloud providers (AWS, GCP, Azure) to maintain consistent security policies and compliance standards from a single control point.",
+            "task": "Develop a comprehensive proof-of-concept web platform enabling centralized onboarding and management of security policies across multiple cloud environments. The system required three integrated modules: onboarding/discovery, policy enforcement, and network visualization, all working cohesively within a single JARVISS platform.",
+            "action": "I collaborated with 2 other interns from different colleges in a distributed development approach. One team member developed the Django-based UI framework and integrated D3.js for network security visualization, while another intern handled the onboarding and discovery module for cloud instance identification. My primary responsibility was implementing the policy enforcement module using Flask web servers as the backend architecture, combined with Terraform and HashiCorp Configuration Language (HCL) for infrastructure management. I designed and developed a tag-based policy management system that replaced traditional IP address-based rules with intuitive, memorable tags for enhanced policy administration. The backend architecture integrated Consul Vault for secure cloud credential storage and implemented real-time policy monitoring with automatic reversion capabilities similar to AWS Config functionality. All modules were integrated through Flask-based RESTful APIs to ensure seamless communication between the onboarding, policy enforcement, and visualization components.",
+            "result": "Successfully delivered a functional integrated POC supporting AWS and GCP environments (Azure integration planned but not completed due to time constraints). The unified JARVISS platform achieved operational cost reduction through streamlined security processes and improvement in user experience through our innovative tag-based policy management system. The system provided real-time policy monitoring, automated compliance enforcement, and intuitive visualization capabilities, creating a comprehensive multi-cloud security management solution.",
+            "behavioralTags": ["flask_development", "python_backend", "terraform", "cloud_security", "team_collaboration", "infrastructure_as_code", "api_development", "policy_management"]
           }
         ],
         "relationships": {
-          "teamDynamics": "First exposure to corporate team dynamics and client-facing project work",
-          "conflictResolution": "Learned to handle client feedback and requirement changes",
-          "mentorship": "Received guidance from senior consultants on enterprise software practices"
+          "teamDynamics": "Collaborated effectively with 2 interns from different colleges, establishing clear module ownership while maintaining integration points. Developed skills in cross-functional coordination, ensuring my policy enforcement module integrated seamlessly with the onboarding/discovery and UI/visualization components developed by my teammates.",
+          "conflictResolution": "Navigated technical integration challenges between different modules, particularly ensuring API compatibility between my Flask backend services and the Django frontend, while coordinating data flow requirements for the visualization component.",
+          "mentorship": "Received comprehensive guidance from senior cloud architects on enterprise software practices, Flask application architecture, infrastructure as code principles, and cloud security best practices that shaped my understanding of enterprise-scale system design."
         },
-        "growthAtCompany": "First professional software development experience, exposure to enterprise and client-facing work",
-        "departureReason": "Internship completion - returned to college with valuable corporate experience"
+        "growthAtCompany": "Gained foundational expertise in Flask web development, cloud security architecture, and infrastructure as code through Terraform. This internship provided crucial exposure to enterprise software development practices, API design, and team-based development workflows, establishing my interest in cloud computing and DevOps methodologies that influenced subsequent career decisions.",
+        "departureReason": "Successfully completed the summer internship program and returned to college with comprehensive understanding of enterprise cloud security practices and hands-on experience in cutting-edge cloud technologies that were becoming industry standard."
       },
       {
         "company": "Ranchi Mall",
