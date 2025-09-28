@@ -86,10 +86,10 @@
             "actions": "I implemented comprehensive time management strategies and project coordination frameworks to handle the demanding academic workload. Since most advanced courses involved collaborative team projects, I developed expertise in scheduling coordination among diverse team members with varying availability constraints. In my capacity as project leader, I established clear task delegation protocols, implemented progress tracking systems, and ensured equitable contribution distribution among team members to optimize both learning outcomes and project success.", 
             "results": "My strategic approach and disciplined execution resulted in exceptional academic performance, achieving A/A+ grades in the majority of my coursework and successfully completing all 30 credit hours within the planned 3-semester framework. This culminated in a cumulative GPA of 3.95/4.00, demonstrating both my technical mastery and effective adaptation to the rigorous academic environment at Rice University.",
                 "behavioralTags": ["strategic_planning", "leadership", "project_management", "team_coordination", "academic_excellence", "adaptability"]
-            }
           }
         }
-      },
+      }
+    },
     "detailedExperiences": [
       {
         "company": "Cloudwick Technologies",
@@ -179,40 +179,51 @@
         "period": "Dec 2020 - Jul 2023",
         "location": "Bengaluru, IN (Remote/Hybrid)",
         "joinStory": {
-          "howIJoined": "Transitioned from Qubole internship to full-time role at Cloudwick",
-          "initialExpectations": "Build scalable data and analytics platforms using AWS services",
-          "firstDayExperience": "Introduction to AWS-heavy tech stack and serverless architecture patterns"
+          "howIJoined": "Following the conclusion of my Qubole internship, I was fortunate to receive a LinkedIn message from a Cloudwick recruiter specifically seeking ex-Qubole professionals due to the similar work domains between the companies. After successfully completing technical discussions about my previous work and a cultural fit interview with the CEO, I joined Cloudwick's backend development team.",
+          "initialExpectations": "Contribute to the development and enhancement of Amorphic, Cloudwick's flagship data lake platform, while expanding my expertise in AWS serverless architectures and enterprise-scale data solutions.",
+          "firstDayExperience": "I was introduced to the Amorphic product ecosystem, a comprehensive data lake platform deployed in customer AWS environments. The onboarding covered the platform's diverse services including Dataset for storage, Glue for ETL, Insights for monitoring jobs and schedules, and DMS for data migration, along with the extensive AWS serverless technology stack."
         },
         "keyProjects": [
           {
-            "projectName": "Dataset Lifecycle Management System",
-            "situation": "Customer demand for efficient file handling and monitoring insights",
-            "task": "Implement comprehensive dataset lifecycle management with detailed monitoring",
-            "result": "Met critical customer demands, resulting in 10% revenue increase",
-            "behavioralTags": ["customer_focus", "system_design", "business_impact"]
+            "projectName": "Dataset Metrics Collection System",
+            "situation": "Customers required comprehensive visibility into dataset behavior and usage patterns. Each dataset contained multiple files with dynamic upload/delete operations, necessitating time-series metrics collection for monitoring and anomaly detection.",
+            "task": "Implement a robust metrics collection system to track TotalFileSize and NumberOfFiles for each dataset in time-series format, providing daily insights and historical synchronization capabilities from dataset creation.",
+            "action": "I designed and implemented a comprehensive solution using multiple AWS services, with all code written in Python. The core component was an AWS Glue job that handled the time-intensive file aggregation process across S3 buckets, triggered daily at midnight through CloudWatch Events. The system integrated AWS SES for email notifications to dataset owners and leveraged AWS Lambda functions for lightweight processing tasks.",
+            "result": "Successfully delivered a comprehensive monitoring solution that enabled customers to visualize dataset behavior through time-series graphs, identify anomalies through visual representation, and maintain operational awareness through automated notifications. This directly contributed to improved customer relationships and revenue growth.",
+            "behavioralTags": ["python_development", "aws_glue", "time_series_analytics", "customer_focus", "data_visualization", "monitoring_systems"]
           },
           {
-            "projectName": "CI/CD Pipeline Optimization",
-            "situation": "Need for faster release cycles and flawless product delivery",
-            "task": "Elevate DevOps role and optimize CI/CD pipelines",
-            "result": "20% faster release cycle and ensured flawless product delivery",
-            "behavioralTags": ["devops", "process_improvement", "technical_leadership"]
+            "projectName": "Dataset Lifecycle Management Mechanism",
+            "situation": "Customer demand for automated data lifecycle management to optimize storage costs and implement governance policies. Users needed the ability to set expiration dates and define S3 storage tier migration rules for dataset files.",
+            "task": "Develop a critical lifecycle management system allowing users to configure file expiration after X days and automatic tier transitions after Y days, with robust failure handling and rollback capabilities.",
+            "action": "I implemented a sophisticated Python-based solution utilizing AWS Step Functions as the orchestration engine to handle lifecycle rule modifications at the S3 bucket prefix level. The implementation leveraged AWS Lambda functions written in Python to execute lifecycle policy changes, with comprehensive error handling and automatic rollback capabilities through Step Functions' built-in error handling. I utilized DynamoDB with TTL attributes to automatically expire temporary metadata during rollback operations. The system integrated AWS SES for email notifications to dataset owners and used AWS CloudFormation for infrastructure as code deployment. S3 lifecycle rules were dynamically configured to transition files between storage classes (Standard → IA → Glacier) based on user-defined policies.",
+            "result": "Delivered a production-ready lifecycle management system that strengthened customer relationships through cost optimization capabilities and governance compliance, directly contributing to revenue growth. Future enhancement opportunities identified for Glacier storage class file recovery.",
+            "behavioralTags": ["python_development", "aws_step_functions", "dynamodb_ttl", "s3_lifecycle", "lifecycle_management", "failure_handling", "customer_success", "cost_optimization"]
           },
           {
-            "projectName": "Self-Service SaaS Platform",
-            "situation": "Need for seamless Data and Analytics workload management",
-            "task": "Leverage AWS serverless services to create self-service SaaS-enabled platform",
-            "result": "Successfully integrated Lambda, DynamoDB, Step Functions, Glue, and other AWS services",
-            "behavioralTags": ["aws_architecture", "serverless_computing", "platform_development"]
+            "projectName": "Release Cycle Management & CI/CD Optimization",
+            "situation": "The product required a robust release management process spanning dev → QA → staging → master environments with reliable deployment mechanisms to customer environments.",
+            "task": "Manage the complete CI/CD pipeline using Bitbucket, handle release cycles, store build artifacts in S3, and deploy applications to customer environments through CMP (Customer Management Platform).",
+            "action": "I managed the end-to-end release cycle process using Python-based automation scripts integrated with Bitbucket Pipelines. Key optimizations included reducing PyLint execution time by 50% through parallel processing in the pipeline configuration. I implemented AWS S3 for build artifact storage with lifecycle rules for automated cleanup, utilized AWS Systems Manager (SSM) for secure parameter management, and AWS Lambda functions for deployment automation. For urgent customer support, I developed Python scripts for direct Lambda invocation in customer environments, with comprehensive logging through AWS CloudWatch.",
+            "result": "Achieved 20% faster release cycles, ensured flawless product delivery, and provided rapid customer issue resolution through direct environment patching capabilities. The optimization significantly enhanced development team productivity and customer satisfaction.",
+            "behavioralTags": ["python_automation", "bitbucket_pipelines", "pylint_optimization", "cicd_optimization", "release_management", "devops", "customer_support", "process_improvement"]
+          },
+          {
+            "projectName": "AWS Innovation & Performance Optimization Initiatives",
+            "situation": "The development process required continuous improvement through modern AWS tools and performance optimization to maintain competitive advantage and development efficiency.",
+            "task": "Research and implement advanced AWS tools for code quality, security, and observability while optimizing existing development processes for enhanced performance.",
+            "action": "I spearheaded multiple innovation initiatives using Python-based implementations. I integrated AWS CodeGuru Reviewer for automated code quality analysis and CodeGuru Profiler for Lambda function performance optimization. The PyLint optimization involved implementing parallel execution strategies and intelligent caching mechanisms in Bitbucket pipelines, reducing execution time by 50%. I conducted comprehensive research on observability solutions utilizing AWS Managed Grafana for visualization, CloudWatch Logs Insights for log analysis, and AWS X-Ray for distributed tracing. Additionally, I implemented automated Salt key rotation using AWS Secrets Manager and Lambda functions to enhance security for personal access tokens, with DynamoDB tracking rotation schedules using TTL attributes.",
+            "result": "Successfully introduced cutting-edge AWS tools that improved code quality, security posture, and development efficiency. The PyLint optimization provided immediate productivity gains, while the observability research laid foundation for enhanced monitoring capabilities.",
+            "behavioralTags": ["python_development", "aws_codeguru", "pylint_optimization", "aws_secrets_manager", "aws_certifications", "aws_innovation", "performance_optimization", "security_enhancement", "observability", "research_development"]
           }
         ],
         "relationships": {
-          "teamDynamics": "Collaborated with distributed teams across multiple time zones",
-          "conflictResolution": "Managed technical debates around architecture decisions and resource allocation",
-          "mentorship": "Mentored junior developers while learning advanced AWS patterns from senior architects"
+          "teamDynamics": "Collaborated effectively with distributed teams across multiple time zones, transitioning from backend development team to DevOps team to gain comprehensive understanding of the entire SDLC. Worked closely with product managers, customer success teams, and engineering leadership to deliver customer-focused solutions.",
+          "conflictResolution": "Managed technical debates around AWS architecture decisions, resource allocation for customer environments, and prioritization of feature development versus infrastructure improvements. Successfully navigated customer escalations and urgent production issues through direct environment patching.",
+          "mentorship": "Mentored junior developers on AWS serverless best practices, Python development, and infrastructure as code principles. Simultaneously learned advanced AWS patterns, DevOps methodologies, and enterprise-scale system design from senior architects and DevOps engineers while pursuing AWS certifications to validate and deepen technical expertise."
         },
-        "growthAtCompany": "Promoted to Software Engineer II in April 2022 for 20% performance boost and enhanced team collaboration",
-        "departureReason": "Left to pursue Master's degree at Rice University for international exposure and advanced education"
+        "growthAtCompany": "Promoted to Software Engineer II (SDE 2) in a year of joining due to exceptional performance in delivering high-quality tasks on time and exceeding project expectations. The promotion in April 2022 recognized my 20% performance improvement contributions and enhanced team collaboration. Successfully transitioned from backend development to DevOps role, gaining comprehensive expertise in Python-based AWS serverless solutions including Lambda, DynamoDB (with TTL optimization), SQS, SES, CloudFormation, SSM, Step Functions, Glue, and S3 lifecycle management. Earned three AWS Associate-level certifications during my tenure: AWS Certified Developer (June 2021), AWS Certified Solutions Architect (September 2021), and AWS Certified SysOps Administrator (April 2022), establishing a strong foundation in cloud architecture, infrastructure as code, and DevOps practices.",
+        "departureReason": "Left to pursue Master's degree at Rice University for international exposure and advanced education in AI/ML, building upon the comprehensive Python development skills, AWS serverless expertise, and data platform architecture foundation established at Cloudwick for future career advancement in machine learning engineering."
       },
       {
         "company": "Qubole",
