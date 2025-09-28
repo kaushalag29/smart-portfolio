@@ -145,33 +145,27 @@
         "period": "May 2024 - Aug 2024",
         "location": "Dallas, TX",
         "joinStory": {
-          "howIJoined": "Summer internship recruitment during Rice University MCS program",
-          "initialExpectations": "Gain enterprise software development experience and contribute to developer productivity tools",
-          "firstDayExperience": "Onboarding into large-scale enterprise environment, understanding GitLab analytics requirements"
+          "howIJoined": "Secured a software developer internship at Paycom through the Rice University Career Expo during my first year of the Master's program. The recruitment process was competitive, and I was selected based on my technical background and interest in enterprise software development.",
+          "initialExpectations": "Gain hands-on experience in enterprise-scale software development, work with large-scale data systems, and contribute to developer productivity solutions while learning industry best practices in a Fortune 500 environment.",
+          "firstDayExperience": "Comprehensive onboarding process began with professional headshots and extensive company culture orientation sessions. The structured onboarding involved a 2-week online training program through Paycom's proprietary learning portal, covering company values, development methodologies, and enterprise software practices. After training completion, we participated in project selection discussions with management teams."
         },
         "keyProjects": [
           {
-            "projectName": "GitLab Developer Analytics Platform",
-            "situation": "Need for comprehensive developer performance insights across 2,000 GitLab repositories",
-            "task": "Engineer backend APIs with C# and .NET to aggregate and analyze MR review data for 1,000 developers",
-            "result": "Delivered actionable insights through MR review metrics and scoring systems",
-            "behavioralTags": ["backend_development", "data_analytics", "enterprise_software"]
-          },
-          {
-            "projectName": "Hierarchical Management Dashboards",
-            "situation": "Management need for role-based developer performance tracking",
-            "task": "Develop five hierarchical, role-based dashboards for different management levels",
-            "result": "Enabled management to track developer performance, optimize MR processes, and boost productivity",
-            "behavioralTags": ["dashboard_development", "user_experience", "stakeholder_management"]
+            "projectName": "Merge Request Quality Analytics & Scoring System",
+            "situation": "Upper management identified a critical productivity issue: an alarming increase in merge request reverts over recent months was significantly impacting team efficiency. The leadership team suspected that merge requests weren't being reviewed properly, leading to increased bugs and reduced code quality. They needed a comprehensive system to analyze and track MR review quality across 2,000 GitLab repositories serving 1,000+ developers.",
+            "task": "Design and develop a comprehensive analytics platform using C# and .NET Core framework integrated with GitLab APIs to create a scoring system for merge request review quality. Build hierarchical dashboards spanning the organizational structure: Director → Manager → Supervisor → Team Lead → Developer, enabling data-driven insights into developer performance and review effectiveness.",
+            "action": "I collaborated with a team of 4 interns, each handling specialized components. While one intern developed the React-based UI using Paycom's proprietary component library and another managed MySQL database administration (creating, modifying, and optimizing database structures), I partnered with the fourth intern to architect and implement all backend services. We designed comprehensive data collection pipelines using GitLab APIs to extract detailed metrics for each developer, including ApprovalCount, ReviewerCount, MR titles, comments, descriptions, and review thoroughness indicators. We developed a sophisticated scoring algorithm to evaluate MR quality (initially planned to use Microsoft CodeReviewer ML model but pivoted due to data security constraints). Our implementation stored metrics in a bottom-up hierarchical fashion: individual developer scores aggregated to team leads, then progressively to supervisors, managers, and directors, enabling comprehensive organizational visibility.",
+            "result": "Successfully delivered a production-ready analytics platform featuring hierarchical dashboards across all organizational levels, complete with heatmap Git contribution calendars for individual developer visualization. The scoring system effectively identified patterns in merge request quality and review thoroughness. Upper management officially adopted the dashboard for ongoing developer performance tracking, resulting in improved code review processes and reduced revert incidents. The solution provided actionable insights that directly addressed the original productivity concerns.",
+            "behavioralTags": ["team_collaboration", "backend_development", "api_integration", "data_analytics", "enterprise_software", "database_design", "hierarchical_systems"]
           }
         ],
         "relationships": {
-          "teamDynamics": "Collaborated with senior developers and product managers in enterprise environment",
-          "conflictResolution": "Handled requirement changes and technical constraint discussions",
-          "mentorship": "Received guidance from senior engineers on enterprise development practices"
+          "teamDynamics": "Collaborated effectively within a 4-intern cross-functional team, collectively allocating tasks through democratic discussion and consensus-building. Worked closely with senior developers, product managers, and upper management stakeholders across the organizational hierarchy from directors to team leads. Developed strong working relationships through daily standups, code reviews, and collaborative problem-solving sessions.",
+          "conflictResolution": "Navigated technical architecture decisions with team members, particularly when the original ML-based scoring approach was rejected due to security constraints. Successfully facilitated discussions to pivot to alternative scoring methodologies while maintaining project timeline and quality standards. Managed stakeholder expectation alignment when technical limitations required scope adjustments.",
+          "mentorship": "Received comprehensive guidance from senior engineers on enterprise C#/.NET development practices, GitLab API integration patterns, and large-scale database design principles. Learned enterprise security protocols, code review standards, and hierarchical data architecture from experienced technical leads and architects."
         },
-        "growthAtCompany": "Gained experience in enterprise-scale software development and C#/.NET ecosystem",
-        "departureReason": "Internship completion - returned to Rice University for final semester"
+        "growthAtCompany": "Gained substantial experience in enterprise-scale software development within the C#/.NET ecosystem, including advanced API integration with GitLab, MySQL database administration, and hierarchical data visualization. Developed expertise in enterprise security protocols, large-scale data processing, and cross-functional team collaboration. Enhanced skills in stakeholder management, technical communication, and adaptive problem-solving when facing security and architectural constraints.",
+        "departureReason": "Successfully completed the summer internship program with positive performance evaluation and management adoption of the delivered solution. Returned to Rice University to complete the final semester of Master's program with enhanced enterprise development experience and industry-standard practices."
       },
       {
         "company": "Cloudwick Technologies India Pvt Ltd",
