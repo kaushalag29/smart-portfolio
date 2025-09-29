@@ -352,45 +352,19 @@
         "departureReason": "Successfully completed the comprehensive yearlong internship program and transitioned focus toward academic excellence, competitive programming advancement, and preparation for campus placement opportunities to secure full-time engineering positions."
       }
     ],
-    "behavioralStories": [
-      {
-        "category": "Leadership",
-        "stories": [
-          {
-            "title": "Leading a Diverse Team at Cloudwick",
-            "situation": "Detailed context",
-            "task": "What needed to be accomplished",
-            "action": "Your specific actions and decisions",
-            "result": "Measurable outcomes",
-            "reflection": "What you learned about yourself and leadership"
-          }
-        ]
-      },
-      {
-        "category": "Problem Solving",
-        "stories": []
-      },
-      {
-        "category": "Conflict Resolution", 
-        "stories": []
-      },
-      {
-        "category": "Learning Agility",
-        "stories": []
-      },
-      {
-        "category": "Failure and Recovery",
-        "stories": []
-      }
-    ],
     "values": {
-      "coreValues": ["What drives you fundamentally"],
-      "workPhilosophy": "Your approach to work and collaboration",
-      "decisionMaking": "How you make important decisions"
+      "coreValues": [
+        "Public Impact and Accessibility: I believe that whatever I build should be used by the public and make their lives easier. This fundamental belief has driven me from developing blockchain-based privacy solutions at Ranchi Mall to creating fire department training systems at Cloudwick - always focusing on real-world applications that benefit society.",
+        "Continuous Learning and Curiosity: I am driven by an insatiable curiosity about advancing technologies and new frameworks. From learning competitive programming in college to mastering AI/ML at Rice University, and now exploring edge computing at AWS, my journey reflects a constant pursuit of cutting-edge knowledge. With the rise of AI, this curiosity continues to grow and shape my career trajectory.",
+        "Quality and Security First: Throughout my career, from implementing secure blockchain systems to developing enterprise-grade applications with proper authentication and data protection, I have consistently prioritized building secure, high-quality solutions that users can trust.",
+        "Collaborative Innovation: My experiences across different teams - from 4-intern collaborations at Paycom to cross-functional AI development at Cloudwick - have reinforced my belief that the best solutions emerge through collaborative brainstorming and diverse perspectives."
+      ],
+      "workPhilosophy": "My approach to work follows a systematic engineering methodology that has evolved throughout my career from college projects to enterprise systems. I begin by deeply understanding the problem requirements - not just the 'what' but the 'why' and 'who benefits.' This approach served me well from analyzing merge request quality issues at Paycom to designing knowledge-graph RAG systems at Cloudwick. I believe in writing detailed requirement specifications and collaborating with teams to brainstorm solutions, ensuring we get proper approval before implementation. My focus on building with complete security and quality has been consistent whether developing JARVISS multi-cloud security platform at Microland or productionizing PDF chatbots with citation grounding. I prioritize the quality of both the work process and the final product, understanding that shortcuts in either area ultimately compromise the value delivered to users.",
+      "decisionMaking": "My decision-making approach is contextual and collaborative, drawing on the diverse relationships I've built throughout my journey. For technical decisions, I leverage insights from mentors and senior engineers I've worked with across companies like Qubole, Cloudwick, and now AWS. For career decisions - such as choosing Rice University over immediate employment, or joining AWS over other opportunities - I seek input from friends, mentors, and family while also conducting thorough personal analysis. I evaluate the pros and cons of each option, consider long-term consequences, and assess alignment with my core values of public impact and continuous learning. My decision to transition from traditional software engineering to AI/ML, and later to join AWS IoT Greengrass, exemplifies this balanced approach of seeking guidance while making strategic choices based on careful evaluation of opportunities and personal growth potential."
     },
     "futureAspirations": {
-      "careerGoals": "5-10 year vision",
-      "skillDevelopment": "Areas you want to grow",
-      "impact": "Legacy you want to create"
+      "careerGoals": "My 5-10 year vision is to evolve into a Technical Leader who successfully bridges technical excellence with team leadership. Starting from my current Software Development Engineer role at AWS IoT Greengrass, I aim to progress through Senior Software Engineer to ultimately become a Technical Leader who both leads engineering teams and remains deeply involved in hands-on technical work. This progression aligns with my journey from individual contributor roles to leading cross-functional AI/ML projects at Cloudwick, demonstrating my growing comfort with technical leadership responsibilities. I want to be the type of leader who can guide technical architecture decisions while mentoring the next generation of engineers, combining the strategic thinking I developed through enterprise projects with the deep technical expertise gained across blockchain, cloud platforms, and AI/ML systems.",
+      "skillDevelopment": "I am focused on three key areas of growth that will enable my technical leadership aspirations. First, I want to enhance my leadership capabilities by actually leading engineering teams in large-scale environments, building on my experience coordinating cross-functional teams during my Paycom internship and AI project leadership at Cloudwick. Second, I aim to improve my client communication and stakeholder management skills through direct interaction with customers, expanding beyond the technical domain expertise I demonstrated with fire department and legal services clients. Third, I will continue advancing my technical expertise, particularly in distributed systems, edge computing, and AI/ML applications - areas where my current AWS IoT Greengrass role provides excellent growth opportunities. This multi-faceted development approach ensures I can be an effective technical leader who understands both the technology and the business impact.",
+      "impact": "The legacy I want to create centers on delivering valuable technological solutions that make a meaningful difference in people's lives. This vision has remained consistent throughout my journey - from developing blockchain privacy solutions for secure communication, to creating cloud security platforms that protect enterprise data, to building AI-powered training systems for emergency responders. At AWS, I want to contribute to IoT and edge computing solutions that enable smarter cities, more efficient industrial processes, and better-connected communities. Long-term, I envision leading teams that build platforms and tools used by millions of people globally, creating technology that not only solves current problems but anticipates future needs. My ultimate goal is to be remembered as someone who helped bridge the gap between cutting-edge technology and practical, accessible solutions that genuinely improve how people work, learn, and live. Whether through AI-powered education systems, secure communication platforms, or intelligent IoT ecosystems, I want my career to reflect a consistent commitment to technology that serves humanity."
     }
   }
