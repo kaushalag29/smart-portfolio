@@ -1,5 +1,115 @@
 {
-    "personalInfo": {},
+    "personalInfo": {
+      "basicInformation": {
+        "fullName": "Kaushal Kumar Agarwal",
+        "currentTitle": "Software Development Engineer",
+        "currentCompany": "Amazon Web Services (AWS IoT Greengrass)",
+        "currentLocation": "Seattle, WA, USA",
+        "homeLocation": "Originally from Jamshedpur, India",
+        "age": "Mid-twenties professional",
+        "nationality": "Indian",
+        "languages": ["English (Fluent)", "Hindi (Native)"]
+      },
+      "contactInformation": {
+        "professionalEmail": "ka62@alumni.rice.edu",
+        "linkedinProfile": "https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/",
+        "githubProfile": "https://github.com/kaushalag29",
+        "professionalWebsite": "Smart Portfolio Platform"
+      },
+      "professionalIdentity": {
+        "primaryRole": "Software Development Engineer specializing in AI/ML and Cloud Platforms",
+        "professionalSummary": "Experienced Software Engineer with comprehensive expertise across backend systems, AI/ML platforms, cloud infrastructure, and distributed systems. Currently contributing to AWS IoT Greengrass platform development, with proven track record of building scalable APIs, intelligent retrieval systems, and serverless data platforms. Strong technical foundation in Python, Java, C#, AWS ecosystem, Apache Spark, Docker/Kubernetes, and modern development frameworks.",
+        "careerProgression": "Advanced from Software Intern to Software Development Engineer at Amazon Web Services within 7+ years of professional experience",
+        "specializations": [
+          "AI/ML Engineering and LLM Applications", 
+          "Cloud Platform Development (AWS Specialist)",
+          "Full-Stack Development and API Design",
+          "DevOps and Infrastructure as Code",
+          "Data Science and Analytics Platforms"
+        ]
+      },
+      "educationalBackground": {
+        "graduateEducation": {
+          "institution": "Rice University",
+          "degree": "Master of Computer Science (MCS)",
+          "gpa": "3.95/4.00",
+          "location": "Houston, TX, USA",
+          "period": "Aug 2023 - Dec 2024",
+          "specialization": "Data Science & Machine Learning",
+          "teachingExperience": "Teaching Assistant for Object-Oriented Programming, Software Engineering Methodology, Computer Security, and Software Construction"
+        },
+        "undergraduateEducation": {
+          "institution": "Birla Institute of Technology, Mesra",
+          "degree": "B.E. in Computer Science & Engineering",
+          "gpa": "8.54/10.00",
+          "location": "Ranchi, IN",
+          "period": "Jul 2016 - Jul 2020",
+          "achievements": "Strong foundation in computer science principles, active in competitive programming, participated in multiple hackathons"
+        },
+        "highSchoolEducation": {
+          "institution": "D.B.M.S. English School",
+          "location": "Jamshedpur, IN",
+          "period": "Apr 2014 - Apr 2016",
+          "achievements": "X Board: 95.8%, XII Board: 94.8%, JEE Main Rank: 11491, JEE Advanced Rank: 5933"
+        }
+      },
+      "personalCharacteristics": {
+        "corePersonalityTraits": [
+          "Naturally curious and technology-passionate from early childhood",
+          "Transformed from introverted to confident communicator through intentional growth",
+          "Analytical problem-solver with systematic approach to challenges",
+          "Collaborative team player with proven leadership capabilities",
+          "Adaptable professional comfortable with international environments"
+        ],
+        "workingStyle": [
+          "Systematic engineering methodology focusing on requirements analysis",
+          "Collaborative approach to brainstorming and solution design",
+          "Quality-first mindset with emphasis on security and performance",
+          "Continuous learner staying current with emerging technologies",
+          "Results-oriented with focus on measurable business impact"
+        ],
+        "personalMotivations": [
+          "Building technology solutions that make people's lives easier",
+          "Insatiable curiosity about advancing technologies, especially AI",
+          "Creating impactful software with real-world applications",
+          "Inspired by technology leaders like Bill Gates and their societal contributions",
+          "Driven to bridge cutting-edge technology with practical accessibility"
+        ]
+      },
+      "internationalExperience": {
+        "culturalAdaptability": "Successfully adapted to American academic and professional environments during Master's studies and current career",
+        "globalPerspective": "Experienced working with diverse, cross-functional teams across different time zones and cultural contexts",
+        "immigrationJourney": "First international experience during Rice University studies, now established as working professional in United States"
+      },
+      "familyBackground": {
+        "familyInfluence": "Supportive family that encouraged educational excellence and career growth",
+        "significantEvents": "Strategic family considerations influenced career decisions, including timing of job transitions around family celebrations",
+        "decisionMakingSupport": "Values family input in major career and life decisions while maintaining professional independence"
+      },
+      "personalInterests": {
+        "professionalPassions": [
+          "Software Engineering and System Architecture",
+          "Artificial Intelligence and Machine Learning Applications",
+          "Cloud Computing and Distributed Systems",
+          "Cybersecurity and Privacy Engineering"
+        ],
+        "continuousLearning": [
+          "Staying current with emerging AI/ML frameworks and techniques",
+          "Exploring edge computing and IoT platform innovations",
+          "Following industry trends in cloud-native development",
+          "Pursuing advanced certifications in cutting-edge technologies"
+        ]
+      },
+      "certificationHighlights": [
+        "AWS Certified Machine Learning – Associate (Jun 2025)",
+        "AWS Certified AI Practitioner (Mar 2025)", 
+        "AWS Certified SysOps Administrator – Associate (Apr 2022)",
+        "AWS Certified Solutions Architect – Associate (Sep 2021)",
+        "AWS Certified Developer – Associate (Jun 2021)",
+        "EPFL – Big Data Analysis with Scala and Spark (Jul 2020)",
+        "DeepLearning.AI – Neural Networks and Deep Learning (May 2020)"
+      ]
+    },
     "lifeJourney": {
       "earlyLife": {
         "childhood": "My formative years were spent in Jamshedpur, India, where I developed a profound interest in Computer Science from an early age. While my broader academic performance was varied, I consistently excelled in technology-related subjects. My curiosity led me to explore the intricacies of the Windows OS, utilize utilities like PowerISO to understand disk imaging, and experiment with static website development.",

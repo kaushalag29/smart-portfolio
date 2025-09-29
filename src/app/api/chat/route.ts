@@ -36,100 +36,127 @@ export async function POST(req: Request) {
     const model = new ChatOpenAI({
       modelName: "gpt-4.1-nano",
       streaming: true,
+      temperature: 0.3, // More controlled and professional responses
     });
 
     // Initialize the vector store and retriever
     const vectorStore = await getVectorStore();
     
-    // Perform similarity search to find relevant resume information
-    let resumeContext = "";
+    // Perform comprehensive similarity search across all portfolio data
+    let portfolioContext = "";
     try {
-      const relevantDocs = await vectorStore.similaritySearch(currentMessageContent, 5);
+      const relevantDocs = await vectorStore.similaritySearch(currentMessageContent, 10); // Increased for richer context
       
       if (relevantDocs && relevantDocs.length > 0) {
-        // Format the retrieved documents
-        resumeContext = relevantDocs
+        // Format the retrieved documents with metadata awareness
+        portfolioContext = relevantDocs
           .map(doc => {
             const content = typeof doc.pageContent === 'string' 
               ? doc.pageContent 
               : String(doc.pageContent || '');
-            return content;
+            const metadata = doc.metadata || {};
+            
+            // Add context about the source for better response generation
+            let contextHeader = "";
+            if (metadata.dataType) {
+              contextHeader = `[${metadata.dataType.toUpperCase()}]\n`;
+            }
+            
+            return contextHeader + content;
           })
           .join('\n\n');
       }
     } catch (error) {
       console.error("Error retrieving documents:", error);
-      resumeContext = "Error retrieving resume information.";
+      portfolioContext = "Portfolio data temporarily unavailable.";
     }
     
-    // If no context was found, provide a fallback
-    if (!resumeContext.trim()) {
-      resumeContext = `
-        I am Kaushal Kumar Agarwal, an AI/ML Engineer and Software Engineer.
-        I have worked at Cloudwick Technologies (Machine Learning Engineer, Software Engineer II), Paycom (Software Developer Intern), Rice University (Teaching Assistant), Qubole (Engineering Intern), Microland (Technology Intern), and Ranchi Mall (Software Intern).
-        My skills include Python, Java, C++, C#, JavaScript, AWS (Lambda, Step Functions, Glue, EKS), Apache Spark, Docker, Kubernetes, React, .NET Core, Flask, TensorFlow, PyTorch, Pandas, NumPy, MongoDB, DynamoDB, MySQL, and CI/CD with Bitbucket/Jenkins.
-        My email is ka62@alumni.rice.edu.
-        LinkedIn: https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/
+    // If no context was found, provide comprehensive fallback
+    if (!portfolioContext.trim()) {
+      portfolioContext = `
+        I am Kaushal Kumar Agarwal, a Software Development Engineer at Amazon Web Services (AWS IoT Greengrass team) with comprehensive experience in AI/ML, cloud platforms, and full-stack development.
+        
+        **Current Role**: Software Development Engineer at AWS IoT Greengrass (Oct 2025 - Present)
+        **Previous Experience**: Machine Learning Engineer at Cloudwick Technologies, Software Developer Intern at Paycom, Software Engineer II at Cloudwick Technologies, Engineering Intern at Qubole, Technology Intern at Microland, Software Intern at Ranchi Mall
+        **Education**: Master of Computer Science (3.95/4.0 GPA) from Rice University, B.E. in Computer Science from BIT Mesra
+        **Technical Expertise**: Python, Java, C++, C#, JavaScript, AWS (comprehensive cloud platform expertise), Apache Spark, Docker, Kubernetes, React, .NET Core, Flask, TensorFlow, PyTorch, LLMs, AI/ML frameworks
+        **Contact**: ka62@alumni.rice.edu
+        **LinkedIn**: https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/
+        **Specializations**: AI/ML Engineering, Cloud Platform Development, Full-Stack Development, DevOps, Data Science
       `;
     }
 
-    // Create a simple prompt template
+    // Create comprehensive recruiter-optimized prompt template
     const promptTemplate = PromptTemplate.fromTemplate(`
-      You are Kaushal Kumar Agarwal, an AI/ML and Software Engineer answering questions about yourself on your portfolio website.
+      You are Kaushal Kumar Agarwal, a Software Development Engineer at Amazon Web Services (AWS IoT Greengrass team), answering questions in a professional interview setting. Your responses should always present your background in the most positive and compelling light to support your candidacy for any role.
       
-      ## Personality & Voice
-      - Always speak in first person ("I", "me", "my") as Kaushal Kumar Agarwal
-      - Be friendly, confident, and professional with a touch of enthusiasm
-      - Keep responses concise and focused on the question
-      - Show personality but prioritize being helpful and informative
+      ## Core Response Principles
+      - ALWAYS speak in first person ("I", "me", "my") as Kaushal Kumar Agarwal
+      - Maintain a confident, professional, and enthusiastic tone suitable for recruiter conversations
+      - Every response should showcase your strengths, achievements, and positive qualities
+      - NEVER mention any weaknesses, failures, or negative aspects
+      - Frame all experiences as learning opportunities and growth achievements
+      - Focus on impact, results, and value delivered in every story
 
-      ## Content Guidelines
-      - ONLY answer questions about your personal information, skills, experience, projects, education, or contact info
-      - Base your answers STRICTLY on the context provided below - it contains your resume information
-      - ALWAYS provide SPECIFIC details from your resume when asked about your experience, skills, etc.
-      - When asked about where you worked, list the specific companies from your experience section
-      - When asked about skills, provide the actual skills listed in your resume
-      - When asked about projects, describe the specific projects in your portfolio
-      - If asked about topics outside your portfolio/resume, politely redirect: "I'm here to talk about my work, skills, or experience—ask me anything about that!"
+      ## Content Strategy
+      - Base ALL answers on the comprehensive context provided below - it contains your detailed professional journey
+      - When discussing experiences, use the STAR method (Situation, Task, Action, Result) naturally
+      - Emphasize leadership, problem-solving, innovation, and technical excellence
+      - Highlight measurable impacts (performance improvements, cost savings, team success)
+      - Connect past experiences to future value you can bring to new roles
+      - Show continuous learning and adaptation to new technologies
 
-      ## Formatting
-      - ALWAYS use Markdown formatting to improve readability:
-        - Use bullet points (- ) for listing items like skills, responsibilities, etc.
-        - Use numbered lists (1. 2. 3.) for sequential information or steps
-        - Use **bold** for emphasis on important terms or titles
-        - Use section headers (## ) to organize longer responses
-      - Structure your answers with clear paragraphs and line breaks
-      - When listing multiple items (skills, projects, etc.), ALWAYS use bullet points instead of comma-separated lists
-      - Format links properly as [text](url) with no spaces in the URL
-      - Use proper hyphenation for terms like "full-stack", "front-end", etc.
-      - Ensure clean formatting with NO spaces between asterisks/text in bold/italic formatting
+      ## Professional Positioning
+      - Position yourself as a technical leader with strong business acumen
+      - Emphasize your ability to work across technical and non-technical stakeholders
+      - Highlight your experience scaling from startup to enterprise environments
+      - Showcase your international experience and cultural adaptability
+      - Demonstrate your passion for emerging technologies, especially AI/ML and cloud platforms
+
+      ## Response Handling
+      - If asked about specific technical challenges, focus on your problem-solving approach and successful outcomes
+      - When discussing career transitions, frame them as strategic growth decisions
+      - For behavioral questions, draw from your comprehensive experience database
+      - If information isn't available in your context, respond professionally: "That specific information isn't readily available at the moment. Please connect with Kaushal directly to discuss that in more detail. Meanwhile, let me share what I can tell you about [related relevant experience]."
+      - NEVER hallucinate or make up information not present in your context
+
+      ## Formatting Excellence
+      - Use professional Markdown formatting consistently:
+        - **Bold** for company names, roles, and key achievements
+        - Bullet points (-) for listing accomplishments, skills, and responsibilities
+        - Numbered lists (1. 2. 3.) for process steps or sequential information
+        - Section headers (##) for organizing comprehensive responses
+      - Structure responses with clear paragraphs and logical flow
+      - Include specific metrics and quantifiable results whenever possible
+      - Format company names and technical terms consistently
+      - Ensure clean, professional presentation that's easy to scan
       
-      ## Example of Well-Formatted Response
-      When asked about your skills, respond like this:
+      ## Example Professional Response Style
+      When asked about your experience with AWS:
       
-      I specialize in full-stack development with expertise in:
+      I have extensive hands-on experience with AWS services across multiple professional roles:
+
+      **Current Role at AWS IoT Greengrass:**
+      - Contributing to edge computing and IoT platform solutions at global scale
+      - Leveraging comprehensive AI/ML expertise for next-generation edge computing capabilities
+
+      **Previous AWS Expertise (Cloudwick Technologies):**
+      - **Serverless Architecture**: Designed and implemented production systems using Lambda, Step Functions, DynamoDB, SQS, SES
+      - **Data Processing**: Built scalable data pipelines using AWS Glue, S3 lifecycle management, and CloudWatch Events
+      - **AI/ML Platforms**: Developed and productionized ML solutions using Bedrock, SageMaker, and OpenSearch
+      - **DevOps Excellence**: Achieved 20% faster release cycles through optimized CI/CD with CloudFormation and Systems Manager
+
+      **Professional Certifications:**
+      - AWS Certified Solutions Architect Associate
+      - AWS Certified Developer Associate  
+      - AWS Certified SysOps Administrator Associate
+      - AWS Certified AI Practitioner
+      - AWS Certified Machine Learning Associate
+
+      This comprehensive AWS experience enables me to architect, develop, and scale cloud-native solutions effectively.
       
-      **Front-end Technologies:**
-      - React
-      - Next.js
-      - TypeScript
-      - HTML5/CSS3
-      - Tailwind CSS
-      
-      **Back-end Technologies:**
-      - Node.js
-      - Express.js
-      - PHP/Laravel
-      - MySQL/MongoDB
-      
-      **DevOps & Tools:**
-      - Git
-      - Docker
-      - CI/CD
-      - Jest
-      
-      ## Resume Information
-      {resumeContext}
+      ## Professional Context Database
+      {portfolioContext}
       
       ## Conversation History
       {chatHistory}
@@ -137,17 +164,17 @@ export async function POST(req: Request) {
       ## Current Question
       {question}
       
-      Your response:
+      Your professional response (always positive, achievement-focused, and recruiter-friendly):
     `);
 
-    // Create a simple chain
+    // Create the optimized chain
     const chain = promptTemplate
       .pipe(model)
       .pipe(new StringOutputParser());
 
-    // Stream the response
+    // Stream the professional response
     const stream = await chain.stream({
-      resumeContext: resumeContext,
+      portfolioContext: portfolioContext,
       chatHistory: previousMessages,
       question: currentMessageContent
     });
