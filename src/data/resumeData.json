@@ -12,10 +12,19 @@
   },
   "experience": [
     {
+      "company": "Amazon Web Services",
+      "position": "Software Dev Engineer",
+      "startDate": "Oct 2025",
+      "endDate": "Present",
+      "description": "Software Development Engineer in the AWS IoT Greengrass team, contributing to edge computing and IoT platform solutions that enable customers to run AWS services and custom logic on edge devices. Leveraging comprehensive AI/ML expertise and distributed systems knowledge to enhance edge computing capabilities and IoT device management solutions at global scale.",
+      "companyUrl": "https://aws.amazon.com/",
+      "location": "Seattle, WA"
+    },
+    {
       "company": "Cloudwick Technologies",
       "position": "Machine Learning Engineer",
       "startDate": "Feb 2025",
-      "endDate": "Present",
+      "endDate": "Sep 2025",
       "description": "Led the backend team to productionize a PDF chatbot with citation grounding, page-level highlighting, and advanced features like test generation and briefing doc creation leveraging Amazon OpenSearch and Bedrock LLMs with re-ranking\nDevised LLM-powered data cleaning and knowledge-graph RAG pipelines with AWS Neptune & Neo4j, cutting metadata redundancy by 40% and boosting multi-hop query accuracy via NL-to-Cypher translation\nExperimented with domain adaptation and instruction-tuned fine-tuning using 8-bit quantization on SageMaker, enabling efficient LLM training for drafting legal bills",
       "companyUrl": "https://cloudwick.com/",
       "location": "Newark, CA (Remote/Hybrid)"

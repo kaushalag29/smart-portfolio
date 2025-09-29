@@ -90,7 +90,35 @@
         }
       }
     },
-    "detailedExperiences": [
+      "detailedExperiences": [
+      {
+        "company": "Amazon Web Services",
+        "position": "Software Development Engineer",
+        "period": "Oct 2025 - Present",
+        "location": "Seattle, WA",
+        "joinStory": {
+        "howIJoined": "Successfully secured a Software Development Engineer position at AWS through the competitive recruitment process, joining the AWS IoT Greengrass team to work on edge computing and IoT platform solutions.",
+        "initialExpectations": "Contribute to AWS IoT Greengrass platform development, leveraging AI/ML expertise and distributed systems knowledge to enhance edge computing capabilities and IoT device management solutions at global scale.",
+        "firstDayExperience": "Onboarding into AWS IoT Greengrass team, understanding the platform architecture, edge computing challenges, and the team's role in enabling seamless IoT device management and edge AI capabilities for AWS customers."
+        },
+        "keyProjects": [
+        {
+            "projectName": "AWS IoT Greengrass Platform Development",
+            "situation": "Joining the AWS IoT Greengrass team to contribute to edge computing and IoT platform solutions that enable customers to run AWS services and custom logic on edge devices.",
+            "task": "Responsibilities and specific project details to be determined as onboarding progresses and team assignments are finalized.",
+            "action": "Currently in onboarding phase - specific technical contributions and project work to be updated as role responsibilities become clear.",
+            "result": "Role just started - outcomes and achievements to be documented as projects progress and deliverables are completed.",
+            "behavioralTags": ["aws_platform", "iot_systems", "edge_computing", "distributed_systems"]
+        }
+        ],
+        "relationships": {
+        "teamDynamics": "Integrating with the AWS IoT Greengrass engineering team, collaborating with senior engineers, product managers, and cross-functional teams across AWS services.",
+        "conflictResolution": "Building relationships and establishing communication patterns with new team members while learning AWS engineering culture and practices.",
+        "mentorship": "Learning from experienced AWS engineers about large-scale distributed systems, IoT platform architecture, and AWS engineering best practices while contributing AI/ML perspective to edge computing challenges."
+        },
+        "growthAtCompany": "Beginning journey at AWS to apply comprehensive AI/ML background, production system experience, and distributed computing knowledge to contribute to AWS IoT Greengrass platform development and edge computing innovations.",
+        "departureReason": "Current role - starting career at AWS with focus on IoT platform development and edge computing solutions."
+      },
       {
         "company": "Cloudwick Technologies",
         "position": "Machine Learning Engineer",
@@ -141,7 +169,7 @@
           "mentorship": "Sharing advanced knowledge in LLM fine-tuning, RAG architectures, and knowledge graph implementations with team members while continuously learning cutting-edge techniques in generative AI, multi-modal systems, and production ML deployment strategies from industry experts and research communities."
         },
         "growthAtCompany": "Successfully transitioned from traditional software engineering to advanced AI/ML engineering leadership, specializing in RAG systems, knowledge graphs, LLM fine-tuning, and production AI deployment. Gained comprehensive expertise in AWS AI/ML services including Bedrock, Neptune, SageMaker, and OpenSearch while developing domain knowledge in legal services and emergency services training applications. Advanced from contributor to technical lead responsible for end-to-end AI solution architecture and customer-facing AI product development.",
-        "departureReason": "Current role - continuing to advance cutting-edge AI/ML solutions and expand expertise in agentic AI, knowledge graphs, and domain-specific LLM applications while leading customer-focused AI product development."
+        "departureReason": "Left to join Amazon Web Services as Software Development Engineer in the AWS IoT Greengrass team, leveraging comprehensive AI/ML expertise and production system experience to contribute to AWS's edge computing and IoT platform development."
       },
       {
         "company": "Paycom",
