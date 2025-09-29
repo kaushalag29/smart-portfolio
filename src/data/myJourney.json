@@ -94,50 +94,54 @@
       {
         "company": "Cloudwick Technologies",
         "position": "Machine Learning Engineer",
-        "period": "Feb 2025 - Present",
+        "period": "Feb 2025 - Sep 2025",
         "location": "Newark, CA (Remote/Hybrid)",
         "joinStory": {
-          "howIJoined": "Recruitment process details - how you reconnected with Cloudwick after your previous experience",
-          "initialExpectations": "Expected to lead ML initiatives and advance to senior technical roles",
-          "firstDayExperience": "Onboarding into ML team, meeting stakeholders, understanding new technical landscape"
+          "howIJoined": "After graduating from Rice University in December, I had already accepted a Software Engineer offer from Paycom with a planned start date of February 24th, allowing time to attend my brother's wedding in India. While in India, I received an unexpected call from the CEO of Cloudwick Technologies after he saw my graduation post on social media. During our conversation about my degree and specialization in Data Science & Machine Learning, he recognized that my expertise aligned perfectly with their growing AI initiatives and presented a superior opportunity.",
+          "initialExpectations": "Lead end-to-end RAG and agentic AI solutions development, leveraging my advanced AI/ML education to drive innovative projects that aligned with my long-term career aspirations in machine learning engineering rather than traditional software development.",
+          "firstDayExperience": "Rejoined Cloudwick in a completely transformed role focused on cutting-edge AI/ML technologies in the Professional Services team. The onboarding involved understanding their vision for AI-powered solutions, meeting cross-functional teams working on LLM applications, and diving into advanced projects involving knowledge graphs, document processing, and generative AI systems."
         },
         "keyProjects": [
           {
-            "projectName": "PDF Chatbot with Citation Grounding",
-            "situation": "Business need for intelligent document processing with accurate citation capabilities",
-            "task": "Lead backend team to productionize advanced chatbot with citation grounding and page-level highlighting",
-            "challenges": [
-              {
-                "challenge": "Leading backend team with diverse experience levels",
-                "action": "How you managed and motivated the team",
-                "result": "Successfully delivered production-ready chatbot with advanced features",
-                "behavioralTags": ["leadership", "team_management"]
-              },
-              {
-                "challenge": "Integrating Amazon OpenSearch with Bedrock LLMs",
-                "action": "Technical architecture design and implementation strategy", 
-                "result": "Achieved seamless integration with re-ranking capabilities",
-                "behavioralTags": ["technical_problem_solving", "innovation"]
-              }
-            ],
-            "result": "Delivered comprehensive PDF chatbot with test generation and briefing doc creation features",
-            "lessonsLearned": "Advanced experience in LLM productionization and team leadership"
+            "projectName": "Knowledge-Graph RAG System with Multi-Hop Query Capabilities",
+            "situation": "The organization required advanced retrieval systems capable of handling complex multi-hop queries across interconnected data relationships. Traditional vector search approaches were insufficient for capturing the semantic relationships and hierarchical structures present in enterprise document collections.",
+            "task": "Conduct comprehensive research and develop proof-of-concept demonstrations of knowledge-graph RAG solutions using AWS Neptune and Neo4j AuraDB. Create knowledge graphs from provided document collections with enriched JSON metadata and demonstrate sophisticated query capabilities through natural language to Cypher translation.",
+            "action": "Working with provided document collections and their enriched JSON metadata, I researched and prototyped end-to-end knowledge-graph RAG pipelines to construct sophisticated graph representations. I developed proof-of-concept implementations utilizing LLM prompting and tool-calling techniques to translate natural language queries into Cypher queries, demonstrating complex multi-hop traversals across the knowledge graph. I implemented experimental data cleaning pipelines powered by LLMs to normalize hierarchical multi-tag columns in batches, significantly reducing redundancy and improving downstream retrieval quality. Additionally, I created interactive visualizations of hierarchical inter-related columns using D3.js and replicated these graph structures in Neo4j to demonstrate the research concepts.",
+            "result": "Successfully completed comprehensive research and proof-of-concept demonstrating the feasibility and effectiveness of knowledge-graph RAG approaches. The POC achieved showcased dramatically improved multi-hop query accuracy through NL-to-Cypher translation. The research demonstrated the potential for complex relationship queries that were previously impossible with traditional vector search approaches, providing valuable insights for future production implementation strategies.",
+            "behavioralTags": ["knowledge_graphs", "neo4j", "aws_neptune", "llm_integration", "data_engineering", "cypher_queries", "research_development", "poc_development", "feasibility_analysis"]
           },
           {
-            "projectName": "LLM-powered Data Cleaning and Knowledge-graph RAG Pipelines",
-            "situation": "Need for intelligent data processing and multi-hop query capabilities",
-            "task": "Design and implement knowledge-graph RAG pipelines with AWS Neptune & Neo4j",
-            "result": "40% metadata redundancy reduction and improved multi-hop query accuracy via NL-to-Cypher translation",
-            "behavioralTags": ["innovation", "technical_architecture", "data_engineering"]
+            "projectName": "Advanced PDF Chatbot with Citation Grounding and Document Generation",
+            "situation": "A fire department training customer required an intelligent document processing system that could provide precise, grounded answers with exact citations and page-level highlights from training manuals. The system also needed to generate MCQ tests and briefing documents to support comprehensive training and assessment workflows.",
+            "task": "Implement a sophisticated PDF chatbot that returns grounded answers with citations and page-level highlights, integrated with test generation and briefing document creation capabilities using Amazon OpenSearch vector database and Amazon Bedrock LLMs with re-ranking functionality.",
+            "action": "I designed and implemented a comprehensive document processing pipeline using AWS Bedrock Data Automation Pipeline to parse PDFs and extract JSON content with element-level information. The system generated two distinct chunk types: section-level chunks (2-3 pages of context) for comprehensive answer generation, and element-level chunks (granular page components) for precise citation mapping. These chunks were indexed into AWS provisioned OpenSearch vector database for optimal retrieval performance. The chatbot architecture supported user queries with element-level citations including bounding box coordinates for exact location highlighting. I developed parallel capabilities for MCQ/True-False test generation with contextual citations and briefing document generation (checklists/summaries) with the same precision citation system. The entire system was productionized using AWS Lambda, Step Functions, and Bedrock services with comprehensive monitoring, alerts, and cost/latency optimization.",
+            "result": "Delivered a production-ready PDF chatbot system that enabled fire department personnel to query training manuals with precise element-level citations and bounding box highlighting. The integrated test generation and briefing document features provided comprehensive training support, significantly improving the efficiency and accuracy of fire department training programs.",
+            "behavioralTags": ["pdf_processing", "citation_grounding", "aws_bedrock", "opensearch", "llm_productionization", "document_generation", "customer_solution"]
+          },
+          {
+            "projectName": "Document Verification System with Multi-LLM Evaluation",
+            "situation": "The organization needed robust document verification capabilities, specifically for driver's license validation, requiring accurate extraction and verification of state driving license details against user-provided information.",
+            "task": "Evaluate and implement document/face detection technologies and develop extraction prompts for driver's license verification, while conducting comprehensive analysis of different LLM models for consistency and accuracy in document identification processes.",
+            "action": "I evaluated multiple computer vision technologies including OpenCV, PaddleOCR, and EasyOCR to identify optimal approaches for driver's license detection and information extraction. I developed and tuned specialized extraction prompts to verify state driving license details and validate their authenticity against user-provided information. A significant component involved comparative analysis of different LLM models, evaluating their consistency and accuracy for the same prompts in document identification and verification processes. This included systematic testing of model responses to ensure reliability and consistency across various document types and formats.",
+            "result": "Successfully implemented a robust document verification Python script capable of accurately identifying and validating driver's license information. The multi-LLM evaluation provided valuable insights into model consistency and reliability, enabling informed decisions about model selection for production document verification workflows.",
+            "behavioralTags": ["document_verification", "computer_vision", "opencv", "ocr_technologies", "llm_evaluation", "prompt_engineering", "model_comparison"]
+          },
+          {
+            "projectName": "LLM Fine-tuning for Legal Bill Drafting Automation",
+            "situation": "A legal services customer required automation of bill drafting processes to reduce manual labor in creating annual legislative bills. Each bill type had specific formatting requirements and domain-specific language patterns that needed to be learned and replicated accurately.",
+            "task": "Research and implement LLM fine-tuning approaches to develop domain expertise in legal bill drafting, focusing on learning both the legal domain knowledge and specific formatting styles required for different bill versions.",
+            "action": "I conducted comprehensive research on fine-tuning methodologies and identified two critical approaches: Domain Adaptation Fine-tuning and Instruction-based Fine-tuning. Using AWS SageMaker Training Jobs, I developed a proof-of-concept with 1000 legal bill documents, implementing 8-bit quantization techniques on a Llama 8B parameter model to optimize training efficiency. The experimental setup involved training for 10 epochs to evaluate initial domain adaptation capabilities. I discovered that while the model successfully learned legal domain knowledge, challenges emerged in maintaining bill formatting consistency and preventing hallucination. The analysis revealed that the optimal approach would require sequential implementation: domain adaptation fine-tuning followed by instruction-based fine-tuning to achieve both domain expertise and formatting precision.",
+            "result": "Successfully demonstrated the feasibility of LLM fine-tuning for legal bill drafting through proof-of-concept implementation. While the initial model showed strong domain learning capabilities, the findings provided crucial insights for production implementation, identifying the need for extended training epochs and sequential fine-tuning approaches to achieve both domain knowledge retention and formatting accuracy.",
+            "behavioralTags": ["llm_fine_tuning", "aws_sagemaker", "domain_adaptation", "legal_domain", "model_quantization", "instruction_tuning", "poc_development"]
           }
         ],
         "relationships": {
-          "teamDynamics": "Leading cross-functional teams including ML engineers, backend developers, and product managers",
-          "conflictResolution": "Managing technical disagreements and project priority conflicts",
-          "mentorship": "Mentoring junior developers while learning advanced ML techniques from senior architects"
+          "teamDynamics": "Leading end-to-end AI/ML solution development while collaborating with cross-functional teams including backend engineers, customer success teams, and product managers. Worked closely with fire department training personnel and legal services clients to understand domain-specific requirements and deliver tailored AI solutions.",
+          "conflictResolution": "Navigated complex technical decisions regarding model selection, architecture choices between different vector databases and graph technologies, and balancing customer requirements with technical feasibility constraints. Successfully managed stakeholder expectations when research findings indicated need for extended development timelines for optimal results.",
+          "mentorship": "Sharing advanced knowledge in LLM fine-tuning, RAG architectures, and knowledge graph implementations with team members while continuously learning cutting-edge techniques in generative AI, multi-modal systems, and production ML deployment strategies from industry experts and research communities."
         },
-        "growthAtCompany": "Transition from Software Engineering to ML Engineering leadership, advancing domain expertise in AI/ML",
-        "departureReason": "Current role - continuing to grow and lead ML initiatives"
+        "growthAtCompany": "Successfully transitioned from traditional software engineering to advanced AI/ML engineering leadership, specializing in RAG systems, knowledge graphs, LLM fine-tuning, and production AI deployment. Gained comprehensive expertise in AWS AI/ML services including Bedrock, Neptune, SageMaker, and OpenSearch while developing domain knowledge in legal services and emergency services training applications. Advanced from contributor to technical lead responsible for end-to-end AI solution architecture and customer-facing AI product development.",
+        "departureReason": "Current role - continuing to advance cutting-edge AI/ML solutions and expand expertise in agentic AI, knowledge graphs, and domain-specific LLM applications while leading customer-focused AI product development."
       },
       {
         "company": "Paycom",
