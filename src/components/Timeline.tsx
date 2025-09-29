@@ -47,6 +47,7 @@ const allTimelineItems = [...educationItems, ...experienceItems].sort((a, b) => 
 
 const getLogoFor = (organization: string): string | null => {
   const org = organization.toLowerCase();
+  if (org.includes('amazon web services') || org.includes('aws')) return '/AWS.png';
   if (org.includes('cloudwick')) return '/Cloudwick.png';
   if (org.includes('paycom')) return '/Paycom.png';
   if (org.includes('qubole')) return '/Qubole.png';
@@ -60,6 +61,10 @@ const getLogoFor = (organization: string): string | null => {
 
 const getLogoSizeFor = (organization: string) => {
   const org = organization.toLowerCase();
+  // AWS gets premium prominent display as current role at major tech company
+  if (org.includes('amazon web services') || org.includes('aws')) {
+    return { width: 52, height: 52 };
+  }
   // Company logos that need extra enlargement for visibility
   if (org.includes('cloudwick') || org.includes('paycom') || org.includes('microland')) {
     return { width: 48, height: 48 };
