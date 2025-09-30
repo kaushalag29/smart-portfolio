@@ -43,14 +43,20 @@ const AboutMe: React.FC = () => {
               <span>View Resume</span>
             </a>
             <div className="mt-3">
-              <div className="flex items-center justify-center mb-4">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-100 dark:border-blue-800/30">
-                  <svg className="w-4 h-4 text-blue-500 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex flex-col items-center justify-center mb-3 space-y-1">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-100 dark:border-blue-800/30 shadow-sm">
+                  <svg className="w-4 h-4 text-blue-500 dark:text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                   </svg>
                   <span className="text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 dark:from-blue-400 dark:via-purple-400 dark:to-blue-600">
                     Connect With Me
                   </span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 animate-bounce">
+                  <span>Click icons below</span>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-4 place-items-center">
@@ -59,29 +65,29 @@ const AboutMe: React.FC = () => {
                 href="https://linkedin.com/in/kaushal-kumar-agarwal-976854166" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-blue-50 dark:bg-gray-800 dark:hover:bg-blue-900/20 text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-blue-900/30 dark:hover:to-blue-800/20 text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300 dark:hover:border-blue-600 animate-float"
                 aria-label="LinkedIn Profile"
                 title="LinkedIn"
               >
                 <Linkedin className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-blue-300 dark:group-hover:ring-blue-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all duration-300"></div>
               </a>
               <a 
                 href="https://www.credly.com/users/kaushal-agarwal.d7d5896d/badges#credly" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-orange-50 dark:bg-gray-800 dark:hover:bg-orange-900/20 text-gray-600 hover:text-orange-500 dark:text-gray-400 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-orange-50 hover:to-orange-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-orange-900/30 dark:hover:to-orange-800/20 text-gray-600 hover:text-orange-500 dark:text-gray-400 dark:hover:text-orange-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-orange-300 dark:hover:border-orange-600 animate-float-delay-1"
                 aria-label="Credly Profile"
                 title="Credly"
               >
                 <SiCredly className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-orange-300 dark:group-hover:ring-orange-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-orange-400 dark:group-hover:ring-orange-500 transition-all duration-300"></div>
               </a>
               <a 
                 href="https://github.com/kaushalag29" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 dark:from-gray-800 dark:to-gray-900 dark:hover:from-gray-700 dark:hover:to-gray-800 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-gray-400 dark:hover:border-gray-500 animate-float-delay-2"
                 aria-label="GitHub Profile"
                 title="GitHub"
               >
@@ -92,12 +98,12 @@ const AboutMe: React.FC = () => {
                 href="https://kaushalagarwal-73962.medium.com/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-green-50 dark:bg-gray-800 dark:hover:bg-green-900/20 text-gray-600 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-green-50 hover:to-green-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-green-900/30 dark:hover:to-green-800/20 text-gray-600 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-green-300 dark:hover:border-green-600 animate-float-delay-3"
                 aria-label="Medium Profile"
                 title="Medium"
               >
                 <FaMedium className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-green-300 dark:group-hover:ring-green-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-green-400 dark:group-hover:ring-green-500 transition-all duration-300"></div>
               </a>
 
               {/* Row 2: LeetCode, Codeforces, CodeChef, SPOJ */}
@@ -105,45 +111,45 @@ const AboutMe: React.FC = () => {
                 href="https://leetcode.com/u/kaushalag29/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-yellow-50 dark:bg-gray-800 dark:hover:bg-yellow-900/20 text-gray-600 hover:text-yellow-500 dark:text-gray-400 dark:hover:text-yellow-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-yellow-50 hover:to-yellow-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-yellow-900/30 dark:hover:to-yellow-800/20 text-gray-600 hover:text-yellow-500 dark:text-gray-400 dark:hover:text-yellow-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-yellow-300 dark:hover:border-yellow-600 animate-float"
                 aria-label="LeetCode Profile"
                 title="LeetCode"
               >
                 <SiLeetcode className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-yellow-300 dark:group-hover:ring-yellow-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-yellow-400 dark:group-hover:ring-yellow-500 transition-all duration-300"></div>
               </a>
               <a 
                 href="https://codeforces.com/profile/kaushalag29" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-blue-50 dark:bg-gray-800 dark:hover:bg-blue-900/20 text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-blue-900/30 dark:hover:to-blue-800/20 text-gray-600 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300 dark:hover:border-blue-600 animate-float-delay-1"
                 aria-label="Codeforces Profile"
                 title="Codeforces"
               >
                 <SiCodeforces className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-blue-300 dark:group-hover:ring-blue-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all duration-300"></div>
               </a>
               <a 
                 href="https://www.codechef.com/users/kaushalag29" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-amber-50 dark:bg-gray-800 dark:hover:bg-amber-900/20 text-gray-600 hover:text-amber-600 dark:text-gray-400 dark:hover:text-amber-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-amber-50 hover:to-amber-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-amber-900/30 dark:hover:to-amber-800/20 text-gray-600 hover:text-amber-600 dark:text-gray-400 dark:hover:text-amber-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-amber-300 dark:hover:border-amber-600 animate-float-delay-2"
                 aria-label="CodeChef Profile"
                 title="CodeChef"
               >
                 <SiCodechef className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-amber-300 dark:group-hover:ring-amber-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-amber-400 dark:group-hover:ring-amber-500 transition-all duration-300"></div>
               </a>
               <a 
                 href="https://www.spoj.com/users/kaushalag29/" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative p-2 rounded-xl bg-gray-100 hover:bg-purple-50 dark:bg-gray-800 dark:hover:bg-purple-900/20 text-gray-600 hover:text-purple-500 dark:text-gray-400 dark:hover:text-purple-400 transition-all duration-300 hover:scale-110 hover:shadow-lg cursor-pointer"
+                className="group relative p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 hover:from-purple-50 hover:to-purple-100 dark:from-gray-800 dark:to-gray-900 dark:hover:from-purple-900/30 dark:hover:to-purple-800/20 text-gray-600 hover:text-purple-500 dark:text-gray-400 dark:hover:text-purple-400 transition-all duration-300 hover:scale-110 hover:shadow-xl shadow-md hover:-translate-y-1 cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300 dark:hover:border-purple-600 animate-float-delay-3"
                 aria-label="SPOJ Profile"
                 title="SPOJ"
               >
                 <SiSpoj className="w-7 h-7 group-hover:animate-pulse" />
-                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-purple-300 dark:group-hover:ring-purple-600 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-xl ring-2 ring-transparent group-hover:ring-purple-400 dark:group-hover:ring-purple-500 transition-all duration-300"></div>
               </a>
               </div>
             </div>

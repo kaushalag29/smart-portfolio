@@ -74,6 +74,32 @@
   animation: fadeInDown 0.5s ease-out;
 }
 
+/* Floating animation for social icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: float 3s ease-in-out 0.5s infinite;
+}
+
+.animate-float-delay-2 {
+  animation: float 3s ease-in-out 1s infinite;
+}
+
+.animate-float-delay-3 {
+  animation: float 3s ease-in-out 1.5s infinite;
+}
+
 .print-light-mode {
   background-color: white !important;
   color: black !important;
@@ -82,4 +108,42 @@
 .print-light-mode * {
   color: black !important;
   background-color: transparent !important;
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
+  background-color: rgb(156, 163, 175);
+  border-radius: 4px;
+}
+
+.scrollbar-thumb-gray-400::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(107, 114, 128);
+}
+
+.dark .scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+  background-color: rgb(75, 85, 99);
+  border-radius: 4px;
+}
+
+.dark .scrollbar-thumb-gray-600::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(107, 114, 128);
+}
+
+.scrollbar-track-gray-200::-webkit-scrollbar-track {
+  background-color: rgb(229, 231, 235);
+  border-radius: 4px;
+}
+
+.dark .scrollbar-track-gray-800::-webkit-scrollbar-track {
+  background-color: rgb(31, 41, 55);
+  border-radius: 4px;
 }

@@ -90,12 +90,15 @@ const FeaturedProjects: React.FC = () => {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {projects.map((project) => (
-          <div
+          <a
             key={project.id}
-            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-3 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-colors"
+            href={project.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-3 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer group"
           >
             <div>
-              <h3 className="text-base font-semibold mb-1 line-clamp-1">
+              <h3 className="text-base font-semibold mb-1 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {project.name}
               </h3>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
@@ -132,20 +135,20 @@ const FeaturedProjects: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <a
-                    href={project.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                  <div
+                    onClick={(e) => e.preventDefault()}
+                    className="text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition-colors"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
-                  </a>
+                  </div>
                   {project.homepage && (
                     <a
                       href={project.homepage}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors z-10"
+                      title="View Live Demo"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
@@ -153,7 +156,7 @@ const FeaturedProjects: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
