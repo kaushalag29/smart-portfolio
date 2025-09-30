@@ -61,26 +61,34 @@ const PersonalProjects: React.FC = () => {
         {personalProjects.map((project) => (
           <article
             key={project.id}
-            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-2.5 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-colors"
+            className="bg-gray-50 dark:bg-gradient-to-br dark:from-[#1E1E2E] dark:to-[#2D2D44] rounded-lg p-2.5 flex flex-col justify-between border border-gray-200 dark:border-gray-800/50 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group"
           >
-            <div>
-              <div className="relative h-28 w-full mb-2 rounded-md overflow-hidden bg-gray-100 dark:bg-[#1E2330]">
-                <Image src={project.img} alt={project.title} fill style={{ objectFit: 'cover' }} />
+            <a
+              href={project.url || project.repo || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col flex-1 cursor-pointer"
+            >
+              <div>
+                <div className="relative h-28 w-full mb-2 rounded-md overflow-hidden bg-gray-100 dark:bg-[#1E2330] group-hover:ring-2 group-hover:ring-blue-500/50 transition-all">
+                  <Image src={project.img} alt={project.title} fill style={{ objectFit: 'cover' }} />
+                </div>
+                <h3 className="text-base font-semibold mb-1 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1.5 line-clamp-2">{project.info}</p>
+                {project.info2 && (
+                  <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 line-clamp-1">{project.info2}</p>
+                )}
               </div>
-              <h3 className="text-base font-semibold mb-1 line-clamp-1">{project.title}</h3>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1.5 line-clamp-2">{project.info}</p>
-              {project.info2 && (
-                <p className="text-xs text-gray-500 dark:text-gray-500 mb-2 line-clamp-1">{project.info2}</p>
-              )}
-            </div>
+            </a>
             <div className="flex items-center space-x-2 mt-1">
               {project.url && (
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                  title="View"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors z-10"
+                  title="View Demo"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
@@ -90,8 +98,9 @@ const PersonalProjects: React.FC = () => {
                   href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                  title="Repository"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors z-10"
+                  title="View Repository"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
                 </a>

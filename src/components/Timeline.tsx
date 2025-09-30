@@ -185,9 +185,9 @@ const TimelineNode: React.FC<{
 
         {/* Expandable Details */}
         <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isExpanded ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'
+          isExpanded ? 'max-h-[600px] md:max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'
         }`}>
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="p-3 md:p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700 max-h-[500px] md:max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800">
             {item.description && (
               <div className="text-sm text-gray-700 dark:text-gray-300">
                 {item.description.split('\n').map((line, index) => {
@@ -195,15 +195,15 @@ const TimelineNode: React.FC<{
                   if (!trimmedLine) return null;
                   
                   return (
-                    <div key={index} className={`flex items-start ${index > 0 ? 'mt-3' : ''}`}>
+                    <div key={index} className={`flex items-start ${index > 0 ? 'mt-2 md:mt-3' : ''}`}>
                       {item.type === 'education' && index === 0 ? (
                         <p className="font-medium text-gray-800 dark:text-gray-200 leading-relaxed">
                           {trimmedLine}
                         </p>
                       ) : (
                         <>
-                          <span className="text-blue-500 dark:text-blue-400 mr-3 mt-1 flex-shrink-0">•</span>
-                          <p className="leading-relaxed">
+                          <span className="text-blue-500 dark:text-blue-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                          <p className="leading-relaxed flex-1">
                             {trimmedLine}
                           </p>
                         </>
