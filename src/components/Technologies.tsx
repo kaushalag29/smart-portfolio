@@ -20,13 +20,13 @@ const Technologies: React.FC = () => {
       <h2 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 mb-3">
         Technologies
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5">
+      <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-1.5">
         {skills.map((skill, index) => {
           const IconComponent = iconComponents[skill.icon];
           return (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-3 bg-gray-50 dark:bg-[#1E2330] rounded-lg transition-all hover:scale-105 hover:bg-gray-100 dark:hover:bg-[#252B3B] group"
+              className="flex flex-col items-center justify-center p-2 bg-gray-50 dark:bg-[#1E2330] rounded-lg transition-all hover:scale-105 hover:bg-gray-100 dark:hover:bg-[#252B3B] group"
             >
               {IconComponent && (
                 <div 
