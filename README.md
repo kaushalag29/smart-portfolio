@@ -91,6 +91,30 @@ For a detailed breakdown of the project’s folders and files, see [Project-Stru
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
+## Deployment
+
+This project is optimized for deployment on **Vercel** (recommended).
+
+### Quick Deploy to Vercel
+
+1. Push your code to GitHub
+2. Go to [vercel.com](https://vercel.com) and sign in with GitHub
+3. Import your repository
+4. Add environment variables:
+   - `NEXT_PUBLIC_GITHUB_TOKEN` - Your GitHub personal access token
+   - `GITHUB_USERNAME` - Your GitHub username
+5. Click Deploy
+
+**For detailed deployment instructions**, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Why Vercel?
+
+- ✅ Free tier with 100GB bandwidth
+- ✅ Native Next.js support
+- ✅ Automatic deployments from GitHub
+- ✅ Supports API routes and Server Components
+- ✅ Built-in HTTPS and CDN
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
