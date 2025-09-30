@@ -2,7 +2,7 @@
  * Simple RAG-based Chat API using LangChain and Supabase Vector Store
  */
 import { getVectorStore } from "@/lib/supabase";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Message as VercelChatMessage } from "ai";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
@@ -33,10 +33,11 @@ export async function POST(req: Request) {
       .join('\n');
 
     // Initialize the language model
-    const model = new ChatOpenAI({
-      modelName: "gpt-4.1-nano",
+    const model = new ChatGoogleGenerativeAI({
+      model: "gemini-2.5-flash",
       streaming: true,
       temperature: 0.3, // More controlled and professional responses
+      apiKey: process.env.GOOGLE_API_KEY,
     });
 
     // Initialize the vector store and retriever
