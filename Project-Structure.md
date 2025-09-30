@@ -31,11 +31,9 @@ smart-portfolio/
 │   ├── mastering-react-key-concepts-tips-beginners-2025.md
 │   └── python-playground-generative-ai-tutorial.md
 ├── scripts/
-│   └── generate.ts
 ├── src/
 │   ├── app/
 │   │   ├── api/
-│   │   │   ├── chat/route.ts
 │   │   │   ├── github/insights/route.ts
 │   │   │   └── validate-stack/route.ts
 │   │   ├── blog/
@@ -51,8 +49,6 @@ smart-portfolio/
 │   ├── assets/
 │   │   └── Ahmed.jpeg
 │   ├── components/
-│   │   ├── AIChatBox.tsx
-│   │   ├── AIChatButton.tsx
 │   │   ├── AboutMe.tsx
 │   │   ├── FeaturedProjects.tsx
 │   │   ├── Footer.tsx
@@ -104,7 +100,6 @@ smart-portfolio/
 │   │   └── skills.ts
 │   ├── lib/
 │   │   ├── github.ts
-│   │   ├── supabase.ts
 │   │   └── utils.ts
 │   └── react-syntax-highlighter.d.ts
 ├── tailwind.config.ts

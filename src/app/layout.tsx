@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Kaushal Kumar Agarwal",
     default: "Kaushal Kumar Agarwal",
   },
-  description: "Check out my smart portfolio website with a custom AI chatbot.",
+  description: "Software Development Engineer at AWS with expertise in AI/ML, cloud platforms, and full-stack development.",
 };
 
 export default function RootLayout({
