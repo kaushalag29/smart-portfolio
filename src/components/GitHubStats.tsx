@@ -114,11 +114,12 @@ const GitHubStats: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-4 transition-colors">
+      <div className="bg-gray-50 dark:bg-[#1E2330] rounded-lg p-3 md:p-4 transition-colors overflow-hidden">
         <h3 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 dark:from-green-400 dark:via-blue-400 dark:to-purple-400 mb-3">
           Most Used Languages
         </h3>
-        <div className="h-[260px]">
+        {/* Desktop View: Pie Chart */}
+        <div className="hidden md:block h-[260px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -151,6 +152,36 @@ const GitHubStats: React.FC = () => {
               />
             </PieChart>
           </ResponsiveContainer>
+        </div>
+        {/* Mobile View: Horizontal Bar Chart */}
+        <div className="md:hidden space-y-2.5">
+          {languages.map((lang, index) => {
+            const total = languages.reduce((sum, l) => sum + l.value, 0);
+            const percentage = ((lang.value / total) * 100).toFixed(1);
+            return (
+              <div key={lang.name} className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2">
+                    <div 
+                      className="w-3 h-3 rounded-sm flex-shrink-0 shadow-sm" 
+                      style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                    />
+                    <span className="font-medium text-gray-900 dark:text-gray-200">{lang.name}</span>
+                  </div>
+                  <span className="text-gray-600 dark:text-gray-400 font-semibold">{percentage}%</span>
+                </div>
+                <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+                  <div 
+                    className="h-full rounded-full transition-all duration-700 ease-out"
+                    style={{ 
+                      width: `${percentage}%`,
+                      backgroundColor: COLORS[index % COLORS.length]
+                    }}
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
