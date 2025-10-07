@@ -4,7 +4,7 @@ import Technologies from '@/components/Technologies';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import PersonalProjects from '@/components/PersonalProjects';
 import GitHubStats from '@/components/GitHubStats';
-import Timeline from '@/components/Timeline';
+import TimelineEnhanced from '@/components/TimelineEnhanced';
 import Languages from '@/components/Languages';
 import Hobbies from '@/components/Hobbies';
 
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
 
         {/* Timeline - Spans full width */}
         <div className="lg:col-span-5">
-          <Timeline />
+          <TimelineEnhanced />
         </div>
       </div>
     </main>

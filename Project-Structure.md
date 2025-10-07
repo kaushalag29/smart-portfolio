@@ -31,7 +31,7 @@ smart-portfolio/
 │   ├── mastering-react-key-concepts-tips-beginners-2025.md
 │   └── python-playground-generative-ai-tutorial.md
 ├── scripts/
-│   └── generate.ts
+│   └── generate-production.ts
 ├── src/
 │   ├── app/
 │   │   ├── api/

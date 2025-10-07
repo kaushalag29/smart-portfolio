@@ -1,9 +1,10 @@
 import { cn } from "@/lib/utils";
-import { Message, useChat } from "ai/react";
-import { Bot, SendHorizontal, Trash, XCircle } from "lucide-react";
+import { Message, useChat as useAIChat } from "ai/react";
+import { Bot, SendHorizontal, Trash, XCircle, Copy, Check, ArrowDown } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { useChat } from "@/contexts/ChatContext";
 
 
 interface AIChatBoxProps {
@@ -12,16 +13,23 @@ interface AIChatBoxProps {
 }
 
 export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
-  // chat-related states and functions from useChat hook
+  const CHAT_HISTORY_KEY = 'smart-portfolio-chat-history';
+  const [hasLoadedHistory, setHasLoadedHistory] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [copiedMessageId, setCopiedMessageId] = useState<string | null>(null);
+  const { prefilledQuestion, clearPrefilledQuestion, suggestedQuestions, clearSuggestedQuestions } = useChat();
+  
+  // chat-related states and functions from useAIChat hook
   const {
     messages,
     input,
     handleInputChange,
     handleSubmit: originalHandleSubmit,
     setMessages,
+    setInput,
     isLoading,
     error,
-  } = useChat({
+  } = useAIChat({
     api: '/api/chat',
     streamProtocol: 'text', // Use plain text streaming
     onResponse: (response) => {
@@ -43,6 +51,46 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
       setMessages([...messages, errorMessage]);
     }
   });
+
+  // Load chat history from localStorage on component mount
+  useEffect(() => {
+    if (!hasLoadedHistory) {
+      try {
+        const savedHistory = localStorage.getItem(CHAT_HISTORY_KEY);
+        if (savedHistory) {
+          const parsedHistory = JSON.parse(savedHistory);
+          if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
+            setMessages(parsedHistory);
+            console.log('💾 Loaded chat history from localStorage:', parsedHistory.length, 'messages');
+          }
+        }
+      } catch (error) {
+        console.error('❌ Failed to load chat history from localStorage:', error);
+      } finally {
+        setHasLoadedHistory(true);
+      }
+    }
+  }, [hasLoadedHistory, setMessages]);
+
+  // Save chat history to localStorage whenever messages change (after initial load)
+  useEffect(() => {
+    if (hasLoadedHistory) {
+      try {
+        if (messages.length > 0) {
+          localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(messages));
+        } else {
+          // If messages are empty, clear localStorage
+          localStorage.removeItem(CHAT_HISTORY_KEY);
+        }
+      } catch (error) {
+        console.error('❌ Failed to save chat history to localStorage:', error);
+        // Handle quota exceeded error gracefully
+        if (error instanceof Error && error.name === 'QuotaExceededError') {
+          console.warn('⚠️  localStorage quota exceeded. Chat history will not persist.');
+        }
+      }
+    }
+  }, [messages, hasLoadedHistory]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,6 +125,24 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
       inputRef.current?.focus();
     }
   }, [open]);
+
+  // Handle prefilled question when chat opens
+  useEffect(() => {
+    if (open && prefilledQuestion && hasLoadedHistory) {
+      setInput(prefilledQuestion);
+      clearPrefilledQuestion();
+      // Focus and move cursor to end
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.setSelectionRange(
+            inputRef.current.value.length,
+            inputRef.current.value.length
+          );
+        }
+      }, 100);
+    }
+  }, [open, prefilledQuestion, hasLoadedHistory, setInput, clearPrefilledQuestion]);
 
   // Determine if the last message is from the user
   const lastMessageIsUser = messages[messages.length - 1]?.role === "user";
@@ -130,7 +196,11 @@ export default function AIChatBox({ open, onClose }: AIChatBoxProps) {
             type="button"
             className="flex w-10 flex-none items-center justify-center hover:text-red-500 transition-colors duration-300"
             title="Clear chat"
-            onClick={() => setMessages([])}
+            onClick={() => {
+              setMessages([]);
+              localStorage.removeItem(CHAT_HISTORY_KEY);
+              console.log('🗑️  Cleared chat history from localStorage');
+            }}
           >
             <Trash size={24} />
           </button>

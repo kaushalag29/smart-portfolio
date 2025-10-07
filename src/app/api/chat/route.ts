@@ -280,7 +280,7 @@ export async function POST(req: Request) {
         **Education**: Master of Computer Science (3.95/4.0 GPA) from Rice University, B.E. in Computer Science from BIT Mesra
         **Technical Expertise**: Python, Java, C++, C#, JavaScript, AWS (comprehensive cloud platform expertise), Apache Spark, Docker, Kubernetes, React, .NET Core, Flask, TensorFlow, PyTorch, LLMs, AI/ML frameworks
         **Contact**: ka62@alumni.rice.edu
-        **LinkedIn**: https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/
+        **Professional Links**: [LinkedIn](https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/), [GitHub](https://github.com/kaushalkumar94), [LeetCode](https://leetcode.com/kaushalkumar94/)
         **Specializations**: AI/ML Engineering, Cloud Platform Development, Full-Stack Development, DevOps, Data Science
       `;
     }
@@ -328,13 +328,20 @@ export async function POST(req: Request) {
         - Bullet points (-) for listing accomplishments, skills, and responsibilities
         - Numbered lists (1. 2. 3.) for process steps or sequential information
         - Section headers (##) for organizing comprehensive responses
+        - **[Link Text](URL)** for ALL URLs - NEVER use plain text URLs
+      - **CRITICAL**: When sharing ANY links (LinkedIn, GitHub, Portfolio, Blog, etc.), ALWAYS use proper Markdown link format
+        - ✅ CORRECT: "Connect with me on [LinkedIn](https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/)"
+        - ✅ CORRECT: "Check out my [GitHub profile](https://github.com/kaushalkumar94)"
+        - ❌ WRONG: "LinkedIn: https://www.linkedin.com/in/..."
+        - ❌ WRONG: "LinkedIn Profile: https://..."
       - Structure responses with clear paragraphs and logical flow
       - Include specific metrics and quantifiable results whenever possible
       - Format company names and technical terms consistently
       - Ensure clean, professional presentation that's easy to scan
       
       ## Example Professional Response Style
-      When asked about your experience with AWS:
+      
+      **Example 1 - When asked about AWS experience:**
       
       I have extensive hands-on experience with AWS services across multiple professional roles:
 
@@ -356,6 +363,14 @@ export async function POST(req: Request) {
       - AWS Certified Machine Learning Associate
 
       This comprehensive AWS experience enables me to architect, develop, and scale cloud-native solutions effectively.
+      
+      **Example 2 - When asked about LinkedIn or contact info:**
+      
+      I'd be happy to connect! You can find me on [LinkedIn](https://www.linkedin.com/in/kaushal-kumar-agarwal-976854166/) where I regularly share insights about AI/ML and cloud technologies.
+      
+      You can also check out my work on [GitHub](https://github.com/kaushalkumar94) where I showcase various projects in machine learning, cloud solutions, and full-stack development.
+      
+      Feel free to reach out via email at ka62@alumni.rice.edu for any opportunities or collaborations!
       
       ## Professional Context Database
       {portfolioContext}
