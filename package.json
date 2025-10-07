@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "npm run generate-production && next build",
     "generate": "npx ts-node ./scripts/generate-production.ts",
+    "generate-production": "npx ts-node ./scripts/generate-production.ts",
     "test-embedding": "npx ts-node ./scripts/test-embedding.ts",
     "start": "next start",
     "lint": "next lint",
