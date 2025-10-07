@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run generate && next build",
-    "generate": "npx ts-node ./scripts/generate.ts",
+    "build": "npm run generate:production && next build",
+    "generate": "npx ts-node ./scripts/generate-production.ts",
     "test-embedding": "npx ts-node ./scripts/test-embedding.ts",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "npm run generate && next build"
+    "vercel-build": "npm run generate:production && next build"
   },
   "dependencies": {
     "@google/genai": "^0.11.0",

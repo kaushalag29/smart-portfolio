@@ -7,6 +7,7 @@ import { Message as VercelChatMessage } from "ai";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { getGlobalRateLimiter } from "@/lib/geminiRateLimiter";
+import { IntelligentQueryRouter } from "@/lib/intelligentQueryRouter";
 
 /**
  * Main API handler for chat requests
@@ -28,51 +29,244 @@ export async function POST(req: Request) {
     // Get the current user message
     const currentMessageContent = messages[messages.length - 1].content;
     
+    console.log('\n' + '='.repeat(80));
+    console.log('📝 [DEBUG] CHAT REQUEST RECEIVED');
+    console.log('='.repeat(80));
+    console.log(`📌 Current Question: "${currentMessageContent}"`);
+    console.log(`📊 Total Messages in History: ${messages.length}`);
+    
     // Format previous messages for context
     const previousMessages = messages.slice(0, -1)
       .map(m => `${m.role === 'user' ? 'Human' : 'Assistant'}: ${m.content}`)
       .join('\n');
+    
+    if (previousMessages) {
+      console.log(`💬 Chat History:\n${previousMessages.substring(0, 200)}${previousMessages.length > 200 ? '...' : ''}`);
+    }
 
     // Initialize rate limiter
     const rateLimiter = getGlobalRateLimiter();
     
     // Initialize the language model
     const model = new ChatGoogleGenerativeAI({
-      model: "gemini-2.5-flash-lite",
+      model: "gemini-2.5-flash",
       streaming: true,
-      temperature: 0.3, // More controlled and professional responses
+      temperature: 0.0, // More controlled and professional responses
       apiKey: process.env.GOOGLE_API_KEY,
     });
 
     // Initialize the vector store and retriever
     const vectorStore = await getVectorStore();
     
-    // Perform comprehensive similarity search across all portfolio data
+    // ============================================================
+    // INTELLIGENT QUERY ANALYSIS
+    // ============================================================
+    
+    // Analyze query to extract all entities and intent
+    const queryAnalysis = IntelligentQueryRouter.analyzeQuery(currentMessageContent);
+    
+    // Log comprehensive analysis
+    console.log(IntelligentQueryRouter.formatAnalysisLog(queryAnalysis));
+    
+    // Create context-aware search queries
+    let searchQueries = [currentMessageContent];
+    
+    // Include conversation context if available
+    if (messages.length > 1) {
+      const recentUserMessages = messages
+        .slice(Math.max(0, messages.length - 5), -1)
+        .filter(m => m.role === 'user')
+        .map(m => m.content)
+        .slice(-2);
+      
+      if (recentUserMessages.length > 0) {
+        const contextEnhanced = `${recentUserMessages.join(' ')} ${currentMessageContent}`;
+        searchQueries.push(contextEnhanced);
+        console.log(`\n💬 [Context Enhancement]: Added ${recentUserMessages.length} previous questions to search context`);
+      }
+    }
+    
+    // Generate additional search queries based on analysis
+    const additionalQueries = IntelligentQueryRouter.generateSearchQueries(
+      currentMessageContent,
+      queryAnalysis
+    );
+    searchQueries.push(...additionalQueries);
+    searchQueries = [...new Set(searchQueries)]; // Deduplicate
+    
+    console.log(`\n🔎 [Search Queries Generated]: ${searchQueries.length} variations`);
+    
+    // ============================================================
+    // MULTI-STRATEGY RETRIEVAL
+    // ============================================================
     let portfolioContext = "";
     try {
-      const relevantDocs = await vectorStore.similaritySearch(currentMessageContent, 10); // Increased for richer context
+      console.log(`\n📚 [Executing Multi-Strategy Retrieval]...\n`);
       
-      if (relevantDocs && relevantDocs.length > 0) {
-        // Format the retrieved documents with metadata awareness
-        portfolioContext = relevantDocs
+      const allDocs: any[] = [];
+      const seenContent = new Set<string>();
+      
+      // Execute each search strategy
+      for (const [strategyIdx, strategy] of queryAnalysis.searchStrategies.entries()) {
+        console.log(`   Strategy ${strategyIdx + 1}/${queryAnalysis.searchStrategies.length}: ${strategy.type.toUpperCase()}`);
+        
+        try {
+          let strategyDocs: any[] = [];
+          
+          if (strategy.type === 'filtered' && Object.keys(strategy.filters).length > 0) {
+            // Filtered search
+            console.log(`      Filters: ${JSON.stringify(strategy.filters)}`);
+            
+            // Try with primary search query
+            try {
+              strategyDocs = await vectorStore.similaritySearch(
+                searchQueries[0],
+                strategy.k,
+                strategy.filters
+              );
+            } catch (err) {
+              console.log(`      ⚠️  Metadata filtering not supported, falling back to semantic`);
+              strategyDocs = await vectorStore.similaritySearch(searchQueries[0], strategy.k);
+              
+              // Manual filtering in memory
+              const filterKey = Object.keys(strategy.filters)[0];
+              const filterValue = strategy.filters[filterKey];
+              strategyDocs = strategyDocs.filter((doc: any) => {
+                const metaValue = doc.metadata?.[filterKey];
+                if (!metaValue) return false;
+                if (filterKey === 'skills' || filterKey === 'type') {
+                  return metaValue.toLowerCase().includes(filterValue.toLowerCase());
+                }
+                return metaValue === filterValue;
+              });
+            }
+          } else {
+            // Semantic search with all query variations
+            for (const query of searchQueries.slice(0, 2)) { // Use top 2 queries
+              const docs = await vectorStore.similaritySearch(query, Math.ceil(strategy.k / searchQueries.length));
+              strategyDocs.push(...docs);
+            }
+          }
+          
+          // Apply boost and deduplicate
+          strategyDocs.forEach(doc => {
+            const contentHash = doc.pageContent.substring(0, 100);
+            if (!seenContent.has(contentHash)) {
+              seenContent.add(contentHash);
+              doc._strategyBoost = strategy.boost;
+              doc._strategy = strategy.type;
+              allDocs.push(doc);
+            }
+          });
+          
+          console.log(`      ✓ Found ${strategyDocs.length} unique documents (boost: ${strategy.boost}x)`);
+          
+        } catch (err) {
+          console.error(`      ❌ Strategy failed: ${err}`);
+        }
+      }
+      
+      console.log(`\n✅ [Total Retrieved]: ${allDocs.length} unique documents from all strategies`);
+      
+      if (allDocs.length > 0) {
+        // Advanced re-ranking based on multiple factors
+        allDocs.sort((a, b) => {
+          const aBoost = a._strategyBoost || 1.0;
+          const bBoost = b._strategyBoost || 1.0;
+          const aMeta = a.metadata || {};
+          const bMeta = b.metadata || {};
+          
+          // 1. Strategy boost
+          if (aBoost !== bBoost) return bBoost - aBoost;
+          
+          // 2. Company match
+          if (queryAnalysis.detectedEntities.companies.length > 0) {
+            const targetCompany = queryAnalysis.detectedEntities.companies[0];
+            const aCompanyMatch = aMeta.company === targetCompany;
+            const bCompanyMatch = bMeta.company === targetCompany;
+            if (aCompanyMatch && !bCompanyMatch) return -1;
+            if (!aCompanyMatch && bCompanyMatch) return 1;
+          }
+          
+          // 3. Type match based on intent
+          const intent = queryAnalysis.queryIntent.primary;
+          const typeMatchScore = (meta: any): number => {
+            const type = meta.type || '';
+            if (intent === 'behavioral' && (type === 'star_story' || type === 'journey_experience')) return 3;
+            if (intent === 'project' && (type === 'project' || type === 'star_story')) return 3;
+            if (intent === 'skill' && (type === 'skill_experience' || type === 'experience')) return 3;
+            if (intent === 'experience' && (type === 'experience' || type === 'journey_experience')) return 3;
+            return 1;
+          };
+          
+          const aTypeScore = typeMatchScore(aMeta);
+          const bTypeScore = typeMatchScore(bMeta);
+          if (aTypeScore !== bTypeScore) return bTypeScore - aTypeScore;
+          
+          // 4. Skill match
+          if (queryAnalysis.detectedEntities.skills.length > 0 && aMeta.skills && bMeta.skills) {
+            const targetSkills = queryAnalysis.detectedEntities.skills.map((s: string) => s.toLowerCase());
+            const aSkills = (aMeta.skills || '').toLowerCase();
+            const bSkills = (bMeta.skills || '').toLowerCase();
+            const aSkillMatches = targetSkills.filter((s: string) => aSkills.includes(s)).length;
+            const bSkillMatches = targetSkills.filter((s: string) => bSkills.includes(s)).length;
+            if (aSkillMatches !== bSkillMatches) return bSkillMatches - aSkillMatches;
+          }
+          
+          return 0;
+        });
+        
+        console.log(`   🔄 Documents re-ranked by relevance (company, type, skills, boost)`);
+        
+        // Take top results based on query needs
+        const topK = queryAnalysis.queryIntent.needsMultipleExamples ? 15 : 10;
+        const topDocs = allDocs.slice(0, topK);
+        
+        // Log top documents
+        console.log(`\n📄 [Top ${topDocs.length} Documents Selected]:`);
+        topDocs.forEach((doc, index) => {
+          const metadata = doc.metadata || {};
+          const preview = doc.pageContent.substring(0, 80).replace(/\n/g, ' ');
+          const metaInfo = [
+            metadata.type,
+            metadata.company || metadata.projectName || metadata.skill,
+            doc._strategy
+          ].filter(Boolean).join(' | ');
+          console.log(`   ${index + 1}. [${metaInfo}] ${preview}...`);
+        });
+        
+        // Format documents for LLM context
+        portfolioContext = topDocs
           .map(doc => {
             const content = typeof doc.pageContent === 'string' 
               ? doc.pageContent 
               : String(doc.pageContent || '');
             const metadata = doc.metadata || {};
             
-            // Add context about the source for better response generation
+            // Rich metadata header
             let contextHeader = "";
-            if (metadata.dataType) {
-              contextHeader = `[${metadata.dataType.toUpperCase()}]\n`;
+            if (metadata.type && metadata.company) {
+              contextHeader = `[${metadata.type.toUpperCase()} @ ${metadata.company}]\n`;
+            } else if (metadata.type && metadata.skill) {
+              contextHeader = `[${metadata.skill.toUpperCase()} EXPERIENCE]\n`;
+            } else if (metadata.type) {
+              contextHeader = `[${metadata.type.toUpperCase()}]\n`;
             }
             
             return contextHeader + content;
           })
-          .join('\n\n');
+          .join('\n\n---\n\n');
+          
+        console.log(`\n📊 [Final Context Stats]:`);
+        console.log(`   Documents: ${topDocs.length}`);
+        console.log(`   Total Characters: ${portfolioContext.length}`);
+        console.log(`   Average per Doc: ${Math.round(portfolioContext.length / topDocs.length)} chars`);
+        console.log(`   Confidence: ${(queryAnalysis.confidenceScore * 100).toFixed(0)}%`);
+      } else {
+        console.log(`⚠️  [Warning] No relevant documents found!`);
       }
     } catch (error) {
-      console.error("Error retrieving documents:", error);
+      console.error("❌ [Error] Failed to retrieve documents:", error);
       portfolioContext = "Portfolio data temporarily unavailable.";
     }
     
@@ -97,6 +291,7 @@ export async function POST(req: Request) {
       
       ## Core Response Principles
       - ALWAYS speak in first person ("I", "me", "my") as Kaushal Kumar Agarwal
+      - When users refer to "he", "his", or "him", understand they are asking about YOU and respond in first person
       - Maintain a confident, professional, and enthusiastic tone suitable for recruiter conversations
       - Every response should showcase your strengths, achievements, and positive qualities
       - NEVER mention any weaknesses, failures, or negative aspects
@@ -119,6 +314,8 @@ export async function POST(req: Request) {
       - Demonstrate your passion for emerging technologies, especially AI/ML and cloud platforms
 
       ## Response Handling
+      - Pay attention to the CONVERSATION HISTORY below - if the user is asking a follow-up question, make sure your answer relates to the previous topic
+      - If a question references "his personal projects", "his work", etc., understand they are asking about YOUR projects and experiences
       - If asked about specific technical challenges, focus on your problem-solving approach and successful outcomes
       - When discussing career transitions, frame them as strategic growth decisions
       - For behavioral questions, draw from your comprehensive experience database
@@ -177,10 +374,29 @@ export async function POST(req: Request) {
       .pipe(model)
       .pipe(new StringOutputParser());
 
+    // Log the final prompt inputs
+    console.log(`\n🤖 [LLM Input] Preparing prompt for Gemini...`);
+    console.log(`   Model: gemini-2.5-flash`);
+    console.log(`   Temperature: 0.0`);
+    console.log(`   Context Length: ${portfolioContext.length} chars`);
+    console.log(`   Chat History Length: ${previousMessages.length} chars`);
+    console.log(`   Question: "${currentMessageContent}"`);
+    
+    // Print first 500 chars of context for debugging
+    if (portfolioContext) {
+      console.log(`\n📝 [Context Preview]:`);
+      console.log(portfolioContext.substring(0, 500));
+      console.log(`   ... (${portfolioContext.length - 500} more characters)`);
+    }
+    
+    console.log('\n' + '='.repeat(80));
+    console.log('🚀 [Sending to LLM] Request prepared, streaming response...');
+    console.log('='.repeat(80) + '\n');
+
     // Stream the professional response with rate limiting
     // Note: We wrap the streaming call to ensure rate limiting
     const stream = await rateLimiter.execute(
-      "gemini-2.5-flash-lite",
+      "gemini-2.5-flash",
       async () => {
         return await chain.stream({
           portfolioContext: portfolioContext,
