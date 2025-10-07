@@ -10,6 +10,51 @@ import { getGlobalRateLimiter } from "@/lib/geminiRateLimiter";
 import { IntelligentQueryRouter } from "@/lib/intelligentQueryRouter";
 
 /**
+ * Generate graceful error response based on error type
+ */
+function getGracefulErrorResponse(error: any): { message: string; status: number } {
+  const errorMessage = error?.message?.toLowerCase() || '';
+  
+  // Rate limiting errors
+  if (errorMessage.includes('429') || errorMessage.includes('rate limit') || errorMessage.includes('quota')) {
+    return {
+      message: "I'm currently experiencing high demand. Please wait a moment and try again. Thank you for your patience!",
+      status: 429
+    };
+  }
+  
+  // Service unavailable
+  if (errorMessage.includes('503') || errorMessage.includes('unavailable')) {
+    return {
+      message: "I'm temporarily unavailable. Please try again in a few moments.",
+      status: 503
+    };
+  }
+  
+  // Authentication errors
+  if (errorMessage.includes('401') || errorMessage.includes('403') || errorMessage.includes('unauthorized')) {
+    return {
+      message: "There's an authentication issue. Please refresh the page and try again.",
+      status: 401
+    };
+  }
+  
+  // Timeout errors
+  if (errorMessage.includes('timeout') || errorMessage.includes('timed out')) {
+    return {
+      message: "That took longer than expected. Please try again.",
+      status: 504
+    };
+  }
+  
+  // Generic error
+  return {
+    message: "I encountered an unexpected issue. Please try again, and if the problem continues, try refreshing the page.",
+    status: 500
+  };
+}
+
+/**
  * Main API handler for chat requests
  */
 export async function POST(req: Request) {
@@ -29,20 +74,10 @@ export async function POST(req: Request) {
     // Get the current user message
     const currentMessageContent = messages[messages.length - 1].content;
     
-    console.log('\n' + '='.repeat(80));
-    console.log('📝 [DEBUG] CHAT REQUEST RECEIVED');
-    console.log('='.repeat(80));
-    console.log(`📌 Current Question: "${currentMessageContent}"`);
-    console.log(`📊 Total Messages in History: ${messages.length}`);
-    
     // Format previous messages for context
     const previousMessages = messages.slice(0, -1)
       .map(m => `${m.role === 'user' ? 'Human' : 'Assistant'}: ${m.content}`)
       .join('\n');
-    
-    if (previousMessages) {
-      console.log(`💬 Chat History:\n${previousMessages.substring(0, 200)}${previousMessages.length > 200 ? '...' : ''}`);
-    }
 
     // Initialize rate limiter
     const rateLimiter = getGlobalRateLimiter();
@@ -65,9 +100,6 @@ export async function POST(req: Request) {
     // Analyze query to extract all entities and intent
     const queryAnalysis = IntelligentQueryRouter.analyzeQuery(currentMessageContent);
     
-    // Log comprehensive analysis
-    console.log(IntelligentQueryRouter.formatAnalysisLog(queryAnalysis));
-    
     // Create context-aware search queries
     let searchQueries = [currentMessageContent];
     
@@ -82,7 +114,6 @@ export async function POST(req: Request) {
       if (recentUserMessages.length > 0) {
         const contextEnhanced = `${recentUserMessages.join(' ')} ${currentMessageContent}`;
         searchQueries.push(contextEnhanced);
-        console.log(`\n💬 [Context Enhancement]: Added ${recentUserMessages.length} previous questions to search context`);
       }
     }
     
@@ -94,28 +125,21 @@ export async function POST(req: Request) {
     searchQueries.push(...additionalQueries);
     searchQueries = [...new Set(searchQueries)]; // Deduplicate
     
-    console.log(`\n🔎 [Search Queries Generated]: ${searchQueries.length} variations`);
-    
     // ============================================================
     // MULTI-STRATEGY RETRIEVAL
     // ============================================================
     let portfolioContext = "";
     try {
-      console.log(`\n📚 [Executing Multi-Strategy Retrieval]...\n`);
-      
       const allDocs: any[] = [];
       const seenContent = new Set<string>();
       
       // Execute each search strategy
       for (const [strategyIdx, strategy] of queryAnalysis.searchStrategies.entries()) {
-        console.log(`   Strategy ${strategyIdx + 1}/${queryAnalysis.searchStrategies.length}: ${strategy.type.toUpperCase()}`);
-        
         try {
           let strategyDocs: any[] = [];
           
           if (strategy.type === 'filtered' && Object.keys(strategy.filters).length > 0) {
             // Filtered search
-            console.log(`      Filters: ${JSON.stringify(strategy.filters)}`);
             
             // Try with primary search query
             try {
@@ -125,7 +149,7 @@ export async function POST(req: Request) {
                 strategy.filters
               );
             } catch (err) {
-              console.log(`      ⚠️  Metadata filtering not supported, falling back to semantic`);
+              // Fallback to semantic search if metadata filtering not supported
               strategyDocs = await vectorStore.similaritySearch(searchQueries[0], strategy.k);
               
               // Manual filtering in memory
@@ -159,14 +183,10 @@ export async function POST(req: Request) {
             }
           });
           
-          console.log(`      ✓ Found ${strategyDocs.length} unique documents (boost: ${strategy.boost}x)`);
-          
         } catch (err) {
-          console.error(`      ❌ Strategy failed: ${err}`);
+          // Strategy failed, continue with other strategies
         }
       }
-      
-      console.log(`\n✅ [Total Retrieved]: ${allDocs.length} unique documents from all strategies`);
       
       if (allDocs.length > 0) {
         // Advanced re-ranking based on multiple factors
@@ -216,24 +236,9 @@ export async function POST(req: Request) {
           return 0;
         });
         
-        console.log(`   🔄 Documents re-ranked by relevance (company, type, skills, boost)`);
-        
         // Take top results based on query needs
         const topK = queryAnalysis.queryIntent.needsMultipleExamples ? 15 : 10;
         const topDocs = allDocs.slice(0, topK);
-        
-        // Log top documents
-        console.log(`\n📄 [Top ${topDocs.length} Documents Selected]:`);
-        topDocs.forEach((doc, index) => {
-          const metadata = doc.metadata || {};
-          const preview = doc.pageContent.substring(0, 80).replace(/\n/g, ' ');
-          const metaInfo = [
-            metadata.type,
-            metadata.company || metadata.projectName || metadata.skill,
-            doc._strategy
-          ].filter(Boolean).join(' | ');
-          console.log(`   ${index + 1}. [${metaInfo}] ${preview}...`);
-        });
         
         // Format documents for LLM context
         portfolioContext = topDocs
@@ -256,14 +261,6 @@ export async function POST(req: Request) {
             return contextHeader + content;
           })
           .join('\n\n---\n\n');
-          
-        console.log(`\n📊 [Final Context Stats]:`);
-        console.log(`   Documents: ${topDocs.length}`);
-        console.log(`   Total Characters: ${portfolioContext.length}`);
-        console.log(`   Average per Doc: ${Math.round(portfolioContext.length / topDocs.length)} chars`);
-        console.log(`   Confidence: ${(queryAnalysis.confidenceScore * 100).toFixed(0)}%`);
-      } else {
-        console.log(`⚠️  [Warning] No relevant documents found!`);
       }
     } catch (error) {
       console.error("❌ [Error] Failed to retrieve documents:", error);
@@ -389,35 +386,16 @@ export async function POST(req: Request) {
       .pipe(model)
       .pipe(new StringOutputParser());
 
-    // Log the final prompt inputs
-    console.log(`\n🤖 [LLM Input] Preparing prompt for Gemini...`);
-    console.log(`   Model: gemini-2.5-flash`);
-    console.log(`   Temperature: 0.0`);
-    console.log(`   Context Length: ${portfolioContext.length} chars`);
-    console.log(`   Chat History Length: ${previousMessages.length} chars`);
-    console.log(`   Question: "${currentMessageContent}"`);
-    
-    // Print first 500 chars of context for debugging
-    if (portfolioContext) {
-      console.log(`\n📝 [Context Preview]:`);
-      console.log(portfolioContext.substring(0, 500));
-      console.log(`   ... (${portfolioContext.length - 500} more characters)`);
-    }
-    
-    console.log('\n' + '='.repeat(80));
-    console.log('🚀 [Sending to LLM] Request prepared, streaming response...');
-    console.log('='.repeat(80) + '\n');
-
     // Stream the professional response with rate limiting
     // Note: We wrap the streaming call to ensure rate limiting
     const stream = await rateLimiter.execute(
       "gemini-2.5-flash",
       async () => {
         return await chain.stream({
-          portfolioContext: portfolioContext,
-          chatHistory: previousMessages,
-          question: currentMessageContent
-        });
+      portfolioContext: portfolioContext,
+      chatHistory: previousMessages,
+      question: currentMessageContent
+    });
       }
     );
 
@@ -451,13 +429,15 @@ export async function POST(req: Request) {
   } catch (error: any) {
     console.error("Chat API error:", error);
     
-    // Provide meaningful error response
+    // Get graceful error response
+    const { message, status } = getGracefulErrorResponse(error);
+    
     return Response.json(
       { 
-        error: "Chat processing failed", 
-        details: error?.message || "Unknown error occurred"
+        error: message,
+        message: message // For compatibility with different error handling patterns
       }, 
-      { status: 500 }
+      { status }
     );
   }
 }

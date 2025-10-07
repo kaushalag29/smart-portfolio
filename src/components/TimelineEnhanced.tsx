@@ -16,6 +16,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { useChat, type SuggestedQuestion } from '@/contexts/ChatContext';
+import { generateDynamicQuestions } from '@/lib/dynamicQuestionGenerator';
 
 interface TimelineItem {
   id: string;
@@ -57,52 +58,6 @@ const experienceItems: TimelineItem[] = resumeData.experience.map((exp, index) =
 // Combine and sort all items by start year (most recent first)
 const allTimelineItems = [...educationItems, ...experienceItems].sort((a, b) => b.startYear - a.startYear);
 
-// Smart question templates for recruiters
-const getSmartQuestions = (item: TimelineItem): SuggestedQuestion[] => {
-  if (item.type === 'experience') {
-    return [
-      { 
-        icon: 'target', 
-        text: `Tell me about the key projects and achievements at ${item.organization}`,
-        color: 'text-blue-600 dark:text-blue-400'
-      },
-      { 
-        icon: 'trending-up', 
-        text: `What was the biggest impact or measurable result during your time at ${item.organization}?`,
-        color: 'text-green-600 dark:text-green-400'
-      },
-      { 
-        icon: 'lightbulb', 
-        text: `Describe a challenging problem you solved as ${item.title} at ${item.organization}`,
-        color: 'text-purple-600 dark:text-purple-400'
-      },
-      { 
-        icon: 'message', 
-        text: `What technologies and skills did you use in your role at ${item.organization}?`,
-        color: 'text-orange-600 dark:text-orange-400'
-      }
-    ];
-  } else {
-    return [
-      { 
-        icon: 'lightbulb', 
-        text: `Tell me about your academic experience at ${item.organization}`,
-        color: 'text-emerald-600 dark:text-emerald-400'
-      },
-      { 
-        icon: 'target', 
-        text: `What projects or achievements stood out during ${item.title} at ${item.organization}?`,
-        color: 'text-teal-600 dark:text-teal-400'
-      },
-      { 
-        icon: 'trending-up', 
-        text: `How did ${item.title} from ${item.organization} prepare you for your career?`,
-        color: 'text-indigo-600 dark:text-indigo-400'
-      }
-    ];
-  }
-};
-
 const getLogoFor = (organization: string): string | null => {
   const org = organization.toLowerCase();
   if (org.includes('amazon web services') || org.includes('aws')) return '/AWS.png';
@@ -140,10 +95,12 @@ const TimelineNode: React.FC<{
   const { openChat } = useChat();
   const logoSrc = getLogoFor(item.organization);
   const logoSize = getLogoSizeFor(item.organization);
-  const smartQuestions = getSmartQuestions(item);
+  
+  // Use dynamic question generator instead of static questions
+  const smartQuestions = generateDynamicQuestions(item);
   
   const handleAskAI = () => {
-    // Open chat with suggested questions
+    // Open chat with dynamically generated questions
     openChat(undefined, smartQuestions);
   };
   
@@ -326,7 +283,7 @@ const TimelineEnhanced: React.FC = () => {
         <div className="flex items-center justify-center gap-2 text-gray-600 dark:text-gray-400 mb-4">
           <Sparkles size={18} className="text-purple-500 animate-pulse" />
           <p className="text-base">
-            Click <span className="font-semibold text-purple-600 dark:text-purple-400">"Ask AI"</span> on any experience to learn more with smart recruiter questions
+            Click <span className="font-semibold text-purple-600 dark:text-purple-400">"Ask AI"</span> on any experience to learn more with smart context-aware questions
           </p>
         </div>
         

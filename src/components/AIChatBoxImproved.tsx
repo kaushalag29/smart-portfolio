@@ -10,6 +10,33 @@ interface AIChatBoxProps {
   onClose: () => void;
 }
 
+// Generate user-friendly error messages based on error type
+const getGracefulErrorMessage = (error: any): string => {
+  // Check for specific error types
+  if (error?.message?.includes('429') || error?.message?.includes('rate limit')) {
+    return "I'm currently experiencing high demand. Please wait a moment and try again. Thank you for your patience! 😊";
+  }
+  
+  if (error?.message?.includes('503') || error?.message?.includes('service unavailable')) {
+    return "I'm temporarily unavailable due to maintenance. Please try again in a few moments. Your question is important to me! 🔧";
+  }
+  
+  if (error?.message?.includes('timeout') || error?.message?.includes('timed out')) {
+    return "That took longer than expected! Please try asking again, and I'll do my best to respond quickly. ⏱️";
+  }
+  
+  if (error?.message?.includes('network') || error?.message?.includes('fetch')) {
+    return "I'm having trouble connecting right now. Please check your internet connection and try again. 📡";
+  }
+  
+  if (error?.message?.includes('401') || error?.message?.includes('403')) {
+    return "There's an authentication issue on my end. Please refresh the page and try again. If the problem persists, please contact support. 🔐";
+  }
+  
+  // Generic friendly error message
+  return "I encountered an unexpected issue while processing your question. Please try again, and if the problem continues, try refreshing the page. I'm here to help! 💬";
+};
+
 // Generate intelligent follow-up questions based on conversation context
 const generateFollowUpQuestions = (lastUserMessage: string, lastAIMessage: string): string[] => {
   const lowerUser = lastUserMessage.toLowerCase();
@@ -84,18 +111,27 @@ export default function AIChatBoxImproved({ open, onClose }: AIChatBoxProps) {
     onResponse: (response) => {
       if (!response.ok) {
         console.error('Response error:', response.statusText);
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // Create a descriptive error object for graceful messaging
+        const statusError = new Error(`${response.status}`);
+        if (response.status === 429) {
+          statusError.message = 'rate limit';
+        } else if (response.status === 503) {
+          statusError.message = 'service unavailable';
+        } else if (response.status === 401 || response.status === 403) {
+          statusError.message = '401';
+        }
+        throw statusError;
       }
     },
     onFinish: (message) => {
-      console.log('Chat finished successfully');
+      // Chat completed successfully
     },
     onError: (error) => {
       console.error("Chat error:", error);
       const errorMessage: Message = {
         id: Date.now().toString(),
         role: 'assistant',
-        content: `An error occurred: ${error?.message || 'Something went wrong. Please try refreshing the page if this persists.'}`,
+        content: getGracefulErrorMessage(error),
       };
       setMessages([...messages, errorMessage]);
     }
@@ -110,11 +146,10 @@ export default function AIChatBoxImproved({ open, onClose }: AIChatBoxProps) {
           const parsedHistory = JSON.parse(savedHistory);
           if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
             setMessages(parsedHistory);
-            console.log('💾 Loaded chat history from localStorage:', parsedHistory.length, 'messages');
           }
         }
       } catch (error) {
-        console.error('❌ Failed to load chat history from localStorage:', error);
+        console.error('Failed to load chat history:', error);
       } finally {
         setHasLoadedHistory(true);
       }
@@ -131,10 +166,7 @@ export default function AIChatBoxImproved({ open, onClose }: AIChatBoxProps) {
           localStorage.removeItem(CHAT_HISTORY_KEY);
         }
       } catch (error) {
-        console.error('❌ Failed to save chat history to localStorage:', error);
-        if (error instanceof Error && error.name === 'QuotaExceededError') {
-          console.warn('⚠️  localStorage quota exceeded. Chat history will not persist.');
-        }
+        console.error('Failed to save chat history:', error);
       }
     }
   }, [messages, hasLoadedHistory]);
@@ -158,7 +190,7 @@ export default function AIChatBoxImproved({ open, onClose }: AIChatBoxProps) {
       const errorMessage: Message = {
         id: Date.now().toString(),
         role: 'assistant',
-        content: `Failed to send message: ${err?.message || 'Please try again.'}`,
+        content: getGracefulErrorMessage(err),
       };
       setMessages([...messages, errorMessage]);
     }
@@ -497,7 +529,6 @@ export default function AIChatBoxImproved({ open, onClose }: AIChatBoxProps) {
                 setMessages([]);
                 localStorage.removeItem(CHAT_HISTORY_KEY);
                 clearSuggestedQuestions();
-                console.log('🗑️  Cleared chat history');
               }}
             >
               <Trash size={20} />
