@@ -1,9 +1,11 @@
 import { EmbeddingsInterface } from "@langchain/core/embeddings";
 import { GoogleGenAI } from "@google/genai";
+import { getGlobalRateLimiter } from "./geminiRateLimiter";
 
 export class GeminiEmbeddings1536 implements EmbeddingsInterface {
   private readonly apiKey: string;
   private readonly model: string;
+  private readonly rateLimiter = getGlobalRateLimiter();
 
   constructor(options?: { apiKey?: string; model?: string }) {
     const key = options?.apiKey || process.env.GOOGLE_API_KEY || "";
@@ -19,14 +21,29 @@ export class GeminiEmbeddings1536 implements EmbeddingsInterface {
     if (texts.length === 0) return [];
     const ai = new GoogleGenAI({ apiKey: this.apiKey });
     const results: number[][] = [];
-    const MAX_BATCH = 50;
+    
+    // Reduce batch size to be more conservative with rate limits
+    const MAX_BATCH = 10;
+    
     for (let i = 0; i < texts.length; i += MAX_BATCH) {
       const slice = texts.slice(i, i + MAX_BATCH);
-      const response: any = await ai.models.embedContent({
-        model: this.model,
-        contents: slice,
-        outputDimensionality: 1536,
-      } as any);
+      
+      console.log(`[GeminiEmbeddings1536] Processing batch ${Math.floor(i / MAX_BATCH) + 1}/${Math.ceil(texts.length / MAX_BATCH)} (${slice.length} texts)`);
+      
+      // Use rate limiter to execute the API call
+      const response: any = await this.rateLimiter.execute(
+        this.model,
+        async () => {
+          return await ai.models.embedContent({
+            model: this.model,
+            contents: slice,
+            config: {
+              outputDimensionality: 1536,
+            }
+          } as any);
+        }
+      );
+      
       if (Array.isArray(response?.embeddings)) {
         const first = response.embeddings[0];
         if (Array.isArray(first)) {
@@ -38,16 +55,28 @@ export class GeminiEmbeddings1536 implements EmbeddingsInterface {
         results.push(response.embedding.values);
       }
     }
+    
+    console.log(`[GeminiEmbeddings1536] Successfully embedded ${texts.length} documents`);
     return results;
   }
 
   async embedQuery(text: string): Promise<number[]> {
     const ai = new GoogleGenAI({ apiKey: this.apiKey });
-    const response: any = await ai.models.embedContent({
-      model: this.model,
-      content: text,
-      outputDimensionality: 1536,
-    } as any);
+    
+    // Use rate limiter to execute the API call
+    const response: any = await this.rateLimiter.execute(
+      this.model,
+      async () => {
+        return await ai.models.embedContent({
+          model: this.model,
+          contents: text,
+          config: {
+            outputDimensionality: 1536,
+          }
+        } as any);
+      }
+    );
+    
     if (response?.embedding?.values) return response.embedding.values;
     if (Array.isArray(response?.embeddings)) {
       const first = response.embeddings[0];

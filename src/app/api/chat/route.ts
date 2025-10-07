@@ -6,6 +6,7 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { Message as VercelChatMessage } from "ai";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
+import { getGlobalRateLimiter } from "@/lib/geminiRateLimiter";
 
 /**
  * Main API handler for chat requests
@@ -32,9 +33,12 @@ export async function POST(req: Request) {
       .map(m => `${m.role === 'user' ? 'Human' : 'Assistant'}: ${m.content}`)
       .join('\n');
 
+    // Initialize rate limiter
+    const rateLimiter = getGlobalRateLimiter();
+    
     // Initialize the language model
     const model = new ChatGoogleGenerativeAI({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       streaming: true,
       temperature: 0.3, // More controlled and professional responses
       apiKey: process.env.GOOGLE_API_KEY,
@@ -173,12 +177,18 @@ export async function POST(req: Request) {
       .pipe(model)
       .pipe(new StringOutputParser());
 
-    // Stream the professional response
-    const stream = await chain.stream({
-      portfolioContext: portfolioContext,
-      chatHistory: previousMessages,
-      question: currentMessageContent
-    });
+    // Stream the professional response with rate limiting
+    // Note: We wrap the streaming call to ensure rate limiting
+    const stream = await rateLimiter.execute(
+      "gemini-2.5-flash-lite",
+      async () => {
+        return await chain.stream({
+          portfolioContext: portfolioContext,
+          chatHistory: previousMessages,
+          question: currentMessageContent
+        });
+      }
+    );
 
     // Create a text encoder for the stream
     const encoder = new TextEncoder();
