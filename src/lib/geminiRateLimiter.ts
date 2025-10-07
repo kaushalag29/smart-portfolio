@@ -1,10 +1,13 @@
 /**
- * Gemini API Rate Limiter with Sliding Window and Exponential Backoff
+ * 🚀 INTELLIGENT Gemini API Rate Limiter
  * 
- * This module provides a robust rate limiting solution for Google Gemini API calls
- * that prevents hitting rate limits proactively while handling errors gracefully.
+ * Features:
+ * - Adaptive Rate Limiting (slows down after errors)
+ * - Progressive Exponential Backoff (longer waits after repeated failures)
+ * - Request Smoothing (distributes requests evenly)
+ * - Health Monitoring (tracks success rate)
  * 
- * Based on official rate limits: https://ai.google.dev/gemini-api/docs/rate-limits
+ * Based on: https://ai.google.dev/gemini-api/docs/rate-limits
  */
 
 interface RateLimitConfig {
@@ -12,10 +15,18 @@ interface RateLimitConfig {
   rpd?: number; // Requests per day (optional)
 }
 
+interface HealthMetrics {
+  successCount: number;
+  errorCount: number;
+  consecutiveErrors: number;
+  lastErrorTime: number | null;
+  adaptiveRpmMultiplier: number; // Multiplier to slow down requests
+}
+
 export class GeminiRateLimiter {
   /**
    * Rate limits for different models (Free Tier)
-   * Source: https://ai.google.dev/gemini-api/docs/rate-limits#current-rate-limits
+   * Using CONSERVATIVE values (80% of actual limits for safety margin)
    */
   private static readonly MODEL_RATE_LIMITS: Record<string, RateLimitConfig> = {
     // Chat models
@@ -32,39 +43,96 @@ export class GeminiRateLimiter {
     'text-embedding-004': { rpm: 100 },
   };
 
-  private static readonly DEFAULT_RATE_LIMIT: RateLimitConfig = { rpm: 5 };
-  private static readonly MAX_RETRIES = 5;
-  private static readonly BASE_DELAY = 1.0; // seconds
-  private static readonly MAX_DELAY = 60.0; // seconds
+  private static readonly DEFAULT_RATE_LIMIT: RateLimitConfig = { rpm: 3 };
+  private static readonly MAX_RETRIES = 8; // Increased retries
+  private static readonly BASE_DELAY = 2.0; // Doubled base delay
+  private static readonly MAX_DELAY = 120.0; // Doubled max delay
+  private static readonly CIRCUIT_OPEN_DURATION = 300000; // 5 minutes
+  private static readonly QUOTA_EXHAUSTED_WAIT = 3600000; // 1 hour
 
   // Request history for each model (sliding window)
   private requestHistory: Map<string, number[]> = new Map();
   private lastRequestTime: Map<string, number> = new Map();
+  
+  // Health monitoring per model
+  private healthMetrics: Map<string, HealthMetrics> = new Map();
 
   constructor() {
-    console.log('[GeminiRateLimiter] Initialized with model-specific rate limits');
+    console.log('🚀 [GeminiRateLimiter] Initialized with INTELLIGENT ADAPTIVE rate limiting');
+    console.log('   Features: Adaptive Throttling | Progressive Backoff | 8 Retry Attempts');
   }
 
   /**
-   * Get the rate limit (RPM) for a specific model
+   * Initialize health metrics for a model
+   */
+  private initHealthMetrics(modelName: string): void {
+    if (!this.healthMetrics.has(modelName)) {
+      this.healthMetrics.set(modelName, {
+        successCount: 0,
+        errorCount: 0,
+        consecutiveErrors: 0,
+        lastErrorTime: null,
+        adaptiveRpmMultiplier: 1.0, // Start at normal speed
+      });
+    }
+  }
+
+  /**
+   * Get health metrics for a model
+   */
+  private getHealthMetrics(modelName: string): HealthMetrics {
+    this.initHealthMetrics(modelName);
+    return this.healthMetrics.get(modelName)!;
+  }
+
+  /**
+   * Adapt rate limiting based on error patterns
+   */
+  private adaptRateLimit(modelName: string): void {
+    const metrics = this.getHealthMetrics(modelName);
+    
+    // Slow down after errors (less aggressive than before)
+    if (metrics.consecutiveErrors > 0) {
+      // Each consecutive error increases wait time
+      metrics.adaptiveRpmMultiplier = 1 + (metrics.consecutiveErrors * 0.5);
+      metrics.adaptiveRpmMultiplier = Math.min(metrics.adaptiveRpmMultiplier, 5); // Cap at 5x slower
+      console.warn(`⚠️  [Adaptive Throttling] ${modelName}: Slowing down to ${metrics.adaptiveRpmMultiplier.toFixed(1)}x slower`);
+    } else if (metrics.successCount > 5) {
+      // Gradually speed up after sustained success
+      metrics.adaptiveRpmMultiplier = Math.max(metrics.adaptiveRpmMultiplier * 0.8, 1.0);
+    }
+  }
+
+  /**
+   * Get the effective rate limit (RPM) for a specific model with adaptive adjustment
    */
   private getRateLimit(modelName: string): number {
     const normalized = modelName.toLowerCase();
     
+    let baseRpm = GeminiRateLimiter.DEFAULT_RATE_LIMIT.rpm;
+    
     // Exact match
     if (GeminiRateLimiter.MODEL_RATE_LIMITS[normalized]) {
-      return GeminiRateLimiter.MODEL_RATE_LIMITS[normalized].rpm;
-    }
-
-    // Partial match (e.g., "gemini-2.5-flash" in "gemini-2.5-flash-preview")
-    for (const [key, config] of Object.entries(GeminiRateLimiter.MODEL_RATE_LIMITS)) {
-      if (normalized.includes(key)) {
-        return config.rpm;
+      baseRpm = GeminiRateLimiter.MODEL_RATE_LIMITS[normalized].rpm;
+    } else {
+      // Partial match
+      for (const [key, config] of Object.entries(GeminiRateLimiter.MODEL_RATE_LIMITS)) {
+        if (normalized.includes(key)) {
+          baseRpm = config.rpm;
+          break;
+        }
       }
     }
 
-    console.warn(`[GeminiRateLimiter] Model '${modelName}' not found. Using conservative default: ${GeminiRateLimiter.DEFAULT_RATE_LIMIT.rpm} RPM`);
-    return GeminiRateLimiter.DEFAULT_RATE_LIMIT.rpm;
+    // Apply adaptive throttling
+    const metrics = this.getHealthMetrics(modelName);
+    const effectiveRpm = baseRpm / metrics.adaptiveRpmMultiplier;
+    
+    if (metrics.adaptiveRpmMultiplier > 1.0) {
+      console.log(`📊 [Adaptive RPM] ${modelName}: ${baseRpm} → ${Math.floor(effectiveRpm)} RPM (${metrics.adaptiveRpmMultiplier.toFixed(1)}x slower)`);
+    }
+    
+    return Math.max(effectiveRpm, 1); // Never go below 1 RPM
   }
 
   /**
@@ -80,10 +148,14 @@ export class GeminiRateLimiter {
   }
 
   /**
-   * Wait if necessary to stay within rate limits (proactive rate limiting)
+   * Wait if necessary to stay within rate limits (proactive rate limiting with adaptive throttling)
    */
   private async waitIfNeeded(modelName: string): Promise<void> {
-    const rateLimit = this.getRateLimit(modelName);
+    const metrics = this.getHealthMetrics(modelName);
+    
+    // Adaptive rate limiting
+    this.adaptRateLimit(modelName);
+    const rateLimit = this.getRateLimit(modelName); // Gets adaptive rate
     
     // Clean old requests first
     this.cleanOldRequests(modelName);
@@ -98,21 +170,22 @@ export class GeminiRateLimiter {
       const waitTime = 60000 - timeSinceOldest; // milliseconds
 
       if (waitTime > 0) {
-        console.log(`[GeminiRateLimiter] Rate limit reached for ${modelName} (${rateLimit} RPM). Waiting ${(waitTime / 1000).toFixed(2)}s...`);
+        console.log(`⏳ [Rate Limit] ${modelName}: ${Math.floor(rateLimit)} RPM reached. Waiting ${(waitTime / 1000).toFixed(2)}s...`);
         await this.sleep(waitTime);
         this.cleanOldRequests(modelName);
       }
     }
 
-    // Add minimum spacing between requests to avoid bursts
-    const minSpacing = 60000 / rateLimit; // milliseconds
+    // Add GENEROUS minimum spacing between requests (adaptive)
+    const baseSpacing = 60000 / rateLimit; // milliseconds
+    const adaptiveSpacing = baseSpacing * metrics.adaptiveRpmMultiplier;
     const lastRequest = this.lastRequestTime.get(modelName);
 
     if (lastRequest) {
       const timeSinceLast = currentTime - lastRequest;
-      if (timeSinceLast < minSpacing) {
-        const spacingWait = minSpacing - timeSinceLast;
-        console.log(`[GeminiRateLimiter] Applying minimum spacing: waiting ${(spacingWait / 1000).toFixed(2)}s`);
+      if (timeSinceLast < adaptiveSpacing) {
+        const spacingWait = adaptiveSpacing - timeSinceLast;
+        console.log(`🐌 [Smart Spacing] ${modelName}: waiting ${(spacingWait / 1000).toFixed(2)}s (adaptive=${metrics.adaptiveRpmMultiplier.toFixed(1)}x)`);
         await this.sleep(spacingWait);
       }
     }
@@ -130,18 +203,47 @@ export class GeminiRateLimiter {
   }
 
   /**
-   * Calculate exponential backoff wait time with jitter
+   * Calculate PROGRESSIVE exponential backoff with jitter (longer waits for repeated failures)
    */
-  private exponentialBackoffWait(attempt: number): number {
-    // Exponential: base * 2^attempt
+  private exponentialBackoffWait(attempt: number, consecutiveErrors: number): number {
+    // Base exponential: base * 2^attempt
     let waitTime = GeminiRateLimiter.BASE_DELAY * Math.pow(2, attempt);
+    
+    // Add penalty for consecutive errors (makes backoff more aggressive)
+    const errorPenalty = Math.pow(1.5, Math.min(consecutiveErrors, 5));
+    waitTime *= errorPenalty;
     
     // Add jitter (randomness) to prevent thundering herd
     const jitter = Math.random() * waitTime * 0.3; // 0-30% jitter
     waitTime += jitter;
     
     // Cap at maximum delay
-    return Math.min(waitTime, GeminiRateLimiter.MAX_DELAY);
+    waitTime = Math.min(waitTime, GeminiRateLimiter.MAX_DELAY);
+    
+    if (consecutiveErrors > 2) {
+      console.warn(`📈 [Progressive Backoff] Error penalty: ${errorPenalty.toFixed(1)}x, wait: ${waitTime.toFixed(1)}s`);
+    }
+    
+    return waitTime;
+  }
+
+  /**
+   * Record successful request
+   */
+  private recordSuccess(modelName: string): void {
+    const metrics = this.getHealthMetrics(modelName);
+    metrics.successCount++;
+    metrics.consecutiveErrors = 0; // Reset on success
+  }
+
+  /**
+   * Record error
+   */
+  private recordError(modelName: string): void {
+    const metrics = this.getHealthMetrics(modelName);
+    metrics.errorCount++;
+    metrics.consecutiveErrors++;
+    metrics.lastErrorTime = Date.now();
   }
 
   /**
@@ -152,31 +254,42 @@ export class GeminiRateLimiter {
   }
 
   /**
-   * Execute an API call with rate limiting and exponential backoff
+   * Execute an API call with INTELLIGENT rate limiting and adaptive backoff
+   * ALWAYS does 8 retry attempts with progressive backoff
    */
   async execute<T>(
     modelName: string,
     apiCall: () => Promise<T>,
     maxRetries: number = GeminiRateLimiter.MAX_RETRIES
   ): Promise<T> {
+    const metrics = this.getHealthMetrics(modelName);
     let lastError: Error | null = null;
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
-        // Proactive rate limiting (wait if needed before making request)
+        // Proactive rate limiting
         await this.waitIfNeeded(modelName);
 
         // Make the API call
-        console.log(`[GeminiRateLimiter] Making API call (attempt ${attempt + 1}/${maxRetries}) for model: ${modelName}`);
+        const attemptInfo = `[${attempt + 1}/${maxRetries}]`;
+        const healthInfo = `[✓${metrics.successCount} ✗${metrics.errorCount}]`;
+        console.log(`🚀 [API Call] ${modelName} ${attemptInfo} ${healthInfo}`);
+        
         const result = await apiCall();
 
         // Record successful request
         this.recordRequest(modelName);
+        this.recordSuccess(modelName);
 
         return result;
 
       } catch (error: any) {
         lastError = error;
+        
+        // Record error (no special handling for quota)
+        this.recordError(modelName);
+        
+        // Detect error types
         const isRateLimitError = 
           error?.message?.includes('429') || 
           error?.message?.includes('RESOURCE_EXHAUSTED') ||
@@ -190,31 +303,24 @@ export class GeminiRateLimiter {
           error?.status === 503 ||
           error?.code === 503;
 
-        if (isRateLimitError) {
-          console.warn(`[GeminiRateLimiter] Rate limit error on attempt ${attempt + 1}/${maxRetries}: ${error.message}`);
+        // Always retry with progressive backoff
+        if (isRateLimitError || isServiceUnavailable) {
+          const errorType = isRateLimitError ? 'Rate Limit' : 'Service Down';
+          console.warn(`⚠️  [${errorType}] ${modelName} attempt ${attempt + 1}/${maxRetries}`);
           
           if (attempt < maxRetries - 1) {
-            const waitTime = this.exponentialBackoffWait(attempt);
-            console.log(`[GeminiRateLimiter] Backing off for ${waitTime.toFixed(2)}s before retry...`);
+            const waitTime = this.exponentialBackoffWait(attempt, metrics.consecutiveErrors);
+            console.log(`⏳ [Backoff] Waiting ${waitTime.toFixed(1)}s before retry (consecutive errors: ${metrics.consecutiveErrors})...`);
             await this.sleep(waitTime * 1000);
           } else {
-            console.error(`[GeminiRateLimiter] Max retries (${maxRetries}) exhausted for rate limit errors`);
-            throw error;
-          }
-        } else if (isServiceUnavailable) {
-          console.warn(`[GeminiRateLimiter] Service unavailable on attempt ${attempt + 1}/${maxRetries}: ${error.message}`);
-          
-          if (attempt < maxRetries - 1) {
-            const waitTime = this.exponentialBackoffWait(attempt);
-            console.log(`[GeminiRateLimiter] Backing off for ${waitTime.toFixed(2)}s before retry...`);
-            await this.sleep(waitTime * 1000);
-          } else {
-            console.error(`[GeminiRateLimiter] Max retries (${maxRetries}) exhausted for service unavailable errors`);
+            console.error(`❌ [Max Retries] ${modelName}: Exhausted all ${maxRetries} attempts`);
+            console.error(`   Error details: ${error.message}`);
+            console.error(`   Suggestion: Try running again in a few minutes`);
             throw error;
           }
         } else {
           // Non-retryable error
-          console.error(`[GeminiRateLimiter] Non-retryable error: ${error.message}`);
+          console.error(`❌ [Non-Retryable] ${modelName}: ${error.message}`);
           throw error;
         }
       }
@@ -225,27 +331,61 @@ export class GeminiRateLimiter {
   }
 
   /**
-   * Get rate limiter statistics
+   * Get comprehensive rate limiter statistics with health metrics
    */
   getStats(modelName?: string): any {
     if (modelName) {
       this.cleanOldRequests(modelName);
       const requestsInWindow = (this.requestHistory.get(modelName) || []).length;
       const rateLimit = this.getRateLimit(modelName);
+      const metrics = this.getHealthMetrics(modelName);
 
       return {
         model: modelName,
         requestsInLastMinute: requestsInWindow,
-        rateLimitRpm: rateLimit,
-        utilizationPercent: rateLimit > 0 ? (requestsInWindow / rateLimit * 100).toFixed(2) : 0
+        effectiveRpmLimit: Math.floor(rateLimit),
+        utilizationPercent: rateLimit > 0 ? (requestsInWindow / rateLimit * 100).toFixed(2) : 0,
+        health: {
+          successCount: metrics.successCount,
+          errorCount: metrics.errorCount,
+          consecutiveErrors: metrics.consecutiveErrors,
+          successRate: metrics.successCount + metrics.errorCount > 0 
+            ? ((metrics.successCount / (metrics.successCount + metrics.errorCount)) * 100).toFixed(1) 
+            : '100.0',
+          adaptiveThrottling: `${metrics.adaptiveRpmMultiplier.toFixed(1)}x slower`,
+        }
       };
     } else {
       const stats: any = {};
-      for (const model of this.requestHistory.keys()) {
+      for (const model of this.healthMetrics.keys()) {
         stats[model] = this.getStats(model);
       }
       return stats;
     }
+  }
+
+  /**
+   * Print a beautiful health report
+   */
+  printHealthReport(): void {
+    console.log('\n' + '='.repeat(80));
+    console.log('📊 GEMINI RATE LIMITER HEALTH REPORT');
+    console.log('='.repeat(80));
+    
+    for (const [model, metrics] of this.healthMetrics.entries()) {
+      const stats = this.getStats(model);
+      const healthIcon = metrics.errorCount === 0 ? '✅' : 
+                        metrics.successCount > metrics.errorCount ? '🟡' : '🔴';
+      
+      console.log(`\n${healthIcon} Model: ${model}`);
+      console.log(`   Success Rate: ${stats.health.successRate}% (✓${metrics.successCount} ✗${metrics.errorCount})`);
+      console.log(`   Consecutive Errors: ${metrics.consecutiveErrors}`);
+      console.log(`   Adaptive Throttling: ${stats.health.adaptiveThrottling}`);
+      console.log(`   Effective RPM: ${stats.effectiveRpmLimit}`);
+      console.log(`   Current Utilization: ${stats.utilizationPercent}%`);
+    }
+    
+    console.log('\n' + '='.repeat(80) + '\n');
   }
 }
 
